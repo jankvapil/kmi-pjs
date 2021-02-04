@@ -91,7 +91,7 @@ console.log(res)  // -> 43
 
 ## 3. Objekty a pole
 
-Složená data mohou být v JS realizována jako objekty (JSON) nebo pole. V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad.
+Složená data mohou být v JS realizována jako pole nebo objekty (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad:
 
 ```javascript
 const person = {
@@ -151,11 +151,15 @@ console.log(person)
 console.log(deepCopy)
 ```
 
-S využitím pouze čistě JS můžeme JSON převézt na řetězec znaků a z něj znova na JSON, čímž docílíme správného zkopírování všech zanořených objektů.
-
+S využitím základních tříd a funkcí JS můžeme objekt převézt na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci JSON.parse jsme získali sice nový objekt, ale bez funkce greeting. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje.
 
 ```javascript
-// Todo
+const str = JSON.parse(JSON.stringify({str: `Multi
+
+  line`
+}))
+
+console.log(str) // -> { str: 'Multi\n\n  line' }
 ```
 
 ## Reference
