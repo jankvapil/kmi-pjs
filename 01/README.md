@@ -27,8 +27,12 @@ function fn(x) {
 }
 ```
 
-Ve funkcionálním programování se pro definice proměnných používá slovní spojení "vytvořit vazby mezi symboly (názvy proměnných) a hodnotami", což odpovídá přesněji následujícímu přístupu. Ve většině případů chceme zamezit nechtěnné redefinici a redeklaraci - proto preferujeme pro deklaraci vazeb použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme.
+
+Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji následujícímu přístupu. Ve většině případů chceme zamezit nechtěnné redefinici a redeklaraci - proto preferujeme pro vytvoření vazeb použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994)).
+
+
 ### ECMAScript 6
+
 ```javascript
 let x = 42
 let x = 666   // error -> let nelze redeklarovat 
@@ -56,7 +60,9 @@ fn = x  // error -> const nelze redefinovat
 
 ## 2. Funkce 
 
+
 S funkcemi lze v JS manipulovat stejně jako s hodnotami (High-order functions).
+
 
 ```javascript
 ///
@@ -89,6 +95,7 @@ fn3()(42) // -> 43
 
 ## 3. Objekty a pole
 
+
 Složená data mohou být v JS realizována jako pole nebo objekty (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad:
 
 
@@ -107,7 +114,7 @@ copy.age == homer.age // -> true
 ```
 
 
-Proč mají oba věk 666? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu. 
+Proč se změnil věk oboum objektům? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu. 
 
 Zkusme nyní využít tzv. **destrukturalizaci** (operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty.
 
