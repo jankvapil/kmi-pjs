@@ -56,7 +56,7 @@ fn = x  // error -> const nelze redefinovat
 
 ## 2. Funkce 
 
-S funkcemi lze v JS manipulovat stejně jako s hodnotami (High-Order functions).
+S funkcemi lze v JS manipulovat stejně jako s hodnotami (High-order functions).
 
 ```javascript
 ///
@@ -64,7 +64,7 @@ S funkcemi lze v JS manipulovat stejně jako s hodnotami (High-Order functions).
 ///
 const fn = (x) => 42 && 666 && x + 1   
 
-console.log(fn(42))   // -> 43
+fn(42) // -> 43
 
 ///
 /// funkce jako argumenty funkcí
@@ -73,7 +73,7 @@ const fn2 = (x, fn) => {
   return fn(x)
 }
 
-console.log(fn2(42, fn))  // -> 43
+fn2(42, fn) // -> 43
 
 ///
 /// funkce jako návratové hodnoty
@@ -82,76 +82,78 @@ const fn3 = () => {
   return (x) => x + 1 
 }
 
-let res = fn3()
-console.log(res)  // -> function
+fn3() // -> function
 
-res = fn3()(42)   
-console.log(res)  // -> 43
+fn3()(42) // -> 43
 ```
 
 ## 3. Objekty a pole
 
 Složená data mohou být v JS realizována jako pole nebo objekty (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad:
 
+
 ```javascript
-const person = {
-  name: "John Doe",
-  age: 42,
-  children: [{name: "Amy"}, {name: "Lucas"}],
-  greeting: () => "Hello, my name is John"
+const homer = {
+  name: "Homer",
+  age: 39,
+  children: [{name: "Bart"}, {name: "Lisa"}],
+  greeting: () => "Hello, my name is Homer"
 }
 
-console.log(person)
+const copy = homer
+homer.age = 42
 
-const copy = person
-copy.age = 666
-
-console.log(copy)
-console.log(person)
+copy.age == homer.age // -> true
 ```
+
 
 Proč mají oba věk 666? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu. 
 
 Zkusme nyní využít tzv. **destrukturalizaci** (operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty.
 
-```javascript
-const shallowCopy = {...person}
-shallowCopy.age = 12
 
-console.log(person)
-console.log(shallowCopy)
+```javascript
+const shallowCopy = {...homer}
+shallowCopy.age = 39
+
+homer.age == shallowCopy.age // -> false
 ```
+
 
 Nyní se nám změna věku už projevila správně. Co když změníme jméno dítěte původního objeku? 
 
-```javascript
-shallowCopy.children[0].name = "David"
 
-console.log(person)
-console.log(shallowCopy)
+```javascript
+shallowCopy.children[0].name = "Meggie"
+
+shallowCopy.children[0].name == homer.children[0].name // -> true
 ```
+
 
 Změna se provede i ve zkopírovaném objektu. Pomůže Object.assign? 
 
-```javascript
-const shallowCopy2 = Object.assign({}, person);
-shallowCopy2.children[0].name = "Adam"
-
-console.log(person)
-console.log(shallowCopy2)
-```
-
-Jak vidíme, ani toto nám pro zanořené data nepomohlo. Jak tedy provést plnohodnotnou duplikaci objektu?
 
 ```javascript
-const deepCopy = JSON.parse(JSON.stringify(person)) 
-deepCopy.children[0].name = "Eve"
+const shallowCopy2 = Object.assign({}, homer);
+shallowCopy2.children[0].name = "Bart"
 
-console.log(person)
-console.log(deepCopy)
+shallowCopy2.children[0].name == homer.children[0].name // -> true
 ```
 
-S využitím základních tříd a funkcí JS můžeme objekt převézt na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci JSON.parse jsme získali sice nový objekt, ale bez funkce greeting. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje.
+
+Jak vidíme, ani toto nám pro zanořená data nepomohlo. Jak tedy provést plnohodnotnou duplikaci objektu?
+
+
+```javascript
+const deeCopy = JSON.parse(JSON.stringify(homer)) 
+deeCopy.children[0].name = "Meggie"
+
+deeCopy.children[0].name == homer.children[0].name // -> false
+```
+
+
+S využitím základních tříd a funkcí JS můžeme objekt převést na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci JSON.parse jsme získali sice nový objekt, ale bez funkce greeting. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje.
+
 
 ```javascript
 const str = JSON.parse(JSON.stringify({str: `Multi
@@ -160,6 +162,44 @@ const str = JSON.parse(JSON.stringify({str: `Multi
 }))
 
 console.log(str) // -> { str: 'Multi\n\n  line' }
+```
+
+
+Spolehlivé duplikace zanořených datových struktur docílíme pouze vytvořením vlastních pomocných funkcí (nebo použítím existujících knihoven. Více v dalších lekcích o Node.js a Imutabilních datových strukturách)
+
+
+
+## 4. Array functions
+
+Pro práci s poli můžeme využít (high-order) funkce a provádět tak s daty různé transformace.
+
+
+```javascript
+const simpsons = [
+  {name: "Homer", age: 39}, 
+  {name: "Marge", age: 36},
+  {name: "Bart", age: 10},
+  {name: "Lisa", age: 8}
+]
+
+// vyfiltrujeme pouze mladistvé členy rodiny Simpsonových
+simpsons.filter(s => s.age <= 21)
+
+// vybereme pouze jména
+simpsons.map(s => s.name)
+
+// sečteme věk všech simpsonů
+simpsons.map(s => s.age)
+  .reduce((acum, age) => acum + age)
+
+// nedestruktivní operace
+const parents = simpsons.slice(0, 2) // získáme členy rodiny od indexu 0 do indexu 2 (vyjma)
+
+// destruktivní operace (mění původní strukturu - přidá prvek na konec pole)
+simpsons.push({name: "Megie", age: 1})
+
+// destruktivní operace (odebere první prvek)
+const homer = simpsons.shift()
 ```
 
 ## Reference

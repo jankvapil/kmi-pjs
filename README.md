@@ -4,8 +4,8 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ## Obsah kurzu
 
-1. Úvod do JS, (opakování) syntaxe ES6+, Node.js (balíčky, package.json, npm)
-2. Asynchronní JS, načítání dat z API (Fetch API, Axios)
+1. Úvod do JS, (opakování) syntaxe ES6+, vlastnosti jazyka, funkcionální přístup, práce s datavými strukturami
+2. Node.js (balíčky, package.json, npm) Asynchronní JS, načítání dat z API (Fetch API, Axios)
 3. Serverside JavaScript - Express.js, Socket.io
 4. Připojení k databázi, načítání dat (SQL query builder - Knex)
 5. ORM (Prisma), automatické generování API
