@@ -209,6 +209,142 @@ simpsons.push({name: "Megie", age: 1})
 const homer = simpsons.shift()
 ```
 
+
+## 5. Asynchronní JS
+
+
+Později zjistíme (zejména při práci s frontendem), že velmi často potřebujeme reagovat na různé typy asynchronních událostí - typicky ve chvíli, kdy dostaneme odpoveď od serveru s nějakými daty. K tomu se dříve používaly tzv. **callbacky**, neboli funkce, které umožňují dál pracovat např. s načtenými daty někdy v budoucnu. 
+
+Nejjednoduším příkladem asynchronního kódu je následující funkce setTimeout, která bere jako argument callback, jenž se má vykonat po uběhnutí 2000ms.  
+
+
+```javascript
+const callback = () => console.log("Callback triggered!")
+const ms = 2000
+setTimeout(callback, ms)
+console.log("Hello")
+```
+
+
+Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše se "Hello" a po 2 sekundách se vypíše "Callback triggered!". Pro hlubší pochopení si můžete přečíst něco o [JS Event Loop](https://javascript.info/event-loop). Nám bude v tuto chvíli stačit, že vyhodnocování není lineární (přestože je JS kód vykonáván v jednom vlákně) a že existuje nějaká fronta asynchronních událostí.
+
+
+### Problém s callbacky 
+
+Představme si, že je třeba takto vykonat třeba 5 zřetězených asynchronních událostí.
+
+
+```javascript
+const goToPub = (callback) => {
+  console.log("Going to pub..")
+  setTimeout(callback, 500)
+}
+
+const orderBeer = (callback) => {
+  console.log("Ordering beer..")
+  setTimeout(callback, 500)
+}
+
+const drinkBeer = (callback) => {
+  console.log("Drinking beer..")
+  setTimeout(callback, 500)
+}
+
+const payBeer = (callback) => {
+  console.log("Paying beer..")
+  setTimeout(callback, 500)
+}
+
+const goHome = () => {
+  setTimeout(() => console.log("Going home.."), 500)
+} 
+
+// "pyramid of doom":
+
+goToPub(
+  () => orderBeer(
+    () => drinkBeer(
+      () => payBeer(
+        () => goHome()
+      )
+    )
+  )
+)
+```
+
+
+Tímto způsobem předávání callbacků se stane kód velmi rychle nepřehledný (Callback hell).
+
+
+### Promises
+
+
+Proto se do JS zavedla třída [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (neboli "příslib" dokončení výpočtu někdy v budoucnu), která má 3 stavy:
+
+* pending: initial state, neither fulfilled nor rejected.
+* fulfilled: meaning that the operation was completed successfully.
+* rejected: meaning that the operation failed.
+
+a umožňuje tak vracet nedokončený výpočet jako objekt.
+
+
+### Async / await
+
+Klíčová slova async / await pak vytváří nádstavbu nad přísliby a umožňuje elegantně pracovat s asynchronním kódem.
+
+
+```javascript
+///
+/// Pomocná funkce simulující asynchronnost
+/// 
+const delay = (ms) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(true)
+    }, ms)
+  })
+}
+
+const goToPub = async () => {
+  await delay(500)
+  console.log("Going to pub..")
+}
+
+const orderBeer = async () => {
+  await delay(500)
+  console.log("Ordering beer..")
+}
+
+const drinkBeer = async () => {
+  await delay(500)
+  console.log("Drinking beer..")
+}
+
+const payBeer = async () => {
+  await delay(500)
+  console.log("Paying beer..")
+}
+
+const goHome = async () => {
+  await delay(500)
+  console.log("Going home..")
+} 
+
+///
+/// Testovací funkce
+///
+const enjoyFriday = async () => {
+  await goToPub()
+  await orderBeer()
+  await drinkBeer()
+  await payBeer()
+  await goHome()
+}
+
+enjoyFriday()
+```
+
+
 ## Reference
 
 Podrobnější výčet vlastností jazyka + příklady [zde](https://github.com/airbnb/javascript/blob/master/README.md).
