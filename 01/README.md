@@ -1,9 +1,10 @@
 # Úvod do Platformy JS
 
+V úvodu kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složnými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya.
 
 ## 1. Deklarace a definice Vanilla JS vs ES6+ 
 
-Rozdíly v rozsahu platnosti a deklaracích / definicích proměnných (vazeb) a funkcí.
+Rozdíly v rozsahu platnosti a deklaracích / definicích proměnných a funkcí.
 
 ### Vanilla JS
 
@@ -28,7 +29,9 @@ function fn(x) {
 ```
 
 
-Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji následujícímu přístupu. Ve většině případů chceme zamezit nechtěnné redefinici a redeklaraci - proto preferujeme pro vytvoření vazeb použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994)).
+Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994)).
+
+(* Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS.)
 
 
 ### ECMAScript 6
@@ -231,7 +234,7 @@ Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše 
 
 ### Problém s callbacky 
 
-Představme si, že je třeba takto vykonat třeba 5 zřetězených asynchronních událostí.
+Představme si, že je třeba takto vykonat 5 zřetězených asynchronních funkcí.
 
 
 ```javascript
@@ -290,7 +293,7 @@ a umožňuje tak vracet nedokončený výpočet jako objekt.
 
 ### Async / await
 
-Klíčová slova async / await pak vytváří nádstavbu nad přísliby a umožňuje elegantně pracovat s asynchronním kódem.
+Klíčová slova async / await pak vytváří nádstavbu nad přísliby, což umožňuje elegantně pracovat s asynchronním kódem.
 
 
 ```javascript
