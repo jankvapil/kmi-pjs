@@ -22,20 +22,23 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ### Co znamená platforma JavaScript?
 
-* [Historie JS](https://youtu.be/Sh6lK57Cuk4) sahá do poloviny 90. let a tvoří tzv. jazyk prohlížečů. V roce 2009 pak vznikl Node.js (neboli běhové prostředí pro JS) a se tedy stal určitou platformou pro tvorbu aplikací, která může zároveň hostovat jiné jazyky a technologie - proto název platforma JS.
+* [Historie JS](https://youtu.be/Sh6lK57Cuk4) sahá do poloviny 90. let, kdy postupně vzniklo několik prototypů univerzálního jazyka pro webové prohlížeče. Z těch pak vychází standardizovaná specifikace jazyka JS známá jako ECMAScript. V roce 2009 bylo uvedeno běhové prostředí Node.js, které se stalo určitou platformou pro tvorbu aplikací a na které mohou být zároveň hostované jiné jazyky a technologie.
 
 ### JavaScript je obecně vnímán jako špatný jazyk, proč se jím tedy hlouběji zabývat?
 
-* JS je opravdu špatný jazyk ve smyslu, že existuje spousta [pastí](https://youtu.be/et8xNAc2ic8), do kterých se nezkušený JS programátor může dostat ("lze třeba porovnat téměř cokoliv, např:  `[] == {}`, většinou to projde, ale nikdo vlastně neví, co to skutečně dělá"). 
+* JS je skutečně špatný jazyk ve smyslu, že existuje spousta [pastí](https://youtu.be/et8xNAc2ic8), do kterých se nezkušený JS programátor může dostat (zejména díky slabým dynamickým typům promenných a různým rozsahům platnosti). 
 * Má však ale mnoho zajímavých vlastností a při dodržování určitých dobrých programátorských praktik v něm lze programovat efektivně. Dle statistik GitHubu je nejrozšířenějším programovacím jazykem vůbec a má bezpochyby největší open-source zázemí.
 
-### Kdy je tedy vhodné zvážit použití JS technologií?
+### Kde se JS nevyhneme?
 
-* Když chceme vytvářet interaktivní webové aplikace, které budou pracovat s DOM prohlížeče na klientské straně.
-* Rychlé prototypování, levné a dostupné řešení pro malé projekty / startupy
+* Při tvorbě interaktivních webových aplikací, které budou pracovat s DOM prohlížeče na klientské straně.
+
+### Kde je vhodné zvážit použití právě JS technologií?
+
+* Rychlé prototypování aplikací, levné a dostupné řešení pro malé projekty / startupy, kde chceme použít jeden jazyk na klientu i serveru.
 
 ### Co je cílem kurzu?
 
-* Seznámit se s použitím JS na klientu i na serveru, vytvořit v průběhu kurzu vlastní informační systém (klientskou aplikaci + serverové API).
+* Seznámit se s použitím JS technologií na klientu i na serveru, vytvořit v průběhu kurzu vlastní informační systém (klientskou aplikaci + serverové API).
 
 
