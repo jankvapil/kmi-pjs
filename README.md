@@ -26,8 +26,8 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ### JavaScript je obecně vnímán jako špatný jazyk, proč se jím tedy hlouběji zabývat?
 
-* JS je skutečně špatný jazyk ve smyslu, že existuje spousta [pastí](https://youtu.be/et8xNAc2ic8), do kterých se nezkušený JS programátor může dostat (zejména díky slabým dynamickým typům promenných a různým rozsahům platnosti). 
-* Má však ale mnoho zajímavých vlastností a při dodržování určitých dobrých programátorských praktik v něm lze programovat efektivně. Dle statistik GitHubu je nejrozšířenějším programovacím jazykem vůbec a má bezpochyby největší open-source zázemí.
+* JS je skutečně špatný jazyk ve smyslu, že existuje spousta [pastí](https://youtu.be/et8xNAc2ic8), do kterých se nezkušený JS programátor může dostat (zejména díky slabým dynamickým typům promenných nebo užívání dvojího rozsahu platnosti). 
+* Má však ale mnoho zajímavých vlastností a při dodržování určitých dobrých programátorských praktik v něm lze programovat efektivně. Dle statistik GitHubu je nejrozšířenějším programovacím jazykem vůbec a také má bezpochyby největší open-source zázemí. Na prohlížeč lze navíc nahlížet též jako na určitou platformu, která nám poskytuje API k systémovým zdrojům.
 
 ### Kde se JS nevyhneme?
 
@@ -35,7 +35,7 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ### Kde je vhodné zvážit použití právě JS technologií?
 
-* Rychlé prototypování aplikací, levné a dostupné řešení pro malé projekty / startupy, kde chceme použít jeden jazyk na klientu i serveru.
+* Pro rychlé prototypování aplikací, levné a dostupné řešení pro malé projekty / startupy, kde chceme použít jeden jazyk na klientu i na serveru.
 
 ### Co je cílem kurzu?
 
