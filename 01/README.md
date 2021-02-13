@@ -155,10 +155,10 @@ Jak vidíme, ani toto nám pro zanořená data nepomohlo. Jak tedy provést plno
 
 
 ```javascript
-const deeCopy = JSON.parse(JSON.stringify(homer)) 
-deeCopy.children[0].name = "Meggie"
+const deepCopy = JSON.parse(JSON.stringify(homer)) 
+deepCopy.children[0].name = "Meggie"
 
-deeCopy.children[0].name == homer.children[0].name // -> false
+deepCopy.children[0].name == homer.children[0].name // -> false
 ```
 
 
@@ -347,6 +347,9 @@ const enjoyFriday = async () => {
 enjoyFriday()
 ```
 
+## Úkol
+
+Vytvořte funkci, která provede správnou duplikaci libovolně zanořených datových struktur.
 
 ## Reference
 
