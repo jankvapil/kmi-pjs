@@ -6,7 +6,7 @@ import Head from 'next/head'
 const Header = () => {
   return (
     <Head>
-      <title>Create Next App</title>
+      <title>KMI/PJS Course</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
   )
