@@ -19,10 +19,15 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ## FAQ ohledně kurzu
 
+### Jaké jsou předpoklady k absolvování kurzu?
+* Je nutné ovládat alespoň základy JS + mít základní zkušenosti s tvorbou webových stránek.
+* Preferovaný editor [VSCode](https://code.visualstudio.com/), linuxová konzole (MINGW pro Windows - součást instalace Gitu).
+* Znalost [Gitu](https://git-scm.com/) je vítána.
 
 ### Co znamená platforma JavaScript?
 
-* [Historie JS](https://youtu.be/Sh6lK57Cuk4) sahá do poloviny 90. let, kdy postupně vzniklo několik prototypů univerzálního jazyka pro webové prohlížeče. Z těch pak vychází standardizovaná specifikace jazyka JS známá jako ECMAScript. V roce 2009 bylo uvedeno běhové prostředí Node.js, které se stalo určitou platformou pro tvorbu aplikací a na které mohou být zároveň hostované jiné jazyky a technologie. Na prohlížeč lze navíc nahlížet též jako na určitou platformu, která nám poskytuje API k systémovým zdrojům.
+* [Historie JS](https://youtu.be/Sh6lK57Cuk4) sahá do poloviny 90. let, kdy postupně vzniklo několik prototypů univerzálního jazyka pro webové prohlížeče. Z těch pak vychází standardizovaná specifikace jazyka JS známá jako ECMAScript. 
+* V roce 2009 bylo uvedeno běhové prostředí Node.js, které se stalo určitou platformou pro tvorbu aplikací a na které mohou být zároveň hostované jiné jazyky a technologie. Na prohlížeč lze navíc nahlížet též jako na určitou platformu, která nám poskytuje API k systémovým zdrojům.
 
 ### JavaScript je obecně vnímán jako špatný jazyk, proč se jím tedy hlouběji zabývat?
 
@@ -35,10 +40,11 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ### Kde je vhodné zvážit použití právě JS technologií?
 
-* Pro rychlé prototypování aplikací, levné a dostupné řešení pro malé projekty / startupy, kde chceme použít jeden jazyk na klientu i na serveru.
+* Pro rychlé prototypování aplikací, levné a dostupné řešení (nejen) pro malé projekty / startupy, kde chceme použít jeden jazyk na klientu i na serveru.
 
 ### Co je cílem kurzu?
 
 * Seznámit se s použitím JS technologií na klientu i na serveru, vytvořit v průběhu kurzu vlastní informační systém (klientskou aplikaci + serverové API).
 
-
+### Proč k tvorbě UI právě knihovna React?
+* Jelikož je React sám o sobě zaměřen čistě na UI, veškeré [React komponenty = JS funkce](https://reactjs.org/docs/introducing-jsx.html), s čímž je spojena celá řada výhod (na rozdíl od šablonovacích frameworků, kombinujících HTML s kódem). Možnost jednotného kódu v rámci celého projektu (nejzřetelněji bude vidět při kombinaci ClojureScriptu s Reactem).

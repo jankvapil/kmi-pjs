@@ -1,6 +1,8 @@
 # Úvod do Platformy JS
 
-V úvodu kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složnými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya.
+V úvodní lekci kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya.
+
+Pro spouštění ukázek kódu doporučuji použít [REPL.it](https://repl.it/) (případně kód spouštět pomocí node.js - více v další lekci)
 
 ## 1. Deklarace a definice Vanilla JS vs ES6+ 
 
@@ -98,8 +100,7 @@ fn3()(42) // -> 43
 
 ## 3. Objekty a pole
 
-
-Složená data mohou být v JS realizována jako pole nebo objekty (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad:
+Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad:
 
 
 ```javascript
@@ -119,7 +120,7 @@ copy.age == homer.age // -> true
 
 Proč se změnil věk oboum objektům? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu. 
 
-Zkusme nyní využít tzv. **destrukturalizaci** (operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty.
+Zkusme nyní využít tzv. **destrukturalizaci** (spread operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty.
 
 
 ```javascript
@@ -347,9 +348,14 @@ const enjoyFriday = async () => {
 enjoyFriday()
 ```
 
+Všimněme si definice a volání asynchronní funkce `enjoyFriday` - klíčové slovo `await` lze použít pouze uvnitř asynchronní funkce.
+
 ## Úkol
 
-Vytvořte funkci, která provede správnou duplikaci libovolně zanořených datových struktur.
+Implementujte (a otestujte) sadu pomocných funkcí, které později použijete v projektu:
+
+* `deepCopy(obj)` - provede správnou duplikaci libovolně zanořených datových struktur
+* `getNowDate()` - vrátí aktuální čas (string) ve formátu DD.MM.YYYY HH:MM:SS (s pomocí třídy Date)
 
 ## Reference
 
