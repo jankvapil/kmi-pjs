@@ -8,7 +8,7 @@ Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací s
 
 ## npm
 
-Neboli [*Node Package Manager*](https://www.npmjs.com/) je balíčkovací systém pro *Node.js* (je instalován společně s *Node.js*), umožňující spravovat závislosti na JavaScriptových knihovnách. Alternativou je pak balíčkovací systém **Yarn**.
+Neboli [*Node Package Manager*](https://www.npmjs.com/) je balíčkovací systém pro *Node.js* (je instalován společně s *Node.js*), umožňující spravovat závislosti na JavaScriptových knihovnách. Alternativou je pak balíčkovací systém **Yarn**, který budeme používat v dalších lekcích.
 
 ### Getting started
 
