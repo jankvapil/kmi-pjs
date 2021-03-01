@@ -12,7 +12,7 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 6. Tvorba vlastní API (REST, GraphQL)
 7. Možnosti (a limity) prohlížečů, DOM, Server-side vs Client-side rendering 
 8. React (funkcionální komponenty a jejich kompozice, hooky, routování), Next.js
-9. Nástroje pro vývoj frontendu - typy (Typescript, Flow, JSDoc), imutabilní datové struktury (Immutable.js), state management (Redux), 
+9. Užitečné nástroje pro vývoj v JS (statické typy, immutabilní datové struktury, state management..) 
 10. ClojureScript
 11. Electron (úprava + zabalení aplikace pro desktop)
 12. React Native (Android / iOS) - minimalizace klientské aplikace pro mobilní zařízení, React Native Windows + macOS (alternativa k .Net WPF, JavaFX..)
@@ -20,9 +20,9 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 ## FAQ ohledně kurzu
 
 ### Jaké jsou předpoklady k absolvování kurzu?
-* Je nutné ovládat alespoň základy JS + mít základní zkušenosti s tvorbou webových stránek.
+* Je nutné ovládat alespoň základy JS + základní zkušenosti s tvorbou webových aplikací.
 * Preferovaný editor [VSCode](https://code.visualstudio.com/), linuxová konzole (MINGW pro Windows - součást instalace Gitu).
-* Znalost [Gitu](https://git-scm.com/) je vítána.
+* Znalost [Gitu](https://git-scm.com/) výhodou.
 
 ### Co znamená platforma JavaScript?
 
@@ -31,7 +31,7 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ### JavaScript je obecně vnímán jako špatný jazyk, proč se jím tedy hlouběji zabývat?
 
-* JS je skutečně špatný jazyk ve smyslu, že existuje spousta [pastí](https://youtu.be/et8xNAc2ic8), do kterých se nezkušený JS programátor může dostat (zejména díky slabým dynamickým typům promenných nebo užívání dvojího rozsahu platnosti). 
+* JS je skutečně špatný jazyk ve smyslu, že existuje spousta [pastí](https://youtu.be/et8xNAc2ic8), do kterých se nezkušený JS programátor může dostat (zejména díky slabým dynamickým typům nebo užívání dvojího rozsahu platnosti). 
 * Má však ale mnoho zajímavých vlastností a při dodržování určitých dobrých programátorských praktik v něm lze programovat efektivně. Dle statistik GitHubu je nejrozšířenějším programovacím jazykem vůbec a také má bezpochyby největší open-source zázemí.
 
 ### Kde se JS nevyhneme?
