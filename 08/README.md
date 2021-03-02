@@ -1,7 +1,12 @@
 
 # React
 
-React je knihovna pro tvorbu uživatelského rozhranní. Vychází z funkcionálního paradigmatu... TODO
+React je knihovna pro tvorbu uživatelského rozhranní. 
+
+* transforumje data -> view
+
+![\Large f(D_0)=V_0](https://latex.codecogs.com/svg.latex?\Large&space;f(D_0)=V_0) 
+
 
 ## Next.js
 

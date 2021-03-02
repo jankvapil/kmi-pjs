@@ -1,6 +1,6 @@
 # Užitečné nástroje pro vývoj v JS
 
-Jak již bylo zmíněno v úvodním info o kurzu, JavaScript má mnoho nástrah, do kterých se (nejen) nezkušený programátor může dostat. Některé zakladní nástrahy jsme si již popsali v úvodních lekcích. V této lekci se budeme zabývat knihovnami, které nám (alespoň částečně) usnadní vývoj JS aplikací.
+Jak již bylo zmíněno v úvodním info o kurzu, JavaScript má mnoho nástrah, do kterých se (nejen) nezkušený programátor může dostat. Některé typické nástrahy jsme si již popsali v úvodních lekcích. V této lekci se budeme zabývat knihovnami, které nám (alespoň částečně) usnadní vývoj JS aplikací.
 
 K eliminaci některých rizik máme zavedeny určité programátorské praktiky a návrhové vzory (viz. např. kompozice funkcionálních komponent), které nám pomohou se i ve složitějších projektech lépe orientovat a které si zde také popíšeme.
 
@@ -53,3 +53,12 @@ npm install -g typescript
 ## Ostatní
 
 ### ESLint
+
+## Měření rychlosti - příklad
+
+Chceme vyrenderovat seznam (velkého množství) položek a budeme měřit rychlost přerenderování (TODO)
+
+* [Angular]()
+* [React]()
+* [React + Immutable.js]()
+* [React + ClojureScript]() 
