@@ -87,70 +87,98 @@ Z předešlé ukázky si můžeme všimnou několika věcí:
 * přes proměnnou `axios` můžeme volat funkci get (= HTTP GET), která vykonná asynchronní dotaz na server
 * jakmile server vrátí odpověď, pokračuje se ve vykonávání kódu - výpis aktuální ceny BTC
 
+## Express server
 
-## Práce s databází
+Knihovna Express.js nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si napíšeme jednoduchý webový server, který bude na každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC. 
 
-Pro demonstraci použijeme předpřipravenou SQLite databázi s následující strukturou
-
-```sql
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "Department" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"city"	TEXT NOT NULL,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "Job" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	PRIMARY KEY("Id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "Employee" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"jobId"	INTEGER NOT NULL,
-	"salary"	NUMERIC NOT NULL,
-	"depId"	INTEGER NOT NULL,
-	FOREIGN KEY("depId") REFERENCES "Department"("id"),
-	FOREIGN KEY("jobId") REFERENCES "Job"("id"),
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-COMMIT;
-```
-
-## Knex
+Jako první si musíme nainstalovat knihovnu Express.js
 
 ```
-yarn add sqlite3 knex
+npm i express
 ```
 
-Vytvořme nyní soubor `index.js`, do kterého vložíme následující kód:
+Zakomentujeme obsah souboru `index.js` (později budeme potřebovat) a vložíme:
 
 ```javascript
-const knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: "./db.db"
-  }
+const express = require('express')
+
+const server = express()
+const port = 3000
+
+server.get("/", (req, res) => {
+  res.send("Hello!")
 })
 
-const getEmployees = async () => {
-  const res = await knex('employee')
-    .select("*")
-  console.log(res)
-  knex.destroy()
-}
-
-getEmployees()
-
+server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`)) 
 ```
 
-Po spuštění `yarn start` se nám vypíše obsah tabulky `employee`.
+V tomto příkladu si můžeme všimnout definice defaultní routy `"/"`, která vrací "Hello!".
+
+Dále pak příkazem `listen` spustíme poslouchání serveru na námi definovaném portu 3000.
+
+Po spuštění příkazu `npm start` se nám spustí server. Můžeme jít do prohlížeče a zadat http://localhost:3000/. Server běží ve smyčce a lze vypnout stisknutím `ctrl+c` v konzoli, kde běží. 
+
+
+```html
+<html>
+  <head></head>
+  <body>Hello!</body>
+</html>
+```
+
+Po zobrazení HTML inspektoru prohlížeče vidíme, že se nám zobrazila stránka s "Hello" v tělě stránky.
+
+Vraťme se k předešlému příkladu, který nyní použijeme. Upravme soubor `index.js` do této podoby:
+
+```javascript
+const axios = require('axios')
+const express = require('express')
+
+///
+/// Fetches current BTC price from Coindesk API
+/// 
+const fetchBTC = async () => {
+  const res = await axios.get('https://api.coindesk.com/v1/bpi/currentprice/btc.json')
+  return {
+    date: res.data.time.updated, 
+    value: res.data.bpi.USD.rate
+  }
+}
+
+const server = express()
+const port = 3000
+
+server.get("/", async (req, res) => {
+  const btcRes = await fetchBTC()
+  res.send(`
+      <h1>Bitcoin</h1>
+      <table>
+        <tr>
+          <th>Date</th>
+        </tr>
+        <tr>
+          <td>${btcRes.date}</td>
+        </tr>
+        <tr>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>${btcRes.value}</td>
+        </tr>
+      </table>
+    `
+  )
+})
+
+server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`)) 
+```
+
+
 
 ## Úkol
 
-napsat skripty pro
-
-* výpis všech zaměstnanců, vložení nového změnestnance a smazání konkrétního zaměstnance
+* Vytvořte funkce pro načítání libovolných dalších 2 kryptoměn
+* Pro každou kryptoměnu vytvořte vlastní routu, která bude vracet stránku s tabulku, která bude obsaovat cenou a aktuální čas
+* Pro defaultní routu vytvořte hlavní stránku s odkazy na tyto stránky 
 
 

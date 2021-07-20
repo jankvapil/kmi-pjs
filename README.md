@@ -5,13 +5,12 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 ## Obsah kurzu
 
 1. Úvod do JS, (opakování) syntaxe ES6+, vlastnosti jazyka, funkcionální přístup, práce s datavými strukturami
-2. Node.js (balíčky, package.json, npm), praktikcé použití asynchronních funkcí - načítání dat z API (Fetch API, Axios), 
-3. React (funkcionální komponenty a jejich kompozice), Next.js
-4. Připojení k databázi, načítání dat (SQL query builder - Knex)
-5. React - správa stavu (useState, useEffect)
+2. Node.js (balíčky, package.json, npm), praktikcé použití asynchronních funkcí - načítání dat z API (Axios), Vytvoření webového serveru (Express.js)
+3. React - funkcionální komponenty a jejich kompozice, Next.js
+4. React - aplikační stav a side efekty (useState, useEffect)
+5. Připojení k databázi, načítání dat (SQL query builder - Knex)
 6. React - UI komponenty 3. stran (DevExtreme, )
-6. Tvorba vlastní API (REST, GraphQL)
-7. ORM (Prisma), automatické generování API
+7. Tvorba vlastní API (REST, GraphQL), ORM (Prisma), automatické generování API
 8. Možnosti (a limity) prohlížečů, DOM, Server-side vs Client-side rendering 
 9. Užitečné nástroje pro vývoj v JS (statické typy, immutabilní datové struktury, state management..) 
 10. ClojureScript

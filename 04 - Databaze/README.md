@@ -84,3 +84,9 @@ npx knex migrate:make first
 ```
 
 
+
+## Úkol
+
+napsat skripty pro
+
+* výpis všech zaměstnanců, vložení nového změnestnance a smazání konkrétního zaměstnance
