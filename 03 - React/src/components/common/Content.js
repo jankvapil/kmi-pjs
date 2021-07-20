@@ -10,7 +10,7 @@ import Footer from './Footer'
 const Content = (props) => {
   return (
     <div className={styles.container}>
-      <Header/>
+      <Header />
       <main className={styles.main}>
         { props.children }
       </main>

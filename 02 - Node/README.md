@@ -4,7 +4,9 @@ Jednou z hlavních výhod platformy JS je možnost sdílení kódu na klientu i 
 
 > "Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the Chrome V8 engine and executes JavaScript code outside a web browser."
 
-Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který poskytuje zdaleka nejvíce open-source knihoven (v současné době okolo 1.5 milionu) v porovnání s ostatními platformami. S tím je však ale spojeno také riziko, že ne každý balíček je vhodné používat. Obecně platí, že je lepší spoléhat na knihovny od velkých společností (typu Facebook), které alespoň částečně zaručují určitou kvalitu a podporu do budoucna.
+Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který poskytuje zdaleka nejvíce open-source knihoven (v současné době okolo 1.5 milionu) v porovnání s ostatními platformami. S tím je však spojeno určité riziko a ne každý balíček je vhodné používat. 
+
+Obecně je lepší spoléhat na dlouhodobě vyvíjené a masivně používané knihovny, s velkým zázemím a podporou ze strany komunity. Případně knihovny, za kterými stojí velké společností a tudíž by měly zaručovat určitou kvalitu a podporu do budoucna (ne vždy tomu tak skutečně je).
 
 ## npm
 
@@ -12,7 +14,7 @@ Neboli [*Node Package Manager*](https://www.npmjs.com/) je balíčkovací systé
 
 ### Getting started
 
-Prvně se musíme ujistit, že máme správně nainstalovaný *Node.js* i *npm*. Do konzole zadejme postupně příkazy `node -v` a `npm -v`, které by měly vypsat aktuální verze.
+Prvně se musíme ujistit, že máme správně nainstalovaný *Node.js* i *npm*. Do konzole zadejme postupně příkazy `node -v` a `npm -v`, které by měly vypsat nainstalované verze.
 
 Zkusme si také zapnout samotný **REPL**, spuštěním příkazu `node` bez argumentu.
 
@@ -84,4 +86,71 @@ Z předešlé ukázky si můžeme všimnou několika věcí:
 * funkce `require` nám vloží referenci na knihovnu do proměnné `axios`
 * přes proměnnou `axios` můžeme volat funkci get (= HTTP GET), která vykonná asynchronní dotaz na server
 * jakmile server vrátí odpověď, pokračuje se ve vykonávání kódu - výpis aktuální ceny BTC
+
+
+## Práce s databází
+
+Pro demonstraci použijeme předpřipravenou SQLite databázi s následující strukturou
+
+```sql
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "Department" (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"city"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Job" (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	PRIMARY KEY("Id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Employee" (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"jobId"	INTEGER NOT NULL,
+	"salary"	NUMERIC NOT NULL,
+	"depId"	INTEGER NOT NULL,
+	FOREIGN KEY("depId") REFERENCES "Department"("id"),
+	FOREIGN KEY("jobId") REFERENCES "Job"("id"),
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+COMMIT;
+```
+
+## Knex
+
+```
+yarn add sqlite3 knex
+```
+
+Vytvořme nyní soubor `index.js`, do kterého vložíme následující kód:
+
+```javascript
+const knex = require('knex')({
+  client: 'sqlite3',
+  connection: {
+    filename: "./db.db"
+  }
+})
+
+const getEmployees = async () => {
+  const res = await knex('employee')
+    .select("*")
+  console.log(res)
+  knex.destroy()
+}
+
+getEmployees()
+
+```
+
+Po spuštění `yarn start` se nám vypíše obsah tabulky `employee`.
+
+## Úkol
+
+napsat skripty pro
+
+* výpis všech zaměstnanců, vložení nového změnestnance a smazání konkrétního zaměstnance
+
 
