@@ -352,10 +352,10 @@ Všimněme si definice a volání asynchronní funkce `enjoyFriday` - klíčové
 
 ## Úkol
 
-Implementujte (a otestujte) sadu pomocných funkcí, které později použijete v projektu:
+Implementujte (a otestujte) sadu pomocných funkcí:
 
 * `deepCopy(obj)` - provede správnou duplikaci libovolně zanořených datových struktur
-* `getNowDate()` - vrátí aktuální čas (string) ve formátu DD.MM.YYYY HH:MM:SS (s pomocí třídy Date)
+* `getNowDate()` - vrátí aktuální čas (string) ve formátu DD.MM.YYYY HH:MM:SS (s pomocí třídy [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
 
 ## Reference
 

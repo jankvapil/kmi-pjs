@@ -1,10 +1,13 @@
 
+import { useRouter } from 'next/router'
+
 ///
 /// My button component
 ///
 const Button = ({ name, msg }) => {
+  const router = useRouter ()
   return (
-    <button onClick={() => alert(msg) }>
+    <button onClick={() => router.push("/btc") }>
       {name}
     </button>
   )

@@ -66,13 +66,13 @@ npm install axios
 
 Do složky `node_modules` se po provedení příkazu `npm install` stáhnou zdrojové soubory závislých knihoven. Složku `node_modules` je možné kdykoliv smazat a znova nainstalovat předešlým příkazem - proto v `.gitignore` vždy nastavujeme pravidlo `/node_modules`.
 
-Upravme nyní soubor `index.js` a vložme následující kód. Po spuštění skriptu `npm start` nám program vypíše aktuální cenu Bitcoinu.
+Upravme nyní soubor `index.js` a vložme následující kód. Po spuštění skriptu `npm start` nám program vypíše aktuální hodnotu BTC v amerických dolarech.
 
 ```javascript
 const axios = require('axios')
 
 ///
-/// Fetches current BTC price from Coindesk API
+/// Fetches current BTC/USD price from Coindesk API
 /// 
 const fetchBTC = async () => {
   const res = await axios.get('https://api.coindesk.com/v1/bpi/currentprice/btc.json')
@@ -83,13 +83,13 @@ fetchBTC()
 ```
 Z předešlé ukázky si můžeme všimnou několika věcí: 
 
-* funkce `require` nám vloží referenci na knihovnu do proměnné `axios`
-* přes proměnnou `axios` můžeme volat funkci get (= HTTP GET), která vykonná asynchronní dotaz na server
-* jakmile server vrátí odpověď, pokračuje se ve vykonávání kódu - výpis aktuální ceny BTC
+* pomocí funkce `require` si na konstantu `axios` navážeme referenci na tuto knihovnu 
+* přes konstantu `axios` můžeme volat funkci get (= HTTP GET), která vykonná asynchronní dotaz na server
+* jakmile server vrátí odpověď, pokračuje se ve vykonávání kódu - výpis aktuální hodnoty BTC
 
 ## Express server
 
-Knihovna Express.js nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si napíšeme jednoduchý webový server, který bude na každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC. 
+Knihovna Express.js nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si vytvoříme jednoduchý webový server, který bude na každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC. 
 
 Jako první si musíme nainstalovat knihovnu Express.js
 
@@ -112,9 +112,9 @@ server.get("/", (req, res) => {
 server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`)) 
 ```
 
-V tomto příkladu si můžeme všimnout definice defaultní routy `"/"`, která vrací "Hello!".
+V tomto příkladu si můžeme všimnout definici obsluhy GET requestu pro kořenovou routu `"/"`, která vrací "Hello!".
 
-Dále pak příkazem `listen` spustíme poslouchání serveru na námi definovaném portu 3000.
+Dále pak příkazem `listen` říkáme, že má server po spuštění začít poslouchat na námi definovaném portu 3000.
 
 Po spuštění příkazu `npm start` se nám spustí server. Můžeme jít do prohlížeče a zadat http://localhost:3000/. Server běží ve smyčce a lze vypnout stisknutím `ctrl+c` v konzoli, kde běží. 
 
@@ -135,7 +135,7 @@ const axios = require('axios')
 const express = require('express')
 
 ///
-/// Fetches current BTC price from Coindesk API
+/// Fetches current BTC/USD price from Coindesk API
 /// 
 const fetchBTC = async () => {
   const res = await axios.get('https://api.coindesk.com/v1/bpi/currentprice/btc.json')
@@ -173,12 +173,12 @@ server.get("/", async (req, res) => {
 server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`)) 
 ```
 
-
+Výsledek requestu ve funkci `fetchBTC` jsme lehce upravili, aby se nám s ním lepe pracovalo. Další změnou je nutnost přidat klíčové slovo `async` do callbacku pro obsluhu GET requestu, jelikož v něm (asynchronně) čekáme na odpověď od API. Po přijetí odpovědi pak vygenerujeme HTML, které naplníme požadovanými daty a odešleme zpět klientovi.
 
 ## Úkol
 
-* Vytvořte funkce pro načítání libovolných dalších 2 kryptoměn
-* Pro každou kryptoměnu vytvořte vlastní routu, která bude vracet stránku s tabulku, která bude obsaovat cenou a aktuální čas
+* Vytvořte funkce pro načítání dat libovolných dalších 2 kryptoměn
+* Pro každou kryptoměnu vytvořte vlastní routu (např. "/eth"), která bude vracet stránku s tabulku. Tabulka bude obsahovat hodnotu dané kryptoměny spolu s aktuálním časem
 * Pro defaultní routu vytvořte hlavní stránku s odkazy na tyto stránky 
 
 

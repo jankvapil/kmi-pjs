@@ -6,6 +6,7 @@ export default function Home() {
     <Content>
       <h1>Hello world!</h1>
       <Button name="Click" msg="Hello!"/>
+      <a href="/btc">BTC</a>
     </Content>
   )
 }

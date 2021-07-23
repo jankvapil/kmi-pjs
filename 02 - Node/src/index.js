@@ -2,7 +2,7 @@ const axios = require('axios')
 const express = require('express')
 
 ///
-/// Fetches current BTC price from Coindesk API
+/// Fetches current BTC/USD price from Coindesk API
 /// 
 const fetchBTC = async () => {
   const res = await axios.get('https://api.coindesk.com/v1/bpi/currentprice/btc.json')
