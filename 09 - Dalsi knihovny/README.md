@@ -53,12 +53,3 @@ npm install -g typescript
 ## Ostatní
 
 ### ESLint
-
-## Měření rychlosti - příklad
-
-Chceme vyrenderovat seznam (velkého množství) položek a budeme měřit rychlost přerenderování (TODO)
-
-* [Angular]()
-* [React]()
-* [React + Immutable.js]()
-* [React + ClojureScript]() 
