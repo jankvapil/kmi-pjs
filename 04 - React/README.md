@@ -119,8 +119,56 @@ export default function Btc() {
 }
 ```
 
+## Styly
+
+Po vytvoření projektu jsme si mohli všimnout, že máme předdefinované styly ve složce `styles`. Zde máme 2 soubory - `globals.css`, definující globální styly a poté `Home.module.css`, definující styly pro konkrétní komponentu. Jestliže chceme definovat styly pro konkrétní komponentu, musíme dodržovat konvenci `[název_komponenty].module.css`.
+
+Zkusme nyní přejmenovat soubor `Home.module.css` na `Content.module.css`. Dále soubor upravme, aby v něm zůstaly pouze styly pro třídy `.container` a `.main`.
+
+```css
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+Nyní musíme také upravit import v `components/common/Content.js`
+
+```javascript
+import styles from '../../styles/Content.module.css'
+```
+
+## Styly v JavaScriptu
+
+Často budeme chtít použít styly přímo v rámci dané komponenty, aniž bychom vytvářeli zvlášť .css soubor. K tomu můžeme použít inline styly. 
+
+V souboru `components/common/Footer.js` upravme element footer.
+
+```javascript
+<footer style={{outline: '1px solid green'}}>
+  This is footer
+</footer>
+```
+
+Po znovunačtení stránky vidíme ohraničení této komponenty znázorněné zeleným rámečkem.
+
 ## Úkol
 
-Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budete zobrazovat tabulky s daty pro konkrétní kryptoměnu.
+Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budou zobrazeny tabulky s daty pro konkrétní kryptoměnu.
 
 Dále vytvořte komponentu, která bude obsahovat seznam odkazů na jednotlivé stránky (homepage, BTC a další). Měla by být zobrazena na každé stránce.
+
+Nastylujte odkazy, tlačítka i tabulky s kryptoměnami.

@@ -4,19 +4,17 @@ Jednou z hlavních výhod platformy JS je možnost sdílení kódu na klientu i 
 
 > "Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the Chrome V8 engine and executes JavaScript code outside a web browser."
 
-Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který poskytuje zdaleka nejvíce open-source knihoven (v současné době okolo 1.5 milionu) v porovnání s ostatními platformami. S tím je však spojeno určité riziko a ne každý balíček je vhodné používat. 
+Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který v době psaní této lekce čítá okolo 1.5 milionu knihoven. V porovnání s ostatními platformami je sice největším, s tím je však ale spojeno určité riziko a ne každou knihovnu je vhodné používat. 
 
 Obecně je lepší spoléhat na dlouhodobě vyvíjené a masivně používané knihovny, s velkým zázemím a podporou ze strany komunity. Případně knihovny, za kterými stojí velké společností a tudíž by měly zaručovat určitou kvalitu a podporu do budoucna (ne vždy tomu tak skutečně je).
 
-## npm
+## Npm
 
 Neboli [*Node Package Manager*](https://www.npmjs.com/) je balíčkovací systém pro *Node.js* (je instalován společně s *Node.js*), umožňující spravovat závislosti na JavaScriptových knihovnách. Alternativou je pak balíčkovací systém **Yarn**, který budeme používat v dalších lekcích.
 
-### Getting started
+Jako první se musíme ujistit, že máme správně nainstalovaný *Node.js* i *npm*. Do konzole zadejme postupně příkazy `node -v` a `npm -v`, které by měly vypsat nainstalované verze.
 
-Prvně se musíme ujistit, že máme správně nainstalovaný *Node.js* i *npm*. Do konzole zadejme postupně příkazy `node -v` a `npm -v`, které by měly vypsat nainstalované verze.
-
-Zkusme si také zapnout samotný **REPL**, spuštěním příkazu `node` bez argumentu.
+Zkusme si také zapnout samotný **REPL** spuštěním příkazu `node` bez argumentu.
 
 Ve složce `src` spusťmě příkaz `npm init`. Tímto příkazem spustíme utilitu, která nás provede samotnou inicializací Node.js projektu.
 

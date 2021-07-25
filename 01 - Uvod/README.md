@@ -2,7 +2,7 @@
 
 V úvodní lekci kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya.
 
-Pro spouštění ukázek kódu doporučuji použít [REPL.it](https://repl.it/) (případně kód spouštět pomocí node.js - více v další lekci)
+Pro spouštění ukázek kódu doporučuji použít webové prostředí [REPL](https://repl.it/) (případně kód spouštět přímo pomocí Node.js - více v další lekci). V případě Repl.it je sice nutné mít vytvořený účet, nicméně pak máte veškeré testovací kódy dostupné odkudkoliv.
 
 ## 1. Deklarace a definice Vanilla JS vs ES6+ 
 

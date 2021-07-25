@@ -4,7 +4,7 @@
 ///
 const Footer = () => {
   return (
-    <footer>
+    <footer style={{outline: '1px solid green'}}>
       This is footer
     </footer>
   )

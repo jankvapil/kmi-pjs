@@ -204,7 +204,7 @@ Po kliknutí na tlačítko s názvem "Click" se nám zobrazí ve vyskakovacím o
 Ve složce `pages` vytvoříme novou stránku s názvem `btc.js`
 
 ```
-touch components/btc.js
+touch pages/btc.js
 ```
 
 Do ní vložíme podobný kód, jako máme v souboru `index.js`
@@ -242,8 +242,8 @@ import { useRouter } from 'next/router'
 const Button = ({ name, msg }) => {
   const router = useRouter()
   return (
-    <button onClick={() => router.push("/btc") }>
-      {name}
+    <button onClick={() => router.push("/btc")}>
+      { name }
     </button>
   )
 }
