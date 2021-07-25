@@ -7,7 +7,7 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 1. Úvod do JS, (opakování) syntaxe ES6+, vlastnosti jazyka, funkcionální přístup, práce s datavými strukturami
 2. Node.js (balíčky, package.json, npm), praktikcé použití asynchronních funkcí - načítání dat z API (Axios), Vytvoření webového serveru (Express.js)
 3. React - funkcionální komponenty a jejich kompozice, Next.js
-4. React - aplikační stav a side efekty (useState, useEffect)
+4. React - aplikační stav a side efekty (useState, useEffect), Styly
 5. Připojení k databázi, načítání dat (SQL query builder - Knex)
 6. React - UI komponenty 3. stran (DevExtreme, )
 7. Tvorba vlastní API (REST, GraphQL), ORM (Prisma), automatické generování API
@@ -54,7 +54,3 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 * Jelikož je React sám o sobě zaměřen čistě na tvorbu UI, veškeré [React komponenty = JS funkce](https://reactjs.org/docs/introducing-jsx.html), s čímž je spojena celá řada výhod (na rozdíl od šablonovacích frameworků, kombinujících HTML s kódem). React je také dle statistik týdenních stažení (jakožto npm balíčku) nejrozšířenější knihovnou pro tvorbu UI (v porovnání např. s VUE.js nebo Angularem). 
 
-## Poznámky
-
-* Projekt by se měl začít tvořit postupně od začátku kurzu
-* Nutné co nejdřív probrat základy jak serverside, tak clientside JS

@@ -1,11 +1,11 @@
 
 # React II
 
-V této lekci se budeme zabývat aplikačním stavem v React aplikaci.
+V této lekci se budeme zabývat aplikačním stavem v React aplikaci. Na konci pak nakousneme téma stylování aplikace (imporováním CSS souborů/inline CSS v JavaScriptu).
 
 Minule jsme si zkusili vytvořit první API endpoint. K tomu nyní budeme přistupovat a zobrazovat načtená data v naší aplikaci pomocí React komponent.
 
-Budeme potřebovat projekt z minulého cvičení (můžete si jej stáhnout v `"03 - React/src"`, pomocí příkazu `yarn` nainstalovat potřebné závislosti a zpustit webserver pomocí `yarn dev` v developmnet módu).
+Budeme potřebovat projekt z minulého cvičení (můžete si jej stáhnout v `"03 - React/src"`, pomocí příkazu `yarn` nainstalovat potřebné závislosti a spustit webserver pomocí `yarn dev` v developmnet módu).
 
 ## UseState
 
@@ -32,11 +32,11 @@ export default function Counter ({ initValue }) {
 }
 ```
 
-Jak si můžeme všimnou, tak po kliknutí na tlačítko Add1 se nic nestane. Proměnná se sice inkrementuje, ale změna se nepromítne do View.
+Jak si můžeme všimnou - po kliknutí na tlačítko Add1 se nic nestane. Hodnota navázaná na symbol `cnt` se sice inkrementuje, ale změna se nepromítne do View.
 
 Aby se změna promítla do View, musíme o tom nějakým způsobem říct Reactu. K tomu slouží hook UseState. První je třeba jej naimportovat (je součástí knihovny React). Nyní zavoláme funkci `useState` a jako parametr předáme inicializační hodnotu.
 
-Funkce `useState` vrací Getter a Setter pro danou hodnotu. Ty navážeme na symboly `cnt` a `setCnt` následujícím způsobem. Pak akorát zaměníme obsluhu kliknutí a máme hotové funkční počítadlo.
+Funkce `useState` vrací Getter a Setter pro danou hodnotu. Ty navážeme na symboly `cnt` a `setCnt` následujícím způsobem. Pak akorát zaměníme obsluhu kliknutí na tlačítko a máme hotové funkční počítadlo.
  
 ```javascript
 import { useState } from "react"
@@ -77,7 +77,7 @@ export default function Counter ({ initValue }) {
 
 Po znovunačtení úvodní stránky se nám pokaždé zobrazí vyskakovací okno s hláškou "Loaded!".
 
-Nyní změňme definici efektu tak, že do pole závislých symbolů přidáme symbol `cnt`. Ten musí být definován ještě před definicí daného efektu.
+Nyní změňme definici efektu tak, že do pole závislých symbolů přidáme symbol `cnt`. Ten musí být definován ještě před definicí samotného efektu.
 
 ```javascript
 const [cnt, setCnt] = useState(initValue ? initValue : 0)
