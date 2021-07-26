@@ -4,7 +4,7 @@ V této lekci se seznámíme se základními metodami práce s databází v rám
 
 ## SQLite
 
-Pro demonstraci použijeme předpřipravenou SQLite databázi s následující strukturou. 
+Pro účely této lekce použijeme předpřipravenou SQLite databázi s následující strukturou. 
 
 ```sql
 BEGIN TRANSACTION;
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS "Posts" (
 COMMIT;
 ```
 
-Předpřiravenou databázi `db.db` vložme do kořenového adresáře našeho projektu.
+Předpřiravenou databázi `db.db` zkopírujme z minulé lekce a vložme ji do kořenového adresáře našeho projektu.
 
 ## Knex
 
@@ -34,7 +34,7 @@ Abychom mohli s databází pracovat, budeme potřebovat tyto 2 knihovny - `sqlit
 yarn add sqlite3 knex
 ```
 
-Vytvořme nyní soubor `api/users.js`, do kterého vložíme následující kód:
+Vytvořme nyní soubor `pages/api/users.js`, do kterého vložíme následující kód:
 
 ```javascript
 ///
@@ -94,10 +94,188 @@ Na to pak můžeme na frontendu reagovat například uživatelskou notifikací.
 
 ## Frontend
 
-Pojďme nyní vytvořit další stránku, kde budeme načtené uživatele zobrazovat...
+Pojďme nyní vytvořit další stránku `pages/users.js`, kde budeme načtené uživatele zobrazovat. 
+První si však zkusme pomocí hooku useEffect uživatele vůbec načíst.
+
+```javascript
+import { useEffect } from "react"
+import Content from '../components/common/Content'
+
+export default function Users() {
+  useEffect(async () => {
+    const res = await fetch('api/users')
+    const data = await res.json()
+    console.log(data)
+  }, [])
+
+  return (
+    <Content>
+      <h1>Users</h1>
+    </Content>
+  )
+}
+```
+
+Když si otevřeme vývojářské nástroje ve webovém prohlížeči (typicky pomocí F12), po načtení http://localhost:3000/users se nám v konzoli vypíše pole uživatelů.
+
+## Generování komponent
+
+Nahraďme nyní useEffect hookem useSWR, podobně jako na stránce `pages/btc.js`. Dále pak vytvořme seznam, do kterého namapujeme načtené uživatele tímto způsobem:
+
+```javascript
+import useSWR from "swr"
+import Content from '../components/common/Content'
+
+export default function Users() {
+  const { data, error } = useSWR(
+    "api/users",
+    url => fetch(url).then(res => res.json())
+  )
+
+  if (error) return "An error has occurred."
+  if (!data) return "Loading..."
+
+  return (
+    <Content>
+      <h1>Users</h1>
+      <ul>
+        {data.map(u => (
+          <li key={u.id}>{u.username}</li>
+        ))}
+      </ul>
+    </Content>
+  )
+}
+```
+
+Když se zaměříme na samotnou položku seznamu, všimněme si vlastosti `key`. Ta je nezbytná pro jakékoliv seznamy, tabulky a další generované komponenty. Jestliže se změní obsah - například v jedné buňce tabulky, React bude přesně vědět, co se změnilo, a může tak zařídit efektivní překreslení (nemusí překreslovat celou tabulku znova). Klíč tedy z podstaty věci musí být unikátní a pro danou položku neměnný (není tedy vhodné používat například index v poli jako klíč).
+
+## Přidání uživatele
+
+V poslední části této lekce si zkusíme vytvořit komponentu `components/AddUserForm.js` pro přidání nového uživatele
+
+```javascript
+import { useState } from "react"
+
+///
+/// Add User Form component
+///
+export default function AddUserForm() {
+  const [username, setUsername] = useState("")
+
+  ///
+  /// Handles onChange event 
+  ///
+  const handleOnChange = (e) => {
+    const input = e.target.value
+    setUsername(input)
+  }
+  
+  return (
+    <div>
+      <input value={username} onChange={handleOnChange}/>
+    </div>
+  )
+}
+```
+
+Takto vyřešíme změnu stavu pro input element. Dále budeme potřebovat ještě tlačítko, kterým potvrdíme přidání nového uživatele. Jako první ale potřebujeme upravit endpoint `pages/api/users` naší API tak, aby přijímal POST request, v jehož těle bude uživatelské jméno nového uživatele (později také heslo).
+
+```javascript
+///
+/// Creates connection to DB
+///
+const createConn = () => {
+  return require('knex')({
+    client: 'sqlite3',
+    connection: {
+      filename: "./db.db"
+    }
+  })
+}
+
+///
+/// Handles Users REST requests
+///
+export default async (req, res) => {
+  if (req.method === "GET") {
+    const knex = createConn()
+    try {
+      const users = await knex('users')
+        .select("*")
+      res.status(200).json(users)
+    } catch(e) {
+      res.status(400).json(e)
+    } finally {
+      knex.destroy()
+    }
+  } 
+  else if (req.method === "POST") {
+    if (req.body.username) {
+      const knex = createConn()
+      try {
+        const username = req.body.username
+        const newUsersIds = await knex('users')
+          .insert({ username })
+        res.status(200).json(newUsersIds)
+      } catch(e) {
+        res.status(400).json(e)
+      } finally {
+        knex.destroy()
+      }
+    }
+  }
+}
+```
+Tímto způsobem jsme rozšířili naši API do tzv. RESTové podoby. Nyní reagujeme na dva typy requestů na jednom endpointu.
+
+Nyní se vraťme k obsluze kliknutí na tlačítko pro přídání nového uživatele.
+
+```javascript
+
+import { useState } from "react"
+
+///
+/// Add User Form component
+///
+export default function AddUserForm() {
+  const [username, setUsername] = useState("")
+
+  ///
+  /// Handles onClick event 
+  ///
+  const handleOnClick = async () => {
+    const res = await fetch(`api/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username })
+    })
+    if (res.ok) {
+      alert("User has been added into DB!")
+    } else {
+      alert("User can not be inserted into DB!")
+    }
+  }
+
+  ///
+  /// Handles onChange event 
+  ///
+  const handleOnChange = (e) => {
+    const input = e.target.value
+    setUsername(input)
+  }
+  
+  return (
+    <div>
+      <input value={username} onChange={handleOnChange}/>
+      <button onClick={handleOnClick}>Add User</button>
+    </div>
+  )
+}
+```
 
 ## Úkol
 
-napsat skripty pro
-
-* výpis všech zaměstnanců, vložení nového změnestnance a smazání konkrétního zaměstnance
+TODO
