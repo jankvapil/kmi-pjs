@@ -169,6 +169,6 @@ Po znovunačtení stránky vidíme ohraničení této komponenty znázorněné z
 
 Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budou zobrazeny tabulky s daty pro konkrétní kryptoměnu.
 
-Dále vytvořte komponentu, která bude obsahovat seznam odkazů na jednotlivé stránky (homepage, BTC a další). Měla by být zobrazena na každé stránce.
+Dále vytvořte komponentu navigace, která bude obsahovat seznam odkazů na jednotlivé stránky (homepage, BTC a další). Měla by být zobrazena na každé stránce.
 
 Nastylujte odkazy, tlačítka i tabulky s kryptoměnami.
