@@ -64,7 +64,7 @@ Knihovna knex nám vytváří spojení s SQLite databází. Předáváme jí obj
 
 K databázi přistupujeme přes funkci knex, které předáváme jako parametr název tabulky, se kterou chceme pracovat. Dále pak nad ní voláme další funkce - například select s parametrem `*`
 
-Jak bychom si dokázali tipnout, po zavolání této funkce se vytvoří a vykoná tento SQL dotaz:
+Jak bychom určitě dokázali uhádnout, po zavolání této funkce se vytvoří a vykoná tento SQL dotaz:
 
 ```sql
 SELECT * FROM users
@@ -227,7 +227,7 @@ export default async (req, res) => {
   }
 }
 ```
-Tímto způsobem jsme rozšířili naši API do tzv. RESTové podoby. Nyní reagujeme na dva typy requestů na jednom endpointu.
+Tímto způsobem jsme rozšířili naši API, kde reagujeme na dva typy requestů na jednom endpointu.
 
 Nyní se vraťme k obsluze kliknutí na tlačítko pro přídání nového uživatele.
 
