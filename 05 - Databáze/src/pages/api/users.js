@@ -26,6 +26,7 @@ export default async (req, res) => {
     } finally {
       knex.destroy()
     }
+    return
   } 
   else if (req.method === "POST") {
     if (req.body.username) {
@@ -40,6 +41,8 @@ export default async (req, res) => {
       } finally {
         knex.destroy()
       }
+      return
     }
-  }
+  } 
+  res.status(400).json({error: "BAD REQUEST"})
 }
