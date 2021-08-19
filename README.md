@@ -9,10 +9,10 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 3. React - funkcionální komponenty a jejich kompozice, Next.js
 4. React - aplikační stav a side efekty (useState, useEffect), Styly
 5. Připojení k databázi, načítání dat (SQL query builder - Knex)
-6. React - UI komponenty 3. stran (DevExtreme, )
-7. Tvorba vlastní API (REST, GraphQL), ORM (Prisma), automatické generování API
-8. Možnosti (a limity) prohlížečů, DOM, Server-side vs Client-side rendering 
-9. Užitečné nástroje pro vývoj v JS (statické typy, immutabilní datové struktury, state management..) 
+6. React - UI komponenty (React-Bootsrap, DevExtreme)
+7. Automatické generování API, ORM (Prisma), GraphQL (Hasura)
+8. GraphQL subscriptions (real-time události z GraphQL serveru)
+9. Možnosti (a limity) prohlížečů, DOM, Server-side vs Client-side rendering, Užitečné nástroje pro vývoj v JS (statické typy, immutabilní datové struktury, state management..) 
 10. ClojureScript
 11. Electron (úprava + zabalení aplikace pro desktop)
 12. React Native (Android / iOS) - minimalizace klientské aplikace pro mobilní zařízení, React Native Windows + macOS (alternativa k .Net WPF, JavaFX..)
