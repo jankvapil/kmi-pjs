@@ -61,8 +61,9 @@ nil     ;; null
 (println (add 1 2))
 ```
 
-
 ## 2. ClojureScript
+
+Spoustu užitečných příkazů včetně popisů můžeme najít na [Cheatsheetu](https://cljs.info/cheatsheet/)
 
 ### Lumo
 
@@ -74,6 +75,50 @@ npm install -g lumo-cljs
 
 Můžeme také spouštět přímo CLJS programy pomocí `lumo <nazev_souboru.cljs>`
 
+Integrace s Node.js probíhá následujícím způsobem. Vytvořme soubor `main.cljs` a `file.txt`
+
+```
+touch main.cljs
+echo "hello world" > file.txt
+```
+
+Zkusíme načíst textový soubor a vypsat jeho obsah. K tomu budeme potřebovat knihovnu `fs`. Jelikož je součástí node.js, můžeme ji naimportovat přimo.
+
+```clj
+(require 'fs)
+
+(fs/readFile 
+  "file.txt" 
+  (fn [err data] (println data)))
+```
+
+V případě, že chceme použít externí knihovnu, musíme ji nainstalovat pomocí npm/yarn. To si ukážeme na příkladu implementace jednoduchého webserveru pomocí `express.js`.
+
+```
+npm init -y && npm install express request request-promise
+```
+
+Po inicializaci projektu a nainstalování knihoven doplňme následující kód do souboru `main.cljs`
+
+```clj
+(require 'express)
+(require '[request-promise :as rp])
+(def port 3000)
+
+(-> (express)
+      (.get "/" (fn [req res] (.send res "<h1>Hello World<h1/>")))
+      (.get "/data" 
+        (fn [req res] 
+          (.send res (clj->js {:key "value"}))))
+      (.listen port))
+
+(-> (str "http://localhost:" port)
+      rp
+      (.then (fn [body] (println "\nReceived:" body)))
+      (.catch (fn [err] (println "\nOops:" (.-stack err)))))
+```
+
+Server naslouchá na portu 3000. Na routě `/data` server vrací JSON `{"key": "value"}`
 
 ## 3. Reagent
 
