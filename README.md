@@ -22,7 +22,7 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 ### Co je cílem kurzu?
 
 * Seznámit se s použitím JS technologií na klientu i na serveru, 
-* Vytvořit v průběhu kurzu vlastní informační systém (klientskou aplikaci + serverové API), který bude také nasazen a zpřístupněn veřejně.
+* Vytvořit v průběhu kurzu netriviální projekt, pokrývající alespoň 3 z probraných témat. Bude tedy možnost technologického zaměření dle preferencí studenta. 
 
 ### Jaké jsou předpoklady k absolvování kurzu?
 
@@ -57,3 +57,24 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 * Pro zachování kompatibility se staršími prohlížeči, podporující starší verze ECMAScriptu vznikly transpilery (typu [Babel](https://babeljs.io/)), které tyto frontendové frameworky používají. Mimo jiné také obsahují řadu optimalizací, které výsledný kód rozdělují ([Webpack](webpack)) a umožňují ho tak načítat po částech. Mezi další optimalizace patří například minifikace CSS stylů a JS skriptů.
 * Knihovna React je sama o sobě zaměřena čistě na tvorbu UI, veškeré [React komponenty = JS funkce](https://reactjs.org/docs/introducing-jsx.html), s čímž je spojena celá řada výhod (na rozdíl od šablonovacích frameworků, kombinujících HTML s kódem). React je také dle týdenních statistik stažení (jakožto npm balíčku) nejrozšířenější knihovnou pro tvorbu UI (v porovnání např. s Vue nebo Angularem). Proto je pro tento kurz zvolena jako demonstrativní knihovna pro tvorbu frontendu.
 
+### Příklady projektů
+
+#### backend projekt
+- distribuovaný systém psaný v Node.js 
+- uzly komunikují pomocí messagingové knihovny ZMQ
+- uchovávají konzistentní data
+
+#### fronedend projekt
+- webová aplikace v Reactu
+- používající GraphQL pro komunikaci s API
+- s využitím state management knihoven (Redux)
+
+#### desktop projekt
+- desktopová aplikace v Electronu
+- načítá soubory v .csv formátu
+- ukládá načtené data do vzdálené databáze
+
+#### mobilní projekt
+- mobilní klient v React Native
+- načítá z RESTové API data o počasí
+- zobrazuje předpověď v grafu
