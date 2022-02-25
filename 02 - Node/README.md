@@ -175,7 +175,7 @@ Výsledek requestu ve funkci `fetchBTC` jsme lehce upravili, aby se nám s ním 
 
 ## Úkol
 
-* Vytvořte funkce pro načítání dat libovolných dalších 2 kryptoměn
+* Vytvořte funkce pro načítání dat libovolných dalších 2 kryptoměn, ošetřete chybové stavy
 * Pro každou kryptoměnu vytvořte vlastní routu (např. "/eth"), která bude vracet stránku s tabulku. Tabulka bude obsahovat hodnotu dané kryptoměny spolu s aktuálním časem
 * Pro defaultní routu vytvořte hlavní stránku s odkazy na tyto stránky 
 

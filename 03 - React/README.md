@@ -259,9 +259,13 @@ S pojmem "hook" se budeme ve funkcionálních komponentách Reactu setkávat vel
 
 Jelikož, jak jsme si říkali v úvodu, funkcionální React komponenta je čistá funkce, která transformuje `data` -> `view`. Pomocí hooků můžeme do těchto funkcí vnášet určitým "čistým" způsobem side-efekty. V další lekci se budeme zabývat například aplikačním stavem, který je také realizován pomocí hooků.
 
-## API
+# REST API
 
-V poslední části této lekce si zkusíme vytvořit vlastní API endpoint. Přejmenujme existující `hello.js` na `btc.js` ve složce `pages/api`. Když přejdeme na adresu http://localhost:3000/api/btc, uvidíme výsledek tohoto API requestu, definovaného níže:
+V úvodním semináři o Node.js jsme si představili jednoduchou webovou službu, ve které jsme implementovali obsluhu HTTP GET požadavku, kde jsme vraceli HTML stránku. Podobným způsobem můžeme implementovat tzv. RESTové API, prostřednictvím kterého můžeme pracovat s datovou vrstvou webové aplikace (uvidíme později).
+
+RESTové API používá HTTP metody - GET, POST, PUT a DELETE. Typicky se vracejí odpovědi ve formátu JSON.
+
+Zkusme si tedy vytvořit vlastní API endpoint, obsluhující GET request. Přejmenujme existující `hello.js` na `btc.js` ve složce `pages/api`. Když přejdeme na adresu http://localhost:3000/api/btc, uvidíme výsledek tohoto API requestu, definovaného níže:
 
 ```javascript
 export default (req, res) => {
@@ -269,8 +273,6 @@ export default (req, res) => {
   res.json({ name: 'John Doe' })
 }
 ```
-
-Kód velmi připomíná definici routy z minulé lekce. S tím rozdílem, že nyní nevracíme HTML stránku, ale JSON s daty.
 
 Pojďme nyní vytvořit endpoint, vracející JSON s aktuální cenou Bitcoinu.
 
