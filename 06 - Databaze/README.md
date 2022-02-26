@@ -20,7 +20,7 @@ Další možností je stáhnout a spustit si předpřipravený kontejner, na kte
 
 ### MongoDB Atlas
 
-V případě, že chceme použít plně spravované cloudové řešení, nejjednodušší možností je zaregistrovat se na portálu [Atlas](https://www.mongodb.com/cloud/atlas/register), kde poskytují možnost zdarma si vytvořit účet spolu s 
+V případě, že chceme použít plně spravované cloudové řešení, nejjednodušší možností je zaregistrovat se na portálu [Atlas](https://www.mongodb.com/cloud/atlas/register), kde poskytují možnost zdarma si vytvořit účet spolu s databází
 
 Pro účely tohoto semináře bude nutné zprovoznit jednu z těchto variant
 
@@ -28,5 +28,5 @@ Pro účely tohoto semináře bude nutné zprovoznit jednu z těchto variant
 
 V době masivně rozšiřujícího se IoT bylo třeba přizpůsobit i možnosti ukládání obrovských objemů dat z nejrůznějších senzorů. To samé například platí i pro nástroje monitorující pohyb cen akcií, kryptoměn a dalších finančních instrumentů
 
-K tomu slouží TSDB neboli time series databases. Ty jsou optimalizované pro ukládání velkých objemů dat, kde hodnoty jsou asosiovány s časovým razítkem, kdy byly tyto data pořízeny. Typickým zástupcem je například (InfluxDB)[https://docs.influxdata.com/influxdb/v2.1/get-started/]. Pro účely dnešního kurzu si však vystačíme s MongoDB
+K tomu slouží TSDB neboli time series databases. Ty jsou optimalizované pro ukládání velkých objemů dat, kde hodnoty jsou asosiovány s časovým razítkem, kdy byly tyto data pořízeny. Typickým zástupcem je například [InfluxDB](https://docs.influxdata.com/influxdb/v2.1/get-started/). Pro účely dnešního kurzu si však vystačíme s MongoDB
 
