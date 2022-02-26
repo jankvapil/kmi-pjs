@@ -1,6 +1,6 @@
 # Práce s databází
 
-V této lekci se seznámíme se základními metodami práce s databází v rámci serverové části naší aplikace. Vytvoříme si blog s články, které budeme dynamicky načítat z databáze pomoci API requestu.
+V této lekci se seznámíme se základními metodami práce s databází v rámci backendové části naší aplikace. Vytvoříme si blog s články, které budeme dynamicky načítat z databáze pomocí RESTového dotazu.
 
 ## SQLite
 

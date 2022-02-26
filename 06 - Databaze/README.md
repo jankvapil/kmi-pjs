@@ -1,6 +1,20 @@
-# Práce s databází
+# Nerelační databázové systémy
+
+Protikladem ke klasické koncepci relačních databázových modelů máme v současné době stále rozrůstající se počet alternativních databázových paradigmat. Mezi ty patří například key/value, dokumentové nebo grafové modely databázových systémů
+
+## MongoDB
+
+Jedním z nejpopulárnějších alternativ klasického relačního databázového modelu je právě dokumentový, jehož zástupcem pro tento kurz bude právě [MongoDB](https://youtu.be/-bt_y4Loofg)
+
+Výhodou tohoto modelu je jeho jednoduchost, snadná škálovatelnost a robustnost. Na druhou stranu nepodporuje některé z typických vlastností pro relační databázový model (např. použití jazyka SQL, triggerů nebo procedur)
+
+![převzato z https://www.michalbialecki.com/en/2018/03/16/relational-vs-non-relational-databases/](https://www.michalbialecki.com/wp-content/uploads/2018/03/MongoDB-nosql-vs-msql-relational-codewave-insight_lzzufm-900x480.jpg)
+
+
 
 ## SQLite
+
+- TODO: přesunout do lekce 5, přidat migrace
 
 Pro demonstraci použijeme předpřipravenou SQLite databázi s následující strukturou
 
