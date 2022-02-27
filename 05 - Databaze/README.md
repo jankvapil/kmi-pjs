@@ -179,7 +179,7 @@ export default function AddUserForm() {
 }
 ```
 
-Takto vyřešíme změnu stavu pro input element. Dále budeme potřebovat ještě tlačítko, kterým potvrdíme přidání nového uživatele. Jako první ale potřebujeme upravit endpoint `pages/api/users` naší API tak, aby přijímal POST request, v jehož těle bude uživatelské jméno nového uživatele (později také heslo).
+Takto vyřešíme změnu stavu pro input element. Dále budeme potřebovat ještě tlačítko, kterým potvrdíme přidání nového uživatele. Jako první ale potřebujeme upravit endpoint `pages/api/users` naší API tak, aby přijímal POST request, v jehož těle bude uživatelské jméno nového uživatele.
 
 ```javascript
 ///
@@ -276,102 +276,6 @@ export default function AddUserForm() {
 }
 ```
 
-## Úkol
+## Database-First / Code-First
 
-
-
-
-
-## SQLite
-
-- TODO: přesunout do lekce 5, přidat migrace
-
-Pro demonstraci použijeme předpřipravenou SQLite databázi s následující strukturou
-
-```sql
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "Department" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"city"	TEXT NOT NULL,
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "Job" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	PRIMARY KEY("Id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "Employee" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"jobId"	INTEGER NOT NULL,
-	"salary"	NUMERIC NOT NULL,
-	"depId"	INTEGER NOT NULL,
-	FOREIGN KEY("depId") REFERENCES "Department"("id"),
-	FOREIGN KEY("jobId") REFERENCES "Job"("id"),
-	PRIMARY KEY("id" AUTOINCREMENT)
-);
-COMMIT;
-```
-
-## Knex
-
-```
-yarn add sqlite3 knex
-```
-
-Vytvořme nyní soubor `index.js`, do kterého vložíme následující kód:
-
-```javascript
-const knex = require('knex')({
-  client: 'sqlite3',
-  connection: {
-    filename: "./db.db"
-  }
-})
-
-const getEmployees = async () => {
-  const res = await knex('employee')
-    .select("*")
-  console.log(res)
-  knex.destroy()
-}
-
-getEmployees()
-
-```
-
-Po spuštění `yarn start` se nám vypíše obsah tabulky `employee`.
-
-. . .
-
-## Migrace
-
-Pomocí příkazu `npx knex init` vytvoříme `knexfile.js` a následně jej upravíme tak, aby odkazoval na naši testovací databázi:
-
-```javascript
-development: {
-  client: 'sqlite3',
-  connection: {
-    filename: './db.db'
-  }
-}
-```
-
-. . .
-
-
-Pro práci s databází je nezbytné si udržovat informace o provedených strukturálních změnách, k čemuž slouží migrace. Nyní si můžeme vytvořit první migraci následujícím příkazem, který nám vytvoří složku `migrations` spolu s první migrací.
-
-```
-npx knex migrate:make first
-```
-
-
-
-## Úkol
-
-napsat skripty pro
-
-* výpis všech zaměstnanců, vložení nového změnestnance a smazání konkrétního zaměstnance
-
+Přístupu práce s databází, kdy používáme již existující databázi říkáme Database-First přístup. Můžeme jít ale i opačným směrem a celou databázi vygenerovat pomocí kódu (neboli Code-First). Například v rámci platformy .NET se tento přístup často používá způsobem, že se vytvoří model databáze pomocí tříd a z něj se poté generují samotné databázové entity. Z jednotlivých úprav těchto tříd vznikají tzv. `migrace`. To jsou kusy kódu, které transformují databázové schéma do nové podoby. S migracemi lze pracovat i pomocí knihovny `Knex`, to je však nad rámec tohoto kurzu
