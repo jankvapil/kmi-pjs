@@ -86,7 +86,7 @@ useEffect(() => {
 }, [cnt])
 ```
 
-Jak si můžeme všimnout, po každé změně hodnoty symbolu `cnt` se nám zobrazí vyskakovací okno s hláškou "Cnt was changed!" (Včetně samotné inicializace)
+Jak si můžeme všimnout, po každé změně hodnoty symbolu `cnt` se nám zobrazí vyskakovací okno s hláškou "Cnt was changed!" (včetně samotné inicializace)
 
 ## UseSWR
 
@@ -175,7 +175,7 @@ Určitě není vždy žádoucí psát si všechny komponenty od základu. Předp
 
 ### React Toastify
 
-Typickým příkladem komponenty, kterou je pro běžný projekt docela zbytečné vytvářet si vlastní, jsou třeba vizualizace notifikací. V následujícím příkladě si ukážeme, jak takovou komponentu zaintegrovat do projektu
+Typickým příkladem takovéto externí komponenty jsou třeba vizualizace notifikací. V následujícím příkladě si ukážeme, jak takovou komponentu zaintegrovat do projektu
 
 Nainstalujme knihovnu React-toastify
 
