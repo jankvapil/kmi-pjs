@@ -1,7 +1,7 @@
 
 # React
 
-[React](https://reactjs.org/) je knihovna pro tvorbu uživatelského rozhranní. Hlavní myšlenkou je rozdělení uživatelského rozhranní na komponenty, které se skládají z menších částí do větších celků. V Reactu je komponenta definovaná čistě jako funkce. Ta představuje transformaci dat na view
+[React](https://reactjs.org/) je knihovna pro tvorbu uživatelského rozhranní. Hlavní myšlenkou je rozdělení uživatelského rozhranní na komponenty, které se skládají z menších částí do větších celků. V Reactu je komponenta definovaná čistě jako funkce. Ta představuje transformaci dat na View
 
 Syntaxí JSX, kterou React používá, velmi připomíná HTML. Je tedy snadné pro kohokoliv se základy tvorby webových aplikací se v něm začít velmi rychle orientovat
 
@@ -87,7 +87,7 @@ const Header = () => {
 export default Header
 ```
 
-Jako jednu z prvních změn si můžeme nastavit vlastní faviconu. Doporučuji použít například [favicon.io](https://favicon.io/favicon-generator/), kde se dají vygenerovat velmi hezké ikonky z ASCII znaků
+Jako jednu z prvních změn si můžeme nastavit vlastní favicon. Doporučuji použít například [favicon.io](https://favicon.io/favicon-generator/), kde se dají vygenerovat velmi hezké ikonky z ASCII znaků
 
 ### Footer
 
@@ -257,7 +257,7 @@ Nyní zkusme porovnat oba přístupy
 
 S pojmem "hook" se budeme ve funkcionálních komponentách Reactu setkávat velmi často. 
 
-Jelikož, jak jsme si říkali v úvodu, funkcionální React komponenta je čistá funkce, která transformuje data na view. Pomocí hooků můžeme do těchto funkcí vnášet určitým "čistým" způsobem side-efekty. V další lekci se budeme zabývat například aplikačním stavem, který je také realizován pomocí hooků
+Jelikož, jak jsme si říkali v úvodu, funkcionální React komponenta je čistá funkce, která transformuje data na View. Pomocí hooků můžeme do těchto funkcí vnášet určitým "čistým" způsobem side-efekty. V další lekci se budeme zabývat například aplikačním stavem, který je také realizován pomocí hooků
 
 # REST API
 
@@ -310,4 +310,4 @@ Tímto jsme vytvořili náš první API endpoint. V následující lekci si zkus
 
 ## Úkol
 
-Zkuste vytvořit podobným způsobem jako v minulé lekci více endpointů pro různé typy altcoinů (např. api/eth)
+Vytvořte podobným způsobem jako v minulé lekci více endpointů pro různé typy altcoinů (např. api/eth)
