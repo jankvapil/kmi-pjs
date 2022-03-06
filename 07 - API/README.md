@@ -111,7 +111,7 @@ Ten nám po spuštění (Ctrl+Enter) vrátí následující JSON
 }
 ```
 
-Po kliknutí na odkaz Schema a záložku SDL vidíme námi definované GraphQL schéma, které si můžeme stáhnout a pracovat s ním v klientské části aplikace. To je velmi užitečné, jelikož tímto způsobem máme ihned k dispozici dokumentaci daného API. Dokonce existují nástroje jako [Zeus](https://www.npmjs.com/package/graphql-zeus), které jsou schopny ze schématu vygenerovat typy pro TypeScript. To si přiblížíme v lekci o statickém typování
+Po kliknutí na odkaz Schema a záložku SDL vidíme námi definované GraphQL schéma, které si můžeme stáhnout a pracovat s ním v klientské aplikaci. To je velmi užitečné, jelikož tímto způsobem máme ihned k dispozici dokumentaci daného API. Dokonce existují nástroje jako [Zeus](https://www.npmjs.com/package/graphql-zeus), které jsou schopny ze schématu vygenerovat typy pro TypeScript. To si přiblížíme v lekci o statickém typování
 
 ```gql
 type Query {
