@@ -11,7 +11,7 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 5. Databáze, tvorba RESTového API
 6. Nerelační databáze (MongoDB), TSDB, časové řady
 7. Automatické generování API, ORM (Prisma), GraphQL (Hasura)
-8. GraphQL subscriptions, messagingové knihovny (RabbitMQ)
+8. Websockety (Socket.io), messagingové knihovny (RabbitMQ), GraphQL subscriptions?
 9. Užitečné nástroje a knihovny - immutabilní datové struktury (Immer), state management () 
 10. Užitečné nástroje a knihovny - statické typy (TypeScript), automatické formátování (Prettier)
 11. Multiplatformní vývoj (Electron, React-Native)
