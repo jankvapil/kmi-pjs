@@ -3,16 +3,42 @@ const { ApolloServer, gql } = require('apollo-server-express')
 
 const PORT = 4000
 
+const logs = [{
+  timestamp: +new Date(),
+  text: "test log"
+}]
+
 const typeDefs = gql`
+  scalar Date
+
+  type Log {
+    timestamp: Date
+    text: String
+  }
+
   type Query {
-    hello: String
+    logs: [Log]
+  }
+
+  type Mutation {
+    addLog(text: String): Date
   }
 `
 
 const resolvers = {
   Query: {
-    hello: () => {
-      return "Hello"
+    logs: () => {
+      return logs
+    }
+  },
+  Mutation: {
+    addLog: (_ , { text }) => {
+      const date = +new Date()
+      logs.push({
+        timestamp: date,
+        text: text
+      })
+      return date
     }
   }
 }

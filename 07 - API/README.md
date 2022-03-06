@@ -91,7 +91,7 @@ const run = async () => {
 run()
 ```
 
-Můžeme si všimnout, že konstruktor `ApolloServer` přijímá 2 argumenty. Jedním z nich je objekt `typeDefs`, který definuje schéma GraphQL API. Jak bylo zmíněno v úvodu, GraphQL používá 2 základní operace - Query a Mutace. Zde máme nadefinovaný query-typ hello, který vrací string. Pomocí `resolverů` definujeme jednotlivé operace, které vracejí data. V tomto případě vracíme konstantu "hello". Je však zřejmé, že zde se bude pracovat typicky s nějakým externím datovým zdrojem (databází)
+Můžeme si všimnout, že konstruktor `ApolloServer` přijímá jako argument objekt, jehož součástí je `typeDefs`, který definuje schéma GraphQL API. Jak bylo zmíněno v úvodu, GraphQL používá 2 základní operace - Query a Mutace. Zde máme nadefinovaný query-typ hello, který vrací string. Pomocí `resolverů` definujeme jednotlivé operace, které vracejí data. V tomto případě vracíme konstantu "hello". Je však zřejmé, že zde se bude pracovat typicky s nějakým externím datovým zdrojem (databází)
 
 Po spuštění API pomocí `node server.js` přejděme na adresu `http://localhost:4000/graphql`. GraphQL API přijímá pouze POST requesty, takže v prohlížeči se (pomocí GET requestu) dostaneme na úvodní stránku studio.apollographql, které nás po kliknutí přesměruje na stránku tohoto nástroje. Zde si můžeme vyzkoušet práci s naším GraphQL API - vložme do editoru násedující dotaz
 
@@ -118,6 +118,88 @@ type Query {
   hello: String
 }
 ```
+
+V další části vytvoříme systém pro zaznamenávání logů pomocí GraphQL mutací. Pojďme nyní rozšířit naše GraphQL schéma o nový typ `Log`. Součástí skalárních typů není od základu datum, takže jej musíme doplnit:
+
+```gql
+scalar Date
+
+type Log {
+  timestamp: Date
+  text: String
+}
+
+type Query {
+  logs: [Log]
+}
+```
+
+V resolveru budeme vracet předpřipravené pole logů
+
+```javascript
+const logs = [{
+  timestamp: +new Date(),
+  text: "test log"
+}]
+
+const resolvers = {
+  Query: {
+    logs: () => {
+      return logs
+    }
+  }
+}
+```
+
+Abychom mohli přidávat další logy, zavedeme nový typ Mutation
+
+```gql
+type Mutation {
+  addLog(text: String): Date
+}
+```
+
+Dále do resolverů přidáme `Mutation`, včetně funkce `addLog`, která vloží log s aktuálním časovým razítkem do pole logů
+
+```javascript
+const resolvers = {
+  Query: {
+    logs: () => {
+      return logs
+    }
+  },
+  Mutation: {
+    addLog: (_ , { text }) => {
+      const date = +new Date()
+      logs.push({
+        timestamp: date,
+        text: text
+      })
+      return date
+    }
+  }
+}
+
+```
+
+Nyní můžeme přidat log následujícím způsobem
+
+```gql
+# 1.
+mutation {
+  addLog(text: "Test log")
+}
+
+# 2.
+query {
+  logs {
+    timestamp
+    text
+  }
+}
+```
+
+Query nám vrátilo pole `data.logs`, obsahující všechny doposud přidané logy
 
 
 ## Prisma pro GraphQL
