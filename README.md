@@ -12,10 +12,10 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 6. Nerelační databáze (MongoDB), TSDB, časové řady
 7. Automatické generování API, ORM (Prisma), GraphQL (Hasura)
 8. GraphQL subscriptions, messagingové knihovny (RabbitMQ)
-9. Možnosti (a limity) prohlížečů, DOM, Server-side vs Client-side rendering, Užitečné nástroje pro vývoj v JS (statické typy, immutabilní datové struktury, state management..) 
-10. ClojureScript
-11. Electron (úprava & zabalení aplikace pro desktop)
-12. React Native (Android / iOS) - minimalizace klientské aplikace pro mobilní zařízení, React Native Windows + macOS (alternativa k .Net WPF, JavaFX..)
+9. Užitečné nástroje a knihovny - immutabilní datové struktury (Immer), state management () 
+10. Užitečné nástroje a knihovny - statické typy (TypeScript), automatické formátování (Prettier)
+11. Multiplatformní vývoj (Electron, React-Native)
+12. Funkcionální programování na platformě JS (fp-ts, ClojureScript)
 
 ## FAQ ohledně kurzu
 
