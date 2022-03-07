@@ -1,0 +1,12 @@
+type Users {
+  id: Number
+  username: String
+  posts: [Posts]
+}
+
+type Posts {
+  id: Number
+  heading: String
+  text: String?
+  authorId: Number
+}

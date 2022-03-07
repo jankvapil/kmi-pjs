@@ -1,31 +1,7 @@
 
-# REST
-
-V minulých lekcích jsme si zkoušeli vytvořit jednoduché RESTové API. Dnes si představíme nástroje, které nám tvorbu RESTových API výrazně zjednodušší.
-
-V úvodu si shrneme několik přístupů, které se pro práci s databází používají
-
-### ORM
-* objekově relační mapování databázových entit
-* poskytuje největší úroveň abstrakce při práci s databází
-* lze mapovat celé tabulky, nebo pouze výsledky dotazů
-* přináší rizika ve formě neefektivity dotazů (n+1 problem)
-
-### Query/Schema buildery
-* sjednocuje zápis dotazů a příkazů pomocí JS syntaxe (Knex)
-
-### Raw SQL
-* pomocí databázových driverů můžeme psát přímo SQL dotazy
-* pro určité situace nevyhnutelné (optimalizace dotazů) 
-
-
-## Prisma
-
-* umožňuje generovat databázi pomocí SDL
-* umožňuje interspekcí načíst databázové schéma, na základě kterého vygeneruje API
-* TODO
-
 # GraphQL
+
+V minulých lekcích jsme si zkusili vytvořit jednoduché RESTové API. Dnes si představíme nástroje, které nám tvorbu API výrazně zjednodušší
 
 [GraphQL](https://graphql.org/) je dotazovací jazyk nad určitým datovým zdrojem. Používá dvě základní operace - Query (vrací data) a Mutace (změna v datech)
 
@@ -54,7 +30,7 @@ yarn add graphql express apollo-server-express
 touch server.js
 ```
 
-Do souboru `server.js` vložme následující kód, čímž vytvoříme základní strukturu GraphQL API serveru.
+Do souboru `server.js` vložme následující kód, čímž vytvoříme základní strukturu GraphQL API serveru
 
 ```javascript
 const express = require('express')
@@ -201,14 +177,54 @@ query {
 
 Query nám vrátilo pole `data.logs`, obsahující všechny doposud přidané logy
 
+## Relace 
 
-## Prisma pro GraphQL
+Připomeňme si SQLite schéma z lekce č.5
 
-* podobně jako v případě REST API lze pomocí nástroje Prisma generovat i GraphQL API.
+```sql
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "Users" (
+	"id"	INTEGER NOT NULL,
+	"username"	TEXT NOT NULL UNIQUE,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "Posts" (
+	"id"	INTEGER NOT NULL,
+	"heading"	TEXT NOT NULL,
+	"text"	TEXT,
+	"authorId"	INTEGER NOT NULL,
+	FOREIGN KEY("authorId") REFERENCES "Users",
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+COMMIT;
+```
+
+Nyní převeďme toto databázové schéma na GraphQL schéma.
+
+```gql
+type User {
+  id: Number
+  username: String
+  posts: [Post]
+}
+
+type Post {
+  id: Number
+  heading: String
+  text: String?
+  authorId: Number
+}
+```
+
+Jak si můžeme všimnout, relace se zde explicitně nedefinují pomocí cizích klíčů. Pouze řekneme, že typ User má vlastnost posts, která je typu pole, jehož prvky jsou objekty typu Post. Jakým způsobem se data pro konkrétního uživatele získají už řeší samotný resolver
 
 ## Hasura
 
+Abychom nemuseli ručně psát schémata a resolvery, existují nástroje, které nám budování API usnadní
 
+Více v přednášce od externího hosta..
 
-
+* Nástroj pro automatické generování GraphQL (případně REST) API přímo z databáze
+* Momentálně podporuje Postgres a SQL Server
+* Vhodné použití pro renovaci legacy software - zachová datovou vrstvu nad kterou vytvoří API a umožní tak použít moderní technologie k tvorbě frontendu
 

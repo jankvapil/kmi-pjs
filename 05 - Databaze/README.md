@@ -2,6 +2,21 @@
 
 V této lekci se seznámíme se základními metodami práce s databází v rámci backendové části naší aplikace. Vytvoříme si blog s články, které budeme dynamicky načítat z databáze pomocí RESTového dotazu.
 
+V úvodu si shrneme několik přístupů, které se pro práci s databází používají
+
+### ORM
+* objekově relační mapování databázových entit
+* poskytuje nejvyšší úroveň abstrakce při práci s databází
+* lze mapovat celé tabulky, nebo pouze výsledky dotazů
+* přináší rizika ve formě neefektivity dotazů (n+1 problem)
+
+### Query/Schema buildery
+* sjednocuje zápis dotazů a příkazů pomocí JS syntaxe (Knex)
+
+### Raw SQL
+* pomocí databázových driverů můžeme psát přímo SQL dotazy
+* pro určité situace nevyhnutelné (optimalizace dotazů) 
+
 ## SQLite
 
 Pro účely této lekce použijeme předpřipravenou SQLite databázi s následující strukturou. 
