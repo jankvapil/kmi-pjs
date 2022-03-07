@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket API Demo</title>
+</head>
+<body>
+  <script>
+    const socket = new WebSocket('ws://localhost:8080')
+    socket.onmessage = ({ data }) => {
+      console.log(`Msg: ${data}`)
+    }
+
+    function send() {
+      socket.send("msg")
+    }
+  </script>
+  <button onclick="send()">Send</button>
+</body>
+</html>
