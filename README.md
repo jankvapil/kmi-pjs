@@ -12,8 +12,8 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 6. Nerelační databáze (MongoDB), TSDB, časové řady
 7. ORM (Prisma/MongoDB), GraphQL, Automatické generování API (Hasura)
 8. WebSocket (Socket.io), Message Queue knihovny (ZeroMQ), GraphQL subscriptions?
-9. Užitečné nástroje a knihovny - immutabilní datové struktury (Immer), state management (use-global-hook) 
-10. Užitečné nástroje a knihovny - statické typy (TypeScript), automatické formátování (Prettier)
+9. Užitečné nástroje a knihovny - immutabilní datové struktury (Immer), state management (use-global-hook), automatické formátování (Prettier) 
+10. Užitečné nástroje a knihovny - statické typy (TypeScript), TS Runtime (Deno)
 11. Multiplatformní vývoj (Electron, React-Native)
 12. Funkcionální programování na platformě JS (fp-ts, ClojureScript)
 
