@@ -9,11 +9,11 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 3. React - funkcionální komponenty a jejich kompozice, Next.js
 4. React - aplikační stav a side efekty, styly v JS, komponenty třetích stran
 5. Databáze, tvorba RESTového API
-6. Nerelační databáze (MongoDB), TSDB, časové řady
-7. ORM (Prisma/MongoDB), GraphQL, Automatické generování API (Hasura)
+6. Nerelační databáze (MongoDB), ORM (Prisma/MongoDB), TSDB, časové řady
+7. GraphQL, Automatické generování API (Hasura)
 8. WebSocket (Socket.io), Message Queue knihovny (ZeroMQ), GraphQL subscriptions?
 9. Užitečné nástroje a knihovny - immutabilní datové struktury (Immer), state management (use-global-hook), automatické formátování (Prettier) 
-10. Užitečné nástroje a knihovny - statické typy (TypeScript), TS Runtime (Deno)
+10. Statické typy (TypeScript), TS Runtime (Deno), Dokumentace (JSDoc)
 11. Multiplatformní vývoj (Electron, React-Native)
 12. Funkcionální programování na platformě JS (fp-ts, ClojureScript)
 

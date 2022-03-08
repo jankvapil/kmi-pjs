@@ -228,7 +228,7 @@ Abychom nemuseli ručně psát schémata a resolvery, existují nástroje, kter�
 
 Více v přednášce od externího hosta..
 
-* Nástroj pro automatické generování GraphQL (případně REST) API přímo z databáze
+* Nástroj pro automatické generování GraphQL (případně REST) API přímo ze struktury databáze
 * Momentálně podporuje Postgres a SQL Server
 * Vhodné použití pro renovaci legacy software - zachová datovou vrstvu nad kterou vytvoří API a umožní tak použít moderní technologie k tvorbě frontendu
 

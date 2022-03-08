@@ -1,8 +1,6 @@
 # Užitečné nástroje pro vývoj v JS
 
-Jak již bylo zmíněno v úvodním info o kurzu, JavaScript má mnoho nástrah, do kterých se (nejen) nezkušený programátor může dostat. Některé typické nástrahy jsme si již popsali v úvodních lekcích. V této lekci se budeme zabývat knihovnami, které nám (alespoň částečně) usnadní vývoj JS aplikací
-
-K eliminaci některých rizik máme zavedeny určité programátorské praktiky a návrhové vzory (viz. např. kompozice funkcionálních komponent), které nám pomohou se i ve složitějších projektech lépe orientovat a které si zde také popíšeme
+Jak již bylo zmíněno v úvodu, JavaScript má mnoho nástrah, do kterých se (nejen) nezkušený programátor může dostat. Některé typické nástrahy jsme si již popsali v úvodních lekcích. V této lekci se budeme zabývat knihovnami, které nám (alespoň částečně) usnadní vývoj JS aplikací
 
 ## Statická kontrola typů 
 
@@ -173,7 +171,7 @@ Jak si můžeme všimnou, žádná kontrola typů se ve vygenerovaném kódu nep
 
 V JavaScript ekosystému se používá standardně pro psaní dokumentace knihovna [JSDoc](https://jsdoc.app/). Typy se dají považovat samozřejmě za součást dokumentace
 
-Pomocí `npm init` vytvořme poslední ukázkový projekt se souborem `third.js` a nainstalujme knihovnu `jsdoc`. Z předešlé ukázky zkopírujme do tohoto projektu složku `zeus` a soubor `types.ts`. Do souboru `third.js` zkopírujme:
+Pomocí `npm init` vytvořme poslední ukázkový projekt se souborem `third.js` a nainstalujme knihovnu `jsdoc`. Z předešlé ukázky zkopírujme do tohoto projektu složku `zeus` a soubor `types.ts`. Do souboru `third.js` vložme:
 
 ```js
 /**
