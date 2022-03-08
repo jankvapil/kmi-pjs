@@ -202,17 +202,21 @@ COMMIT;
 Nyní převeďme toto databázové schéma na GraphQL schéma.
 
 ```gql
-type Users {
-  id: Number!
-  username: String!
-  posts: [Posts]
+type Query {
+  users: [User]
 }
 
-type Posts {
-  id: Number!
+type User {
+  id: Int!
+  username: String!
+  posts: [Post]
+}
+
+type Post {
+  id: Int!
   heading: String!
   text: String
-  authorId: Number!
+  authorId: Int!
 }
 ```
 

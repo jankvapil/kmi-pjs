@@ -5,48 +5,59 @@ type ZEUS_INTERFACES = never
 type ZEUS_UNIONS = never
 
 export type ValueTypes = {
-    ["Users"]: AliasType<{
-	id?:ValueTypes["Number"],
-	username?:boolean,
-	posts?:ValueTypes["Posts"],
+    ["Query"]: AliasType<{
+	users?:ValueTypes["User"],
 		__typename?: boolean
 }>;
-	["Posts"]: AliasType<{
-	id?:ValueTypes["Number"],
+	["User"]: AliasType<{
+	id?:boolean,
+	username?:boolean,
+	posts?:ValueTypes["Post"],
+		__typename?: boolean
+}>;
+	["Post"]: AliasType<{
+	id?:boolean,
 	heading?:boolean,
 	text?:boolean,
-	authorId?:ValueTypes["Number"],
+	authorId?:boolean,
 		__typename?: boolean
 }>
   }
 
 export type ModelTypes = {
-    ["Users"]: {
-		id:ModelTypes["Number"],
-	username:string,
-	posts?:(ModelTypes["Posts"] | undefined)[]
+    ["Query"]: {
+		users?:(ModelTypes["User"] | undefined)[]
 };
-	["Posts"]: {
-		id:ModelTypes["Number"],
+	["User"]: {
+		id:number,
+	username:string,
+	posts?:(ModelTypes["Post"] | undefined)[]
+};
+	["Post"]: {
+		id:number,
 	heading:string,
 	text?:string,
-	authorId:ModelTypes["Number"]
+	authorId:number
 }
     }
 
 export type GraphQLTypes = {
-    ["Users"]: {
-	__typename: "Users",
-	id: GraphQLTypes["Number"],
-	username: string,
-	posts?: Array<GraphQLTypes["Posts"] | undefined>
+    ["Query"]: {
+	__typename: "Query",
+	users?: Array<GraphQLTypes["User"] | undefined>
 };
-	["Posts"]: {
-	__typename: "Posts",
-	id: GraphQLTypes["Number"],
+	["User"]: {
+	__typename: "User",
+	id: number,
+	username: string,
+	posts?: Array<GraphQLTypes["Post"] | undefined>
+};
+	["Post"]: {
+	__typename: "Post",
+	id: number,
 	heading: string,
 	text?: string,
-	authorId: GraphQLTypes["Number"]
+	authorId: number
 }
     }
 
@@ -518,16 +529,18 @@ export const apiSubscription = (options: chainOptions) => (
 
 
 
-const allOperations = {}
+const allOperations = {
+    "query": "Query"
+}
 
 export type GenericOperation<O> = O extends 'query'
-  ? never
+  ? "Query"
   : O extends 'mutation'
   ? never
   : never
 
 export const Thunder = (fn: FetchFunction) => <
-  O extends ,
+  O extends 'query',
   R extends keyof ValueTypes = GenericOperation<O>
 >(
   operation: O,
@@ -537,7 +550,7 @@ export const Thunder = (fn: FetchFunction) => <
 export const Chain = (...options: chainOptions) => Thunder(apiFetch(options));  
   
 export const SubscriptionThunder = (fn: SubscriptionFunction) => <
-  O extends ,
+  O extends 'query',
   R extends keyof ValueTypes = GenericOperation<O>
 >(
   operation: O,
@@ -553,7 +566,7 @@ export const SubscriptionThunder = (fn: SubscriptionFunction) => <
 export const Subscription = (...options: chainOptions) => SubscriptionThunder(apiSubscription(options));
 export const Zeus = <
   Z extends ValueTypes[R],
-  O extends ,
+  O extends 'query',
   R extends keyof ValueTypes = GenericOperation<O>
 >(
   operation: O,

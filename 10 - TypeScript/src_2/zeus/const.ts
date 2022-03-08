@@ -5,15 +5,18 @@ export const AllTypesProps: Record<string,any> = {
 }
 
 export const ReturnTypes: Record<string,any> = {
-	Users:{
-		id:"Number",
-		username:"String",
-		posts:"Posts"
+	Query:{
+		users:"User"
 	},
-	Posts:{
-		id:"Number",
+	User:{
+		id:"Int",
+		username:"String",
+		posts:"Post"
+	},
+	Post:{
+		id:"Int",
 		heading:"String",
 		text:"String",
-		authorId:"Number"
+		authorId:"Int"
 	}
 }

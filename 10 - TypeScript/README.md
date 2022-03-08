@@ -72,7 +72,7 @@ npx tsc --init
 
 Tímto se nám vytvořil soubor `tsconfig.json`, kde máme k dispozici nejrůznější nastavení kompilátoru. Nyní musíme nastavit ještě samotné volání kompilátoru při buildu. Přidejme tedy do `package.json` tento skript
 
-```
+```json
 "scripts": {
   "build": "tsc"
 },
@@ -102,21 +102,72 @@ npm i -g graphql-zeus
 Zkopírujme do složky, kde máme inicializovaný TypeScript GraphQL schéma z lekce č. 7
 
 ```gql
-type Users {
-  id: Number!
-  username: String!
-  posts: [Posts]
+type Query {
+  users: [User]
 }
 
-type Posts {
-  id: Number!
+type User {
+  id: Int!
+  username: String!
+  posts: [Post]
+}
+
+type Post {
+  id: Int!
   heading: String!
   text: String
-  authorId: Number!
+  authorId: Int!
 }
 ```
 
+Pomocí následujícího příkazu se nám do složky `zeus` vygenerují typy z GraphQL schématu
 
+```
+npx zeus schema.graphql ./
+```
+
+Vytvořme ještě jeden soubor `types.ts`, kde s typy budeme pracovat. Vygenerované typy můžeme načíst a exportovat tímto způsobem
+
+```ts
+import { ModelTypes } from './zeus/index'
+
+export type User = ModelTypes['User']
+export type Post = ModelTypes['Post']
+```
+
+Poté do souboru `second.ts` vložme 
+
+```ts
+import { User } from './types'
+
+function printUser(input: User) {
+  console.log(`${input.username}`)
+}
+
+const user: User = {
+  id: 1,
+  username: "John"
+}
+
+printUser(user)
+```
+
+Zavoláním `yarn build` se nám všechny .ts soubory přeloží do JavaScriptu
+
+```js
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function printUser(input) {
+    console.log(`${input.username}`);
+}
+const user = {
+    id: 1,
+    username: "John"
+};
+printUser(user);
+```
+
+Jak si můžeme všimnou, žádná kontrola typů se ve vygenerovaném kódu neprovádí. TypeScript provede kontrolu v době překladu. Nicméně i přesto se statickou kontrolu hodí používat pro zamezení překlepů a možnosti nápovědy/autocomplete
 
 ## Další alternativy
 
