@@ -304,7 +304,9 @@ const apiSubscription = (options) => (query) => {
     }
 };
 exports.apiSubscription = apiSubscription;
-const allOperations = {};
+const allOperations = {
+    "query": "Query"
+};
 const Thunder = (fn) => (operation) => (o, ops) => (0, exports.fullChainConstruct)(fn)(operation, allOperations[operation])(o, ops);
 exports.Thunder = Thunder;
 const Chain = (...options) => (0, exports.Thunder)((0, exports.apiFetch)(options));

@@ -169,18 +169,33 @@ printUser(user);
 
 Jak si můžeme všimnou, žádná kontrola typů se ve vygenerovaném kódu neprovádí. TypeScript provede kontrolu v době překladu. Nicméně i přesto se statickou kontrolu hodí používat pro zamezení překlepů a možnosti nápovědy/autocomplete
 
-## Další alternativy
+## JSDoc
 
-### Flow
+V JavaScript ekosystému se používá standardně pro psaní dokumentace knihovna [JSDoc](https://jsdoc.app/). Typy se dají považovat samozřejmě za součást dokumentace
 
-* [Flow](https://flow.org/) (Facebook)
+Pomocí `npm init` vytvořme poslední ukázkový projekt se souborem `third.js` a nainstalujme knihovnu `jsdoc`. Z předešlé ukázky zkopírujme do tohoto projektu složku `zeus` a soubor `types.ts`. Do souboru `third.js` zkopírujme:
 
-### JSDoc
+```js
+/**
+ * @typedef {import("./types").User} User
+ */
 
-* [JSDoc](https://jsdoc.app/)
+/**
+ * @param {User} input  
+ */
+function printUser(input) {
+  console.log(`${input.username}`)
+}
 
-* typy jako součást dokumentace
+/**
+ * @type {User}
+ */
+const user = {
+  id: 1,
+  username: 'John'
+}
 
-* pro popis typů lze použít DSL v *.d.ts
+printUser(user)
+```
 
-* kompatibilní i s ClojureScript
+Jak si můžeme všimnout, importováním typů v rámci komentářů získáme rovněž nápovědu/autocomplete. Nicméně na rozdíl od použití TypeScriptu ušetříme překlad a můžeme psát rovnou nejnovější staticky typový EcmaScript kód
