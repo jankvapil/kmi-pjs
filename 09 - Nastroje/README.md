@@ -1,8 +1,6 @@
-# Užitečné nástroje pro vývoj v JS
+# Aplikační stav
 
 V dnešní lekci se podíváme na to, jakým způsobem je možné pracovat s aplikačním stavem a které knihovny nám tuto práci usnadní
-
-## Aplikační stav
 
 Vraťme se nyní do adresáře lekce č. 4 (React II), zkopírujme zdrojové soubory celého Next.js projektu a nainstalujme závislosti. V souboru `pages/index.js` upravme kód do následující podoby
 
@@ -188,7 +186,13 @@ Architektura popsaná v předešlém příkladě nese název [Flux](https://face
 
 Všechny změny aplikačního stavu jsou transparentní, jelikož Flux používá jednosměrný "data flow", neboli tok dat. Je jasně daná posloupnost akcí, které vedly k aktuálnímu stavu aplikace. Všechny akce proudí skrz dispatcher, který může akce ukládat a mít tak záznam o tom, co se v aplikaci stalo. Jak jsme naznačili v úvodu, tato možnost je skvělým nástrojem pro debugování. Mimo to je možné jednoduše implementovat například operace jako Undo nebo Redo
 
+## Use-global
 
+V předchozím příkladě jsme si však zavedli Flux architekturu pouze v rámci dané komponenty. Nyní ukážeme, že můžeme zavést určitým funkcionálním způsobem globální stav
+
+```
+yarn add use-global-hook
+```
 
 
 
