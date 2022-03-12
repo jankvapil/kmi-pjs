@@ -140,5 +140,55 @@ export default function Home() {
 
 V porovnání s předchozím kódem vidíme značný rozdíl zejména v tom, že se mění pouze ta část aplikačního stavu, který souvisí s danou komponentou
 
-## State management
+### Reducer
+
+Pojďme se nyní podívat na principielně trochu odlišný přístup. Nahraďme opět kód v souboru `pages/index.js` 
+
+```js
+import { useImmerReducer } from "use-immer"
+import Content from '../components/common/Content'
+import Counter from '../components/Counter'
+
+const initialState = {
+  cnt1: 0,
+  cnt2: 0,
+  cnt3: 0
+}
+
+function reducer(draft, action) {
+  switch (action.type) {
+    case "inc1":
+      return void draft.cnt1++
+    case "inc2":
+      return void draft.cnt2++
+    case "inc3":
+      return void draft.cnt3++
+  }
+}
+
+export default function Home() {
+  const [state, dispatch] = useImmerReducer(reducer, initialState)
+
+  return (
+    <Content>
+      <Counter value={state.cnt1} inc={() => dispatch({ type: "inc1" })}/>
+      <Counter value={state.cnt2} inc={() => dispatch({ type: "inc2" })}/>
+      <Counter value={state.cnt3} inc={() => dispatch({ type: "inc3" })}/>
+      <Counter value={state.cnt1} inc={() => dispatch({ type: "inc1" })}/>
+    </Content>
+  )
+}
+```
+
+Zásadní změnou zde vidíme, že se zavedl `initialState`, ve kterém jsou definové defaultní hodnoty jednotlivých čítačů. Dále máme funkci `reducer`, která na základě přijatých akcí provádí změny aplikačního stavu. Poslední rozdíl je ve vyvolávání samotné akce pomocí funkce `dispatch`. Na první pohled se tento přístup zdá poněkud zvláštní, má však ale celou řadu výhod
+
+## Flux
+
+Architektura popsaná v předešlém příkladě nese název [Flux](https://facebook.github.io/flux/). Základními stavebními prvky jsou `actions`, `store` a `dispatcher`. Akce představují typy událostí, které pomocí dispatcheru mění aplikační stav, který je udržován ve store
+
+Všechny změny aplikačního stavu jsou transparentní, jelikož Flux používá jednosměrný "data flow", neboli tok dat. Je jasně daná posloupnost akcí, které vedly k aktuálnímu stavu aplikace. Všechny akce proudí skrz dispatcher, který může akce ukládat a mít tak záznam o tom, co se v aplikaci stalo. Jak jsme naznačili v úvodu, tato možnost je skvělým nástrojem pro debugování. Mimo to je možné jednoduše implementovat například operace jako Undo nebo Redo
+
+
+
+
 
