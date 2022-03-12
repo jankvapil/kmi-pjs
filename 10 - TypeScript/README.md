@@ -1,4 +1,4 @@
-# Užitečné nástroje pro vývoj v JS
+# Užitečné nástroje pro vývoj v JS II
 
 Jak již bylo zmíněno v úvodu, JavaScript má mnoho nástrah, do kterých se (nejen) nezkušený programátor může dostat. Některé typické nástrahy jsme si již popsali v úvodních lekcích. V této lekci se budeme zabývat knihovnami, které nám (alespoň částečně) usnadní vývoj JS aplikací
 
