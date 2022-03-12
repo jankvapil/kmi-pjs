@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "immer": "^9.0.12",
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-toastify": "^8.2.0",
-    "swr": "^0.5.6"
+    "swr": "^0.5.6",
+    "use-immer": "^0.6.0"
   }
 }
