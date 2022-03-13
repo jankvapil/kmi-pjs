@@ -56,7 +56,7 @@ export default function Counter ({ value, inc }) {
 
 Tímto jsme vytvořili sdílený aplikační stav pro 4 komponenty typu `Counter`. Některé čítače pracují pouze s vlastní hodnotou, některé hodnotu sdílejí - musí být tedy sdílená hodnota čítače "vytažena" do nadřazené komponenty. To reflektuje velmi častý případ, se kterým se vývojář bude muset potýkat
 
-V případě takto lineární struktury ještě není problém úplně zřejmý. Zkusme si ale představit, že máme aplikační stav složený z daleko více zanořených objektů
+V případě takto lineární struktury ještě není problém úplně zřejmý. Zkusme si ale představit, že máme aplikační stav složený z daleko více zanořených objektů - pak by nestačilo použít pouze `...state`, ale musely by se všechny zanořené objekty (kterých by se změna stavu netýkala) pomocí destrukturalizace takto zkopírovat
 
 V Reactu se navíc tyto Gettery i Settery předávají přes props. Vychází to z funkcionálního přístupu, že veškeré závislosti, se kterými komponenta pracuje, se předávají jako parametr. To se však může stát poměrně brzy při větším počtu závislostí nepřehledné. Jestliže bychom potřebovali změnit jeden vstupní parametr, budeme muset změnu provést na všech místech aplikace
 
