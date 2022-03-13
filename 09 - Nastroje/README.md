@@ -188,11 +188,93 @@ Všechny změny aplikačního stavu jsou transparentní, jelikož Flux použív�
 
 ## Use-global
 
-V předchozím příkladě jsme si však zavedli Flux architekturu pouze v rámci dané komponenty. Nyní ukážeme, že můžeme zavést určitým funkcionálním způsobem globální stav
+V předchozím příkladě jsme si však zavedli Flux architekturu pouze v rámci dané komponenty. Nyní si ukážeme, jak můžeme zavést určitým funkcionálním způsobem globální stav v rámci celé aplikace
+
+Vytvořme novou složku `core` a dále složky `core/store` a `core/actions`. Navíc budeme potřeboval knihovnu *use-global-hook* ve verzi 0.2.3 (kvůli kompatibilitě s Immer)
 
 ```
-yarn add use-global-hook
+yarn add use-global-hook@0.2.3
 ```
 
+Ve složce `core/store` vytvořme soubory `index.js` a `initialState.js`. Do souboru `initialState.js` vložme 
 
+```js
+export const initialState = {
+  cnt1: 0,
+  cnt2: 0,
+  cnt3: 0
+}
+```
 
+V souboru `index.js` pak inicializujeme knihovnu `use-global-hook` pro použití s immutabilními strukturami z knihovny `Immer.js` následujícím způsobem
+
+```js
+import React from "react"
+import Immer from "immer"
+import globalHook from "use-global-hook"
+import * as actions from "../actions"
+import { initialState } from "./initialState"
+
+const options = { Immer }
+const useGlobal = globalHook(React, initialState, actions, options)
+
+export default useGlobal
+```
+
+Nyní máme vytvořen globální stav aplikace. Potřebujeme nadefinovat ještě akce, které budou s tímto globálním stavem pracovat. V `core/actions` vytvořme opět soubor `index.js` a dále soubor `counterActions.js`. Soubor `counterActions.js` bude vypadat následovně
+
+```js
+export const incCounter1 = (store) => {
+  store.setState(state => { state.cnt1 = state.cnt1 + 1})
+}
+
+export const incCounter2 = (store) => {
+  store.setState(state => { state.cnt2 = state.cnt2 + 1})
+}
+
+export const incCounter3 = (store) => {
+  store.setState(state => { state.cnt3 = state.cnt3 + 1})
+}
+```
+
+V soboru `counterActions.js` pak budeme exportovat objekt `counter`, který představuje rozhranní pro práci s těmito akcemi
+
+```js
+import * as counter from './counterActions'
+
+export { counter }
+```
+
+Nyní můžeme v souboru `pages/index.js` použít imutabilní globální stav spolu s globálními akcemi
+
+```js
+import useGlobal from "../core/store"
+import Content from '../components/common/Content'
+import Counter from '../components/Counter'
+
+export default function Home() {
+  const [globalState, globalActions] = useGlobal()
+
+  return (
+    <Content>
+      <Counter value={globalState.cnt1} inc={() => globalActions.counter.incCounter1()}/>
+      <Counter value={globalState.cnt2} inc={() => globalActions.counter.incCounter2()}/>
+      <Counter value={globalState.cnt3} inc={() => globalActions.counter.incCounter3()}/>
+      <Counter value={globalState.cnt1} inc={() => globalActions.counter.incCounter1()}/>
+    </Content>
+  )
+}
+```
+
+Tímto způsobem jsme přesunuli práci s aplikačním stavem mimo React komponenty. Hodnoty `globalState.cnt1` jsou imutabilní, pokud bychom je chtěli přímo změnit, vyskočila by nám chybová hláška
+
+```js
+return (
+  <Content>
+    <button onClick={() => globalState.cnt1 = globalState.cnt1 + 1}>Error</button>
+  </Content>
+)
+// -> "TypeError: Cannot assign to read only property 'cnt1' of object '#<Object>'"
+```
+
+Hodnoty globálního stavu můžeme měnit tedy pouze pomocí explicitně definovaných akcí

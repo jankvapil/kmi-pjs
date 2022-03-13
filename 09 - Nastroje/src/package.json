@@ -15,6 +15,7 @@
     "react-dom": "17.0.1",
     "react-toastify": "^8.2.0",
     "swr": "^0.5.6",
+    "use-global-hook": "0.2.3",
     "use-immer": "^0.6.0"
   }
 }
