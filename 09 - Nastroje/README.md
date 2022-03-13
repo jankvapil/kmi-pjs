@@ -278,3 +278,7 @@ return (
 ```
 
 Hodnoty globálního stavu můžeme měnit tedy pouze pomocí explicitně definovaných akcí
+
+## Redux
+
+V příkladech pro tento kurz jsou záměrně použity co nejjednodušší implementace architektury Flux. Pro produkční prostředí je určitě vhodné zvážit použití masivněji používaných knihoven pro správu aplikačního stavu - jako je například knihovna [Redux](https://redux.js.org/). To je však nad rámec tohoto kurzu
