@@ -76,7 +76,7 @@ Typicky se využívá komunikace na úrovni socketů. Na rozdíl od WebSocketů,
 
 ## Základní komunikační patterny
 
-1. Request/Reply - blokující komunikace, producent čeká na odpověď od konzumenta
+1. Request/Reply - blokující komunikace, konzument čeká na odpověď od producenta
 2. Push/Pull (Pipeline pattern) - neblokující komunikace, zprávy jsou ukládány na zásobník. Ve chvíli, kdy je konzument dosupný si uložené zprávy postupně vyzvedne
 3. Publish/Subscribe - neblokující komunikace, "radio" - producent vysílá zprávy, konzument se připojí na "kanál" a začne zprávy odchytávat až ve chvíli připojení
 
@@ -129,6 +129,41 @@ Zde si můžeme všimnout, že podobně jako u producenta definujeme typ socketu
 
 Někoho by určitě napadlo - co se stane, když se spustí konzument vícekrát? V takovém případě se budou konzumenti střídat v přebírání a zpracování zpráv. Tím můžeme například jednoduše zajistit škálování systému a distribuci požadavků mezi nezávislé uzly, které mohou zpracovávat požadavky nezávisle na sobě. Proto se někdy konzumenti v rámci Push/Pull patternu nazývají *Workers* 
 
+## PUB/SUB
 
+Pojďme se nyní podívat na komunikační pattern typu Publish/Subscribe. Ve složce, kde máme soubory `consumer` a `producer`, vytvořme ještě `publisher.js` a `subscriber.js`. Do souboru `publisher.js` doplňme 
 
+```js
+const zmq = require("zeromq")
+const sock = new zmq.socket("pub")
 
+sock.bindSync("tcp://127.0.0.1:3000")
+console.log("Publisher bound to port 3000")
+
+let i = 1
+setInterval(() => {
+  const msg = `msg ${i++}`
+  console.log(`sending ${msg}..`)
+  sock.send(`topic ${msg}`)
+}, 1000)
+```
+
+Zde si můžeme všimnou jediného rozdílu (kromě jiného typu socketu) oproti producentovi - před samotnou zprávu posíláme tzv. *Topic*. Jedná se o typ kanálu, na který se daná zpráva posílá
+
+Do souboru `publisher.js` vložme 
+
+```js
+const zmq = require("zeromq")
+const sock = zmq.socket("sub")
+
+sock.connect("tcp://127.0.0.1:3000")
+sock.subscribe("topic")
+
+sock.on("message", (msg) => {
+  console.log("data: %s", msg.toString())
+})
+```
+
+Kód se opět velmi podobá konzumentovi s tím rozdílem, že pomocí `sock.subscribe` předem definujeme, který z topiců chceme zaregistrovat pro odchytávání zpráv. Opět můžeme zkusit spustit nezávisle na sobě několik subscriberů a publishera. Můžeme si všimnout, že nyní se nám u subscribera začnou objevovat zprávy až ve chvíli, kdy se na daný topic připojí
+
+Výhodou použití knihovny ZMQ je právě odstínění od nízko-úrovňových problémů, jako je například výpadek spojení. Ve chvíli, kdy např. publisher vypadne, subscribeři čekají, dokud se publisher znova nespustí. Nedochází k chybám, že by spojení bylo neočekávaně ukončeno a podobně 
