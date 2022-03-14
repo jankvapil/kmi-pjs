@@ -61,4 +61,26 @@ function Home() {
 export default Home
 ```
 
-Jak si můžeme všimnout hned na začátku souboru - pomocí knihovny `fs-extra`, která je součástí electronu, můžeme pracovat se souborovým systémem. Funkce `loadFile` umí načíst textový soubor a výsledek uložit do proměnné `text`. Tato funkce je vyvolána přes `onChange` událost elementu `input`, který je typu file. Načtený text se zobrazí v elementu `textarea`
+Jak si můžeme všimnout hned na začátku souboru - pomocí knihovny `fs-extra`, která je součástí Electronu, můžeme pracovat se souborovým systémem. Funkce `loadFile` umí načíst textový soubor a výsledek uložit do proměnné `text`. Tato funkce je vyvolána přes `onChange` událost elementu `input`, který je typu file. 
+
+Jelikož element `input` nemá nastavený atribut `multiple`, je možné předpokládat, že načtený soubor bude prvním prvkem v poli `files`. Načtený text se pak zobrazí v elementu `textarea` - jelikož však není definován onChange handler, není zatím možné text upravovat. To však nyní napravíme - upravme element `textarea`
+
+```jsx
+  <textarea 
+    onChange={(e) => setText(e.target.value)} 
+    type="text" 
+    value={text} 
+    rows={25} 
+    style={{width: '100%'}}
+  />
+```
+
+Změny v textu se nám provádí v rámci aplikační paměti. Nyní bychom však chtěli změny uložit zpět do souboru. Přidejme ještě element `button`, který bude tuto funkci vyvolávat. Upravme ještě lehce styly, aby se `input` a `button` dynamicky škálovaly v poměru 1:4
+
+```jsx
+  <input multiple type="file" onChange={loadFile} style={{width: '80%'}}/>
+  <button onClick={saveFile} style={{float: 'right', width: '20%'}}>Save</button>
+```
+
+Nyní nám zbývá implementovat funkci `saveFile`
+

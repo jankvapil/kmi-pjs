@@ -11,6 +11,11 @@ function Home() {
     const text = await fs.readFile(file.path, "utf8")
     setText(text)
   }
+
+  const saveFile = async (e) => {
+    console.log(e)
+  }
+
   return (
     <React.Fragment>
       <Head>
@@ -18,8 +23,15 @@ function Home() {
       </Head>
       <div>
         <h1>Notepad</h1>
-        <input type="file" onChange={loadFile} style={{width: '100%'}}/>
-        <textarea type="text" value={text} rows={25} style={{width: '100%'}}/>
+        <input multiple type="file" onChange={loadFile} style={{width: '80%'}}/>
+        <button onClick={saveFile} style={{float: 'right', width: '20%'}}>Save</button>
+        <textarea 
+          onChange={(e) => setText(e.target.value)} 
+          type="text" 
+          value={text} 
+          rows={25} 
+          style={{width: '100%'}}
+        />
       </div>
     </React.Fragment>
   )
