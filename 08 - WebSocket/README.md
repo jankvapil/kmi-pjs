@@ -63,22 +63,62 @@ Socket.io je nadstavba nad WebSockety pro prohlížeč i server. Jedná se o ext
 
 ## Messagingové knihovny
 
-Messagingové knihovny jsou též nazývány jako Message Queue knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů.
+Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů.
 
 * Použití pro integraci systémů - možnost rozdělit systém do menších celků (services) a zajistit mezi nimi komunikaci
 * Systémy mohou být implementovány nad libovolnou platformou (Java, .NET, Python)
 * Asynchronní komunikace, streamování zpráv
 * IoT, monitoring, event-based systémy, algoritmické obchodování
 
-Typicky využívají komunikaci na úrovni socketů. Na rozdíl od WebSocketů, u messagingových knihoven počítáme s použitím výhradně mimo prohlížeč.
+Typicky využívají komunikaci na úrovni socketů. Na rozdíl od WebSocketů, u MQ knihoven počítáme s použitím výhradně mimo prohlížeč.
 
 ### Základní komunikační patterny
 
-1. Request/Reply 
-2. Push/Pull (Pipeline pattern)
-3. Publish/Subscribe 
+1. Request/Reply - blokující komunikace, producent čeká na odpověď od konzumenta
+2. Push/Pull (Pipeline pattern) - neblokující komunikace, zprávy jsou ukládány na zásobník. Ve chvíli, kdy je konzument dosupný si předchozí zprávy vyzvedne
+3. Publish/Subscribe - neblokující komunikace, "radio" - producent vysílá zprávy, konzument se připojí na "kanál" a začne zprávy odchytávat až ve chvíli připojení
 
 ## ZeroMQ
 
+[ZeroMQ](https://zeromq.org/) je velmi jednoduchá a rychlá MQ knihovna. Má velkou podporu napříč programovacími jazyky a platformami. Nicméně je omezena spíše na nižší úroveň komunikace mezi jednotlivými uzly. Výhodou je, že nepotřebuje žádný middleware (brokera, jako např. [RabitMQ](https://www.rabbitmq.com/) - proto předpona Zero). Může tak fungovat i na té nejjednodušší úrovni peer-to-peer komunikace implementovatelnou pomocí několika řádků kódu
 
+Pojďme tedy založit nový projekt a nainstalujme knihovnu ZeroMQ ve verzi 5
 
+```
+yarn add zeromq@5
+```
+
+Vytvořme soubory `producer.js` a `consumer.js`. Do souboru `producer.js` vložme
+
+```js
+const zmq = require("zeromq")
+const sock = zmq.socket("push")
+
+sock.bindSync("tcp://127.0.0.1:3000")
+console.log("Producer bound to port 3000")
+
+let i = 1
+setInterval(() => {
+  const msg = `msg ${i++}`
+  console.log(`sending ${msg}..`)
+  sock.send(msg)
+}, 1000)
+```
+
+Tímto jsme vytvořili producenta, který je nabindovaný na lokální adresu s portem 3000. Každou sekundu vytváří zprávu, kterou pomocí patternu Push/Pull (Push = producent) odesílá. Typ komunikace se definuje už při inicializaci socketu. Jak je vidět, zpráva se odesílá pomocí funkce `sock.send`
+
+Spusťme producenta pomocí `node producent.js` a vytvořme konzumenta `consumer.js`
+
+```js
+const zmq = require("zeromq")
+const sock = zmq.socket("pull")
+
+sock.connect("tcp://127.0.0.1:3000")
+console.log("Consumer connected to port 3000")
+
+sock.on("message", (msg) => {
+  console.log("data: %s", msg.toString())
+})
+```
+
+Zde si můžeme všimnout, že podobně jako u producenta definujeme typ socketu (Pull = konzument). Rozdílem je, že zde definujeme odchytávání události typu "message". V nové konzoli spusťme zároveň i konzumenta pomocí `node consumer.js`. V konzoli se nám objeví všechny odeslané zprávy producentem a zároveň přibývají stále nové (dokud producent poběží)
