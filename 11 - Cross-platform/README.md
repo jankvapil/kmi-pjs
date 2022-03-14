@@ -27,3 +27,38 @@ Vytvořila se struktura projektu, ze které nás budou zajímat zejména složky
 Pomocí příkazu `yarn dev` spustíme projekt v Development módu. Můžeme si všimnout, že po změně ve zdrojovém kódu se nám provádí, díky hot-reloadingu, překreslování ihned, stejně jako v případě vývoje webových aplikací
 
 Příkazem `yarn build` se spustí Electron-builder, který vytvoří složku `dist` a provede build projektu. K dispozici máme vygenerovaný `My Nextron App Setup 1.0.0.exe` soubor, kterým můžeme provézt instalaci aplikace. Mimo to se vytvořila také složka `win-unpacked`, která obsahuje aplikaci ve spustitelné podobě
+
+Abychom si ukázali, jak snadno se dají vytvářet desktopové aplikace s pomocí Electronu - zkusme si nyní pro ukázku vytvořit jednoduchý textový editor. Přejděme nyní do složky `renderer/pages` a souboru `home.jsx` a vložme následující kód
+
+```js
+import React, { useState } from 'react'
+import Head from 'next/head'
+import fs from 'fs-extra'
+
+function Home() {
+  const [text, setText] = useState("")
+  
+  const loadFile = async (e) => {
+    const files = e.target.files
+    const file = files[0]
+    const text = await fs.readFile(file.path, "utf8")
+    setText(text)
+  }
+  return (
+    <React.Fragment>
+      <Head>
+        <title>Electron Demo</title>
+      </Head>
+      <div>
+        <h1>Notepad</h1>
+        <input type="file" onChange={loadFile} style={{width: '100%'}}/>
+        <textarea type="text" value={text} rows={25} style={{width: '100%'}}/>
+      </div>
+    </React.Fragment>
+  )
+}
+
+export default Home
+```
+
+Jak si můžeme všimnout hned na začátku souboru - pomocí knihovny `fs-extra`, která je součástí electronu, můžeme pracovat se souborovým systémem. Funkce `loadFile` umí načíst textový soubor a výsledek uložit do proměnné `text`. Tato funkce je vyvolána přes `onChange` událost elementu `input`, který je typu file. Načtený text se zobrazí v elementu `textarea`
