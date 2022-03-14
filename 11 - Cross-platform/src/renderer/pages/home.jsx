@@ -9,10 +9,7 @@ function Home() {
   const [status, setStatus] = useState("")
 
   const loadFile = async (e) => {
-    if (e.target.files.length < 1) {
-      setPath(null)
-      return
-    }
+    if (e.target.files.length < 1) return
     const files = e.target.files
     const file = files[0]
     const text = await fs.readFile(file.path, "utf8")
@@ -23,20 +20,14 @@ function Home() {
   }
 
   const saveFile = () => {
-    if (!path) {
-      console.log("neznam cestu")
-      return
-    } 
+    if (!path) return
     fs.writeFile(path, text, (err) => {
-      if (err) {
-        alert(err)
-      } else {
-        setStatus("")
-      }
+      if (!err) setStatus("")
     })
   }
 
   const onTextChangeHandler = (e) => {
+    if (!path) return
     setText(e.target.value)
     setStatus("*")
   }
@@ -49,7 +40,8 @@ function Home() {
       <div>
         <input type="file" onChange={loadFile} style={{width: '80%'}}/>
         <button onClick={saveFile} style={{float: 'right', width: '20%'}}>Save</button>
-        <textarea 
+        <textarea
+          disabled={!path} 
           onChange={onTextChangeHandler} 
           type="text" 
           value={text} 

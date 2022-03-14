@@ -41,6 +41,7 @@ function Home() {
   const [path, setPath] = useState(null)
 
   const loadFile = async (e) => {
+    if (e.target.files.length < 1) return
     const files = e.target.files
     const file = files[0]
     const text = await fs.readFile(file.path, "utf8")
@@ -93,15 +94,9 @@ Nyní nám zbývá implementovat funkci `saveFile`. Abychom dali uživateli vizu
 
 ```js
   const saveFile = () => {
-    if (!path) {
-      return
-    } 
+    if (!path) return
     fs.writeFile(path, text, (err) => {
-      if (err) {
-        alert(err)
-      } else {
-        setStatus("")
-      }
+      if (!err) setStatus("")
     })
   }
 ```
@@ -112,7 +107,7 @@ Tu rovnou zobrazíme v titulku aplikace za souborem
   <title>Electron Demo {file}{status}</title>
 ```
 
-Nyní vytvořme `onTextChangeHandler`, který bude vyvolávat element `textare` namísto předem definovaného lambda výrazu. V tomto handleru budeme nastavovat při editaci textu `status` na "*"
+Nyní vytvořme `onTextChangeHandler`, který bude vyvolávat element `textarea` namísto předem definovaného lambda výrazu. V tomto handleru budeme nastavovat při editaci textu `status` na "*"
 
 ```js
 const onTextChangeHandler = (e) => {
@@ -135,10 +130,7 @@ function Home() {
   const [status, setStatus] = useState("")
 
   const loadFile = async (e) => {
-    if (e.target.files.length < 1) {
-      setPath(null)
-      return
-    }
+    if (e.target.files.length < 1) return
     const files = e.target.files
     const file = files[0]
     const text = await fs.readFile(file.path, "utf8")
@@ -149,19 +141,14 @@ function Home() {
   }
 
   const saveFile = () => {
-    if (!path) {
-      return
-    } 
+    if (!path) return
     fs.writeFile(path, text, (err) => {
-      if (err) {
-        alert(err)
-      } else {
-        setStatus("")
-      }
+      if (!err) setStatus("")
     })
   }
 
   const onTextChangeHandler = (e) => {
+    if (!path) return
     setText(e.target.value)
     setStatus("*")
   }
@@ -174,7 +161,8 @@ function Home() {
       <div>
         <input type="file" onChange={loadFile} style={{width: '80%'}}/>
         <button onClick={saveFile} style={{float: 'right', width: '20%'}}>Save</button>
-        <textarea 
+        <textarea
+          disabled={!path}
           onChange={onTextChangeHandler} 
           type="text" 
           value={text} 
