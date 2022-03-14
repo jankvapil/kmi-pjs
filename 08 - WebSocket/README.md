@@ -61,7 +61,7 @@ Po kliknutí na tlačítko Send se přes vytvořené WebSocket spojení odešle 
 
 Socket.io je nadstavba nad WebSockety pro prohlížeč i server. Jedná se o externí knihovnu, která poskytuje řadu funkcí navíc spolu s jednodušším rozhranním pro práci s WebSockety. Nevýhodou pro použití v prohlížeči je však nutnost stažení externí knihovny 
 
-## Messagingové knihovny
+# Messagingové knihovny
 
 Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů.
 
@@ -70,12 +70,14 @@ Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a 
 * Asynchronní komunikace, streamování zpráv
 * IoT, monitoring, event-based systémy, algoritmické obchodování
 
-Typicky využívají komunikaci na úrovni socketů. Na rozdíl od WebSocketů, u MQ knihoven počítáme s použitím výhradně mimo prohlížeč.
+> Zde je možná název MQ obsahující "Queue" trochu zavádějící, jelikož pouze v patternu Push/Pull, jak zjistíme později, figuruje fronta jako stěžejní prvek
 
-### Základní komunikační patterny
+Typicky se využívá komunikace na úrovni socketů. Na rozdíl od WebSocketů, u MQ knihoven počítáme s použitím výhradně mimo prohlížeč
+
+## Základní komunikační patterny
 
 1. Request/Reply - blokující komunikace, producent čeká na odpověď od konzumenta
-2. Push/Pull (Pipeline pattern) - neblokující komunikace, zprávy jsou ukládány na zásobník. Ve chvíli, kdy je konzument dosupný si předchozí zprávy vyzvedne
+2. Push/Pull (Pipeline pattern) - neblokující komunikace, zprávy jsou ukládány na zásobník. Ve chvíli, kdy je konzument dosupný si uložené zprávy postupně vyzvedne
 3. Publish/Subscribe - neblokující komunikace, "radio" - producent vysílá zprávy, konzument se připojí na "kanál" a začne zprávy odchytávat až ve chvíli připojení
 
 ## ZeroMQ
@@ -122,3 +124,11 @@ sock.on("message", (msg) => {
 ```
 
 Zde si můžeme všimnout, že podobně jako u producenta definujeme typ socketu (Pull = konzument). Rozdílem je, že zde definujeme odchytávání události typu "message". V nové konzoli spusťme zároveň i konzumenta pomocí `node consumer.js`. V konzoli se nám objeví všechny odeslané zprávy producentem a zároveň přibývají stále nové (dokud producent poběží)
+
+### Workers
+
+Někoho by určitě napadlo - co se stane, když se spustí konzument vícekrát? V takovém případě se budou konzumenti střídat v přebírání a zpracování zpráv. Tím můžeme například jednoduše zajistit škálování systému a distribuci požadavků mezi nezávislé uzly, které mohou zpracovávat požadavky nezávisle na sobě. Proto se někdy konzumenti v rámci Push/Pull patternu nazývají *Workers* 
+
+
+
+
