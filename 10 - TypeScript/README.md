@@ -197,3 +197,70 @@ printUser(user)
 ```
 
 Jak si můžeme všimnout, importováním typů v rámci komentářů získáme rovněž nápovědu/autocomplete. Nicméně na rozdíl od použití TypeScriptu ušetříme překlad a můžeme psát rovnou nejnovější staticky typový EcmaScript kód
+
+## Další vlastnosti TypeScriptu
+
+Poté, co jsme si ujasnili, v čem nám TypeScript může pomoci a na co je třeba myslet při jeho použití, podívejme se na jeho další možnosti
+
+### Optional typy
+
+Jestliže chceme říct, že některá z vlastností objektu je nepovinná, označíme ji otazníkem 
+
+```ts
+type Person = {
+  name: string
+  age?: number
+}
+```
+
+### Algebraické datové typy
+
+K definici typů lze využít mimo kompozici také další z matematických operací jako sjednocení (Union type) nebo průnik (Intersection type) 
+
+```ts
+type Gender = "male" | "female"
+
+type Person = {
+  name: string
+  age?: number
+  gender: Gender
+}
+
+const john: Person = {
+  name: "John",
+  gender: "male"
+}
+```
+
+V tomto případě funguje `Gender` podobně jako výčtový typ. Pokud bychom předali jiný řetězec než "male" nebo "female", překladač by nám zahlásil chybu
+
+### Rozhraní 
+
+Rozhraní se obvykle používá pro definici typu vstupu funkcí. Jediný rozdíl oproti typu je ten, že umožňuje použít dědičnost
+
+```ts
+interface Person {
+  name: string
+}
+
+interface PersonWithAge extends Person {
+  age: number
+}
+
+function hello(person: PersonWithAge) {
+  console.log(`Hello, I am ${person.name}`)
+} 
+
+hello({
+  name: "John",
+  age: 42
+})
+```
+
+## JavaScript jako hostovací platforma
+
+Dnes jsme si ukázali, že JavaScript může fungovat jako hostovací platforma pro jiný programovací jazyk. V tomto případě se jednalo pouze o jeho nadmnožinu. Na konci kurzu si ukážeme úplně odlišný funkcionální jazyk, který je možno použít nad platformou JS - Clojure
+
+
+
+

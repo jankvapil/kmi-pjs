@@ -1,3 +1,17 @@
+# Funkcionální programování na platformě JavaScript
+
+V průběhu kurzu jsme si přiblížili některé výhody spojené s použitím funkcionálního přístupu v rámci JavaScriptu. Počínaje předvídatelnou prací s daty pomocí nedestruktivních operací jako `map` nebo `reduce`, přes fukncionální kompozici React komponent, až po relativně sofistikovaný funkcionální state management
+
+Nicméně stále platí, že samotný JavaScript funkcionálních prvků zase tolik neobsahuje. Vyskytují se především v podobě jednotlivých externích knihoven (Immer), případně v ucelenější podobě - jako např. knihovna [Ramda](https://ramdajs.com/). Bohužel se však musíme spokojit s někdy poněkud zvláštní syntaxí v důsledku integrace funkcionálních principů do nefunkcionálního programovacího jazyka
+
+V dnešní lekci se podíváme na jednu z takovýchto integrací, a to konkrétně knihovnu [fp-ts](https://gcanti.github.io/fp-ts/), která integruje funkcionální principy do TypeScriptu. V druhé polovině se budeme věnovat úplně odlišnému přístupu - a to zcela samostatnému jazyku [Clojure](https://clojure.org/), který je hostován nad platformou JavaScript
+
+## Fp-ts
+
+```ts
+type Option<T> = { t: 'Some', value: T } | { t: 'None' }
+```
+
 # ClojureScript
 
 > ClojureScript is a compiler for Clojure that targets JavaScript. It emits JavaScript code which is compatible with the advanced compilation mode of the Google Closure optimizing compiler.
@@ -126,5 +140,10 @@ Server naslouchá na portu 3000. Na routě `/data` server vrací JSON `{"key": "
 
 
 ## Reference
+
+[The Functional Programmer's Toolkit - Scott Wlaschin](https://youtu.be/Nrp_LZ-XGsY?t=503)
+
+[Functional Programming](https://github.com/enricopolanski/functional-programming)
+[Functional TypeScript](https://www.youtube.com/playlist?list=PLlYJBXwGoczGcVOB96OpQZWOhLqiZ-6N8)
 
 [Why I chose ClojureScript over JavaScript](https://m.oursky.com/why-i-chose-clojure-over-javascript-24f045daab7e)
