@@ -198,11 +198,11 @@ printUser(user)
 
 Jak si můžeme všimnout, importováním typů v rámci komentářů získáme rovněž nápovědu/autocomplete. Nicméně na rozdíl od použití TypeScriptu ušetříme překlad a můžeme psát rovnou nejnovější staticky typový EcmaScript kód
 
-## Další vlastnosti TypeScriptu
+## Zpět k TypeScriptu
 
 Poté, co jsme si ujasnili, v čem nám TypeScript může pomoci a na co je třeba myslet při jeho použití, podívejme se na jeho další možnosti
 
-### Optional typy
+### Nepovinné vlastnosti
 
 Jestliže chceme říct, že některá z vlastností objektu je nepovinná, označíme ji otazníkem 
 
@@ -236,7 +236,7 @@ V tomto případě funguje `Gender` podobně jako výčtový typ. Pokud bychom p
 
 ### Rozhraní 
 
-Rozhraní se obvykle používá pro definici typu vstupu funkcí. Jediný rozdíl oproti typu je ten, že umožňuje použít dědičnost
+Rozhraní se obvykle používá pro definici typu vstupu funkcí. Jediný rozdíl oproti typu je ten, že umožňuje použít dědičnost. Na typy by se však mělo nahlížet spíše jako na množiny nežli třídy
 
 ```ts
 interface Person {
@@ -261,6 +261,31 @@ hello({
 
 Dnes jsme si ukázali, že JavaScript může fungovat jako hostovací platforma pro jiný programovací jazyk. V tomto případě se jednalo pouze o jeho nadmnožinu. Na konci kurzu si ukážeme úplně odlišný funkcionální jazyk, který je možno použít nad platformou JS - Clojure
 
+V době, kdy API prohlížečů nebylo jednotné jak dnes a lišilo se i v podpoře verzí EcmaScriptu, se řešil typický problém předkladu kódu z aktuální verze do ES5. To už nyní téměř není [potřeba](https://caniuse.com/?search=es6). Nicméně i tak se vyplatí mít povědomí o tom, jak se řeší tvorba překladače v rámci JS platformy
 
+### Nearley
+
+Velmi povedenou knihovnou pro tvorbu parserů je knihovna [Nearley](https://nearley.js.org/). Základem je vlastní DSL pro popis gramatiky a parser generující AST ve formátu JSON. Pro tvorbu lexeru se dá použít například knihovna [Moo](https://github.com/no-context/moo)
+
+Jako příklad mějme následující gramatiku pro rozpoznání správně uzávorkovaných výrazů
+
+```ne
+# Test for balancing parentheses, brackets, square brackets and pairs of "<" ">"
+
+@{% function TRUE (d) { return true; } %}
+
+P ->
+      "(" E ")" {% TRUE %}
+    | "{" E "}" {% TRUE %}
+    | "[" E "]" {% TRUE %}
+    | "<" E ">" {% TRUE %}
+
+E ->
+      null
+    | "(" E ")" E
+    | "{" E "}" E
+    | "[" E "]" E
+    | "<" E ">" E
+```
 
 
