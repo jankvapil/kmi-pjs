@@ -1,12 +1,12 @@
 # Úvod do Platformy JS
 
-V úvodní lekci kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya.
+V úvodní lekci kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya
 
-Pro spouštění ukázek kódu doporučuji použít webové prostředí [REPL](https://repl.it/) (případně kód spouštět přímo pomocí Node.js - více v další lekci). V případě Repl.it je sice nutné mít vytvořený účet, nicméně pak máte veškeré testovací kódy dostupné odkudkoliv.
+Pro spouštění ukázek kódu doporučuji použít webové prostředí [REPL](https://repl.it/) (případně kód spouštět přímo pomocí Node.js - více v další lekci). V případě Repl.it je sice nutné mít vytvořený účet, nicméně pak máte veškeré testovací kódy dostupné odkudkoliv
 
 ## 1. Deklarace a definice Vanilla JS vs ES6+ 
 
-Rozdíly v rozsahu platnosti a deklaracích / definicích proměnných a funkcí.
+Rozdíly v rozsahu platnosti a deklaracích / definicích proměnných a funkcí
 
 ### Vanilla JS
 
@@ -31,7 +31,7 @@ function fn(x) {
 ```
 
 
-Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994)).
+Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994))
 
 (* Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS.)
 
@@ -65,9 +65,7 @@ fn = x  // error -> const nelze redefinovat
 
 ## 2. Funkce 
 
-
-S funkcemi lze v JS manipulovat stejně jako s hodnotami (High-order functions).
-
+S funkcemi lze v JS manipulovat stejně jako s hodnotami (High-order functions)
 
 ```javascript
 ///
@@ -94,13 +92,15 @@ const fn3 = () => {
 }
 
 fn3() // -> function
+const addOne = fn3()
 
-fn3()(42) // -> 43
+addOne(42)  // -> 43
+fn3()(42)   // -> 43
 ```
 
 ## 3. Objekty a pole
 
-Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad:
+Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad
 
 
 ```javascript
@@ -118,9 +118,9 @@ copy.age == homer.age // -> true
 ```
 
 
-Proč se změnil věk oboum objektům? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu. 
+Proč se změnil věk oboum objektům? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu
 
-Zkusme nyní využít tzv. **destrukturalizaci** (spread operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty.
+Zkusme nyní využít tzv. **destrukturalizaci** (spread operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty
 
 
 ```javascript
@@ -163,7 +163,7 @@ deepCopy.children[0].name == homer.children[0].name // -> false
 ```
 
 
-S využitím základních tříd a funkcí JS můžeme objekt převést na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci JSON.parse jsme získali sice nový objekt, ale bez funkce greeting. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje.
+S využitím základních tříd a funkcí JS můžeme objekt převést na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci JSON.parse jsme získali sice nový objekt, ale bez funkce greeting. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje
 
 
 ```javascript
@@ -182,7 +182,7 @@ Spolehlivé duplikace zanořených datových struktur docílíme pouze vytvořen
 
 ## 4. Array functions
 
-Pro práci s poli můžeme využít (high-order) funkce a provádět tak s daty různé transformace.
+Pro práci s poli můžeme využít (high-order) funkce a provádět tak s daty různé transformace
 
 
 ```javascript
@@ -217,9 +217,9 @@ const homer = simpsons.shift()
 ## 5. Asynchronní JS
 
 
-Později zjistíme (zejména při práci s frontendem), že velmi často potřebujeme reagovat na různé typy asynchronních událostí - typicky ve chvíli, kdy dostaneme odpoveď od serveru s nějakými daty. K tomu se dříve používaly tzv. **callbacky**, neboli funkce, které umožňují dál pracovat např. s načtenými daty někdy v budoucnu. 
+Později zjistíme (zejména při práci s frontendem), že velmi často potřebujeme reagovat na různé typy asynchronních událostí - typicky ve chvíli, kdy dostaneme odpoveď od serveru s nějakými daty. K tomu se dříve používaly tzv. **callbacky**, neboli funkce, které umožňují dál pracovat např. s načtenými daty někdy v budoucnu
 
-Nejjednoduším příkladem asynchronního kódu je následující funkce setTimeout, která bere jako argument callback, jenž se má vykonat po uběhnutí 2000ms.  
+Nejjednoduším příkladem asynchronního kódu je následující funkce setTimeout, která bere jako argument callback, jenž se má vykonat po uběhnutí 2000ms
 
 
 ```javascript
@@ -230,12 +230,12 @@ console.log("Hello")
 ```
 
 
-Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše se "Hello" a po 2 sekundách se vypíše "Callback triggered!". Pro hlubší pochopení si můžete přečíst něco o [JS Event Loop](https://javascript.info/event-loop). Nám bude v tuto chvíli stačit, že vyhodnocování není lineární (přestože je JS kód vykonáván v jednom vlákně) a že existuje nějaká fronta asynchronních událostí.
+Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše se "Hello" a po 2 sekundách se vypíše "Callback triggered!". Pro hlubší pochopení si můžete přečíst něco o [JS Event Loop](https://javascript.info/event-loop). Nám bude v tuto chvíli stačit, že vyhodnocování není lineární (přestože je JS kód vykonáván v jednom vlákně) a že existuje nějaká fronta asynchronních událostí
 
 
 ### Problém s callbacky 
 
-Představme si, že je třeba takto vykonat 5 zřetězených asynchronních funkcí.
+Představme si, že je třeba takto vykonat 5 zřetězených asynchronních funkcí
 
 
 ```javascript
@@ -277,7 +277,7 @@ goToPub(
 ```
 
 
-Tímto způsobem předávání callbacků se stane kód velmi rychle nepřehledný (Callback hell).
+Tímto způsobem předávání callbacků se stane kód velmi rychle nepřehledný (Callback hell)
 
 
 ### Promises
@@ -285,16 +285,16 @@ Tímto způsobem předávání callbacků se stane kód velmi rychle nepřehledn
 
 Proto se do JS zavedla třída [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (neboli "příslib" dokončení výpočtu někdy v budoucnu), která má 3 stavy:
 
-* pending: initial state, neither fulfilled nor rejected.
-* fulfilled: meaning that the operation was completed successfully.
-* rejected: meaning that the operation failed.
+* pending: initial state, neither fulfilled nor rejected
+* fulfilled: meaning that the operation was completed successfully
+* rejected: meaning that the operation failed
 
-a umožňuje tak vracet nedokončený výpočet jako objekt.
+a umožňuje tak vracet nedokončený výpočet jako objekt
 
 
 ### Async / await
 
-Klíčová slova async / await pak vytváří nádstavbu nad přísliby, což umožňuje elegantně pracovat s asynchronním kódem.
+Klíčová slova async / await pak vytváří nádstavbu nad přísliby, což umožňuje elegantně pracovat s asynchronním kódem
 
 
 ```javascript
@@ -348,15 +348,15 @@ const enjoyFriday = async () => {
 enjoyFriday()
 ```
 
-Všimněme si definice a volání asynchronní funkce `enjoyFriday` - klíčové slovo `await` lze použít pouze uvnitř asynchronní funkce.
+Všimněme si definice a volání asynchronní funkce `enjoyFriday` - klíčové slovo `await` lze použít pouze uvnitř asynchronní funkce
 
 ## Úkol
 
-Implementujte (a otestujte) sadu pomocných funkcí:
+Implementujte
 
 * `deepCopy(obj)` - provede správnou duplikaci libovolně zanořených datových struktur
 * `getNowDate()` - vrátí aktuální čas (string) ve formátu DD.MM.YYYY HH:MM:SS (s pomocí třídy [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
 
 ## Reference
 
-Podrobnější výčet vlastností jazyka + příklady [zde](https://github.com/airbnb/javascript/blob/master/README.md).
+Podrobnější výčet vlastností jazyka + příklady [zde](https://github.com/airbnb/javascript/blob/master/README.md)

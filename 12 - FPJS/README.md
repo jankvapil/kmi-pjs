@@ -8,9 +8,41 @@ V dnešní lekci se podíváme na jednu z takovýchto integrací, a to konkrétn
 
 ## Fp-ts
 
+Pro otestování knihovny fp-ts můžeme použít například Deno. Knihovnu je možné naimportovat přímo z CDN bez nutnosti stahování závislostí předem
+
+```ts
+import fpTs from 'https://cdn.skypack.dev/fp-ts/lib/function'
+
+const { pipe } = fpTs
+
+const add1 = (x: number) => x + 1
+const pow2 = (x: number) => x * x
+
+pipe(41, add1, pow2, console.log)
+```
+
+V první ukázce vidíme pomocnou funkci `pipe`,  která nám umožňuje zřetězit jednotlivé funkce a jejich výsledky mezi sebou předávat
+
+```ts
+const { flow } = fpTs
+
+const add1 = (x: number) => x + 1
+const pow2 = (x: number) => x * x
+
+flow(add1, pow2, console.log)(41)
+```
+
+Podobně lze použít také funkci `flow` s rozdílem, že argument se předává až na konci
+
+
 ```ts
 type Option<T> = { t: 'Some', value: T } | { t: 'None' }
 ```
+
+## Monocle
+
+Několik lekcí zpět jsme si představili knihovny pro práci s aplikačním stavem. Mezi nimi byla také knihovna Immer, která představuje určitou nadstavbu nad nativníma JS strukturama a zajišťuje tak jejich imutabilitu. Jednou z alternativ Immeru pro TypeScript je knihovna [Monocle](https://github.com/gcanti/monocle-ts) 
+
 
 # ClojureScript
 
