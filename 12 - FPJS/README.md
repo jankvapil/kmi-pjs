@@ -11,9 +11,9 @@ V dnešní lekci se podíváme na jednu z takovýchto integrací, a to konkrétn
 Pro otestování knihovny fp-ts můžeme použít například Deno. Knihovnu je možné naimportovat přímo z CDN bez nutnosti stahování závislostí předem
 
 ```ts
-import fpTs from 'https://cdn.skypack.dev/fp-ts/lib/function'
+import fpts from 'https://cdn.skypack.dev/fp-ts/lib/function'
 
-const { pipe } = fpTs
+const { pipe } = fpts
 
 const add1 = (x: number) => x + 1
 const pow2 = (x: number) => x * x
@@ -24,7 +24,7 @@ pipe(41, add1, pow2, console.log)
 V první ukázce vidíme pomocnou funkci `pipe`,  která nám umožňuje zřetězit jednotlivé funkce a jejich výsledky mezi sebou předávat
 
 ```ts
-const { flow } = fpTs
+const { flow } = fpts
 
 const add1 = (x: number) => x + 1
 const pow2 = (x: number) => x * x
@@ -34,10 +34,6 @@ flow(add1, pow2, console.log)(41)
 
 Podobně lze použít také funkci `flow` s rozdílem, že argument se předává až na konci
 
-
-```ts
-type Option<T> = { t: 'Some', value: T } | { t: 'None' }
-```
 
 ## Monocle
 

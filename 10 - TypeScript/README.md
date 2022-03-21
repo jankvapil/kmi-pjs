@@ -213,6 +213,31 @@ type Person = {
 }
 ```
 
+### Typ pole
+
+Pole musí být označeno typem jeho prvků
+
+```ts
+type Persons = Array<Person>
+
+const persons: Array<Person> = [
+  { name: "John", age: 42 },
+  { name: "Alice", age: 55 },
+  { name: "Dave", age: 23 },
+]
+```
+
+### Typ návratové funkce
+
+V definici funkce není nutné uvádět její návratovou hodnotu - TypeScript si ji sám odvodí. Lze ji však zapsat tímto způsobem
+
+```ts
+function oldestPerson(persons: Person[]): Person {
+  return persons.reduce((x, y) =>  x.age > y.age ? x : y )
+}
+
+const oldest = oldestPerson(persons)
+```
 ### Algebraické datové typy
 
 K definici typů lze využít mimo kompozici také další z matematických operací jako sjednocení (Union type) nebo průnik (Intersection type) 
@@ -236,7 +261,7 @@ V tomto případě funguje `Gender` podobně jako výčtový typ. Pokud bychom p
 
 ### Rozhraní 
 
-Rozhraní se obvykle používá pro definici typu vstupu funkcí. Jediný rozdíl oproti typu je ten, že umožňuje použít dědičnost. Na typy by se však mělo nahlížet spíše jako na množiny nežli třídy
+Rozhraní se obvykle používá pro definici typu vstupu funkcí. Jediný rozdíl oproti typu je ten, že umožňuje použít dědičnost
 
 ```ts
 interface Person {
@@ -257,11 +282,21 @@ hello({
 })
 ```
 
+Na typy by se však mělo nahlížet spíše jako na množiny nežli třídy
+
+### Generika
+
+V TypeScriptu je možné používat generické typy. Jedním takovým může být typ Option
+
+```ts
+type Option<T> = { t: 'Some', value: T } | { t: 'None' }
+```
+
+V poslední lekci o funkcionálním programování v TypeScriptu se k tomuto typu ještě vrátíme
+
 ## JavaScript jako hostovací platforma
 
-Dnes jsme si ukázali, že JavaScript může fungovat jako hostovací platforma pro jiný programovací jazyk. V tomto případě se jednalo pouze o jeho nadmnožinu. Na konci kurzu si ukážeme úplně odlišný funkcionální jazyk, který je možno použít nad platformou JS - Clojure
-
-V době, kdy API prohlížečů nebylo jednotné jak dnes a lišilo se i v podpoře verzí EcmaScriptu, se řešil typický problém předkladu kódu z aktuální verze do ES5. To už nyní téměř není [potřeba](https://caniuse.com/?search=es6). Nicméně i tak se vyplatí mít povědomí o tom, jak se řeší tvorba překladače v rámci JS platformy
+Dnes jsme si ukázali, že JavaScript může fungovat jako hostovací platforma pro jiný programovací jazyk. V tomto případě se jednalo pouze o jeho nadmnožinu. Na konci kurzu si ukážeme úplně odlišný funkcionální jazyk, který je možno použít nad platformou JS - Clojure. V poslední části této lekce uděláme menší odbočku od typů. Podíváme se na to, jakým způsobem je možné použít JavaScript pro tvorbu parserů a v konečném důsledku si tak vytvořit vlastní jazyk, překládaný do JS
 
 ### Nearley
 
