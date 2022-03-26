@@ -22,7 +22,51 @@ Další možností je stáhnout a spustit si předpřipravený kontejner, na kte
 
 V případě, že chceme použít plně spravované cloudové řešení, nejjednodušší možností je zaregistrovat se na portálu [Atlas](https://www.mongodb.com/cloud/atlas/register), kde poskytují možnost zdarma si vytvořit účet spolu s databází
 
-Pro účely tohoto semináře bude nutné zprovoznit jednu z těchto variant
+Pro účely tohoto semináře je nutné zprovoznit jednu z těchto variant
+
+Vytvořme nový projekt pomocí `yarn init` a nainstalujme knihovnu MongoDB `yarn add mongodb`
+
+## Dotenv
+
+Předtím než začneme pracovat se samotnou databází, nainstalujme ještě knihovnu [Dotenv](https://github.com/motdotla/dotenv) `yarn add dotenv` a v kořenovém adresáři vytvořme soubor `.env`. Do něj vložme přihlašovací údaje k MongoDB, které později použijeme v Connection stringu. 
+
+```env
+USER=<user>
+PASS=<pass>
+```
+
+Tyto "environment" soubory slouží k uchovávání citivých konfiguračních údajů. Knihovna Dotenv nám zajistí, aby tyto environment proměnné byly dostupné v rámci globálního aplikačního prostředí
+
+Vyzkoušejme nyní připojení k MongoDB databázi. Do souboru `index.js` vložme
+
+```js
+require('dotenv').config()
+const { MongoClient } = require('mongodb')
+
+const user = process.env.USER
+const pass = process.env.PASS
+const conStr = `mongodb+srv://${user}:${pass}@test-db.bzwip.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const client = new MongoClient(conStr)
+
+const main = async () => {
+  try {
+    await client.connect()
+    console.log("Connected!")
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+main()
+```
+
+Pokud je vše nastavené správně, měla by se nám v konzoli zobrazit hláška "Connected!"
+
+## Mongoose
+
+Mongoose je ODM (Object Document Mapping) knihovna poskytující rozhraní pro práci s MongoDB databází
+
+
 
 ## TSDB a časové řady
 

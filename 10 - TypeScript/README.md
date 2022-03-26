@@ -261,7 +261,7 @@ V tomto případě funguje `Gender` podobně jako výčtový typ. Pokud bychom p
 
 Intersection type je možný použít například pro popis rozhraní React komponenty, která má zároveň převzít vlastnosti nějakého obecného elementu jako v následujícím příkladě
 
-```js
+```ts
 type Props = {
   visible: boolean
 }
