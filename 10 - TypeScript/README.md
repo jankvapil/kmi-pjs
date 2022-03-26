@@ -240,7 +240,7 @@ const oldest = oldestPerson(persons)
 ```
 ### Algebraické datové typy
 
-K definici typů lze využít mimo kompozici také další z matematických operací jako sjednocení (Union type) nebo průnik (Intersection type) 
+K definici typů lze využít mimo kompozici také další z matematických operací jako sjednocení (Union type) nebo průnik (Intersection type)
 
 ```ts
 type Gender = "male" | "female"
@@ -258,6 +258,24 @@ const john: Person = {
 ```
 
 V tomto případě funguje `Gender` podobně jako výčtový typ. Pokud bychom předali jiný řetězec než "male" nebo "female", překladač by nám zahlásil chybu
+
+Intersection type je možný použít například pro popis rozhraní React komponenty, která má zároveň převzít vlastnosti nějakého obecného elementu jako v následujícím příkladě
+
+```js
+type Props = {
+  visible: boolean
+}
+
+const Popup = (props: Props & React.HTMLAttributes<HTMLDivElement>) => (
+  <div {...props} style={ props.visible ? {display: 'block'} : {display: 'none'}}>
+    { props.children } 
+  </div>
+)
+
+export default Popup
+```
+
+Komponenta `Popup` obsahuje nyní veškeré vlastnosti elementu div spolu s vlastností `visible`
 
 ### Rozhraní 
 
