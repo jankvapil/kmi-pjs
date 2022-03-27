@@ -4,7 +4,7 @@ Protikladem ke klasické koncepci relačních databázových modelů máme v sou
 
 ## MongoDB
 
-Jedním z nejpopulárnějších alternativ klasického relačního databázového modelu je právě dokumentový. Jeho zástupcem pro tento kurz bude právě [MongoDB](https://youtu.be/-bt_y4Loofg), které používá dokumenty podobné formátu JSON a kvůli skvělé integraci s Node.js je proto vhodným kandidátem
+Jedním z nejpopulárnějších alternativ klasického relačního databázového modelu je právě dokumentový. Jeho zástupcem pro tento kurz bude právě [MongoDB](https://youtu.be/-bt_y4Loofg), které používá dokumenty ve formátu BSON (Binary-encoded Javascript Object Notation) a kvůli skvělé integraci s Node.js je proto vhodným kandidátem
 
 Výhodou tohoto modelu je jeho jednoduchost, rychlost, robustnost a snadná škálovatelnost - vertikální (rychlejší hardware, více paměti), tak i horizontální (více distribuovaných databází běžících zároveň). Na druhou stranu nepodporuje některé z typických vlastností pro relační databázové systémy (např. použití jazyka SQL, triggerů nebo procedur)
 
@@ -12,7 +12,7 @@ Výhodou tohoto modelu je jeho jednoduchost, rychlost, robustnost a snadná šk�
 
 ### MongoDB Community Server
 
-Podobně jako u relačních databází jako MySQL nebo PostgreSQL je možné i MongoDB rozběhnout lokálně na svém PC. Nicméně na rozdíl od SQLite už je třeba nějaký čas věnovat samotnému zprovoznění tohoto databázového [serveru](https://www.mongodb.com/try/download/community) a MongoDB Shellu ([mongosh](https://docs.mongodb.com/mongodb-shell/))
+Podobně jako u relačních databází jako MySQL nebo PostgreSQL je možné i MongoDB rozběhnout lokálně na svém PC. Nicméně na rozdíl od SQLite už je třeba nějaký čas věnovat samotnému zprovoznění tohoto databázového [serveru](https://www.mongodb.com/try/download/community) včetně MongoDB Shellu ([mongosh](https://docs.mongodb.com/mongodb-shell/)). Mongosh poskytuje základní CRUD operace pro práci s DB. Lze jej samozřejmě používat i pro práci se vzdálenou databází
 
 ### MongoDB v Dockeru
 
@@ -59,10 +59,50 @@ main()
 
 Pokud je vše nastavené správně (Connection string je nutno upravit), měla by se nám v konzoli zobrazit hláška "Connected!"
 
-## Mongoose
+Vytvořme v rámci MongoDB testovací databázi a nahraďme ve funkci `main` try blok následujícím kódem
 
-Mongoose je ODM (Object Document Mapping) knihovna poskytující rozhraní pro práci s MongoDB databází
+```js
+const main = async () => {
+  try {
+    await client.connect()
+    const dbs = await client.db().admin().listDatabases()
+    console.log(dbs.databases)
+  } catch (err) {
+    console.error(err)
+  }
+}
+```
 
+Po spuštění skriptu se nám do konzole vypíše seznam všech databází, mezi kterými by měla být i nově vytvořená databáze `test`
+
+```js
+{ name: 'test', sizeOnDisk: 8192, empty: false }
+```
+
+### Kolekce
+
+V rámci MongoDB se data uchovávají v kolekcích (analogicky případ relační tabulky). K těm můžeme přistupovat následujícím způsobem
+
+```js
+await client.db("test").collection("test").insertOne({id: 1, value: "first"})
+```
+
+V případě, že kolekce neexituje, autoamticky se vytvoří nová a vloží se do ní předaný objekt. Na rozdíl od relačních databází, zde není potřeba definovat žádné schéma, které by hlídalo strukturu vstupních dat. Do existující kolekce lze přidat libovolný "sloupec" navíc
+
+```js
+await client.db("test").collection("test").insertMany([
+  {id: 2, value: "second"},
+  {id: 3, value: "third", note: "additional note"},
+])
+```
+
+### Mongoose
+
+Abychom nemuseli pracovat s nízkoúrovňovým databázovým rozhraním, často se používají nástroje, poskytující vyšší úroveň abstrakce nad databází. Jedním z takových nástrojů je například [Mongoose](https://mongoosejs.com/) - ODM (Object Document Mapping) knihovna
+
+## Prisma
+
+My se podíváme na podobný nástroj, který je však více obecný - umožňuje pracovat s více druhy databází
 
 
 ## TSDB a časové řady
