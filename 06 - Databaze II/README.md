@@ -159,6 +159,73 @@ main()
 
 Můžeme si všimnout, že díky vygenerovanému Prisma klientovi máme zajištěnou typovou bezpečnost (a také auto-complete). Nemůžeme přistupovat pomocí klienta k entitám, které ve schématu neexistují
 
+### Introspection
+
+Jednou z velmi užitečných funkcí Prismy je introspekce databáze. Ta umožňuje vygenerovat schéma z libovolné databáze (Postgres, MSSQL, Mongo..)
+
+To si můžeme ukázat následujícím způsobem. Vymažme model `Log` ze schématu, aby zůstal opět v této podobě
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+```
+
+Nyní pomocí příkazu `npx prisma db pull` se nám `Log` automaticky přidá do schématu
+
+```prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Log {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  text String
+}
+```
+
+### CRUD
+
+Mimo vytváření (Create) můžeme používat další Read, Update a Delete operace.
+
+```js
+await prisma.log.findMany({
+  where: {
+    text: "first log"
+  }
+})
+// -> [ { id: '6240ab1d753fa5383750718a', text: 'first log' } ]
+
+await prisma.log.update({
+  where: {
+    id: "6240ab1d753fa5383750718a"
+  },
+  data: {
+    text: "updated log"
+  }
+}) 
+// -> { id: '6240ab1d753fa5383750718a', text: 'updated log' }
+
+await prisma.log.delete({
+  where: { id: "6240ab1d753fa5383750718a"}
+}) 
+// -> { id: '6240ab1d753fa5383750718a', text: 'updated log' }
+```
+
+Výhodou je možnost použití takto jednotného zápisu pro libovolný databázový systém
+
 ## TSDB a časové řady
 
 V době masivně rozšiřujícího se IoT bylo třeba přizpůsobit i možnosti ukládání obrovských objemů dat z nejrůznějších senzorů. To samé například platí i pro nástroje monitorující pohyb cen akcií, kryptoměn a dalších finančních instrumentů
