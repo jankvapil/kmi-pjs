@@ -1,19 +1,14 @@
-require('dotenv').config()
-const { MongoClient } = require('mongodb')
-
-const user = process.env.USER
-const pass = process.env.PASS
-const conStr = `mongodb+srv://${user}:${pass}@test-db.bzwip.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-const client = new MongoClient(conStr)
+const { PrismaClient } = require("@prisma/client")
 
 const main = async () => {
   try {
-    await client.connect()
-    const res = await client.db("test").collection("test").insertMany([
-      {id: 2, value: "second"},
-      {id: 3, value: "third", note: "additional note"},
-    ])
-    console.log(res)
+    const prisma = new PrismaClient()
+    const newLog = await prisma.log.create({
+      data: {
+        text: "third log"
+      }
+    })
+    console.log(newLog)
   } catch (err) {
     console.error(err)
   }
