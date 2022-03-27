@@ -50,17 +50,14 @@ const client = new MongoClient(conStr)
 
 const main = async () => {
   try {
-    await client.connect()
-    console.log("Connected!")
-  } catch (err) {
-    console.error(err)
+    await client.connect() 
   }
 }
 
 main()
 ```
 
-Pokud je vše nastavené správně, měla by se nám v konzoli zobrazit hláška "Connected!"
+Pokud je vše nastavené správně (Connection string je nutno upravit), měla by se nám v konzoli zobrazit hláška "Connected!"
 
 ## Mongoose
 
