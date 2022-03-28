@@ -4,17 +4,17 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ## Obsah kurzu
 
-1. Úvod do JS, (opakování) syntaxe ES6+, vlastnosti jazyka, funkcionální přístup, práce s datavými strukturami
-2. Node.js (balíčky, package.json, npm), asynchronní načítání dat z API (Axios), tvorba web serveru (Express.js)
+1. Úvod do JS, (opakování) syntaxe ES6+, vlastnosti jazyka
+2. Node.js (package.json, npm), asynchronní požadavky, tvorba web serveru (Express.js)
 3. React - funkcionální komponenty a jejich kompozice, Next.js
 4. React - aplikační stav a side efekty, styly v JS, komponenty třetích stran
 5. Databáze, tvorba RESTového API
-6. Nerelační databáze (MongoDB), ORM (Prisma/MongoDB), TSDB, časové řady
-7. GraphQL, Automatické generování API (Hasura)
-8. WebSocket (Socket.io), Message Queue knihovny (ZeroMQ), GraphQL subscriptions?
-9. Užitečné nástroje a knihovny - immutabilní datové struktury (Immer), state management (use-global-hook), automatické formátování (Prettier) 
+6. Nerelační databáze (MongoDB), ORM (Prisma), TSDB, časové řady
+7. GraphQL
+8. WebSocket (Socket.io), Message Queue knihovny (ZeroMQ)
+9. Aplikační stav, immutabilní datové struktury (Immer), state management (use-global-hook)
 10. Statické typy (TypeScript), TS Runtime (Deno), Dokumentace (JSDoc)
-11. Multiplatformní vývoj (Electron, React-Native)
+11. Multiplatformní vývoj (Electron)
 12. Funkcionální programování na platformě JS (fp-ts, ClojureScript)
 
 ## FAQ ohledně kurzu

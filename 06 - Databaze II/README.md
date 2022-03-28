@@ -8,7 +8,15 @@ Jedním z nejpopulárnějších alternativ klasického relačního databázovéh
 
 Výhodou tohoto modelu je jeho jednoduchost, rychlost, robustnost a snadná škálovatelnost - vertikální (rychlejší hardware, více paměti), tak i horizontální (více distribuovaných databází běžících zároveň). Na druhou stranu nepodporuje některé z typických vlastností pro relační databázové systémy (např. použití jazyka SQL, triggerů nebo procedur)
 
-![převzato z https://www.michalbialecki.com/en/2018/03/16/relational-vs-non-relational-databases/](https://www.michalbialecki.com/wp-content/uploads/2018/03/MongoDB-nosql-vs-msql-relational-codewave-insight_lzzufm-900x480.jpg)
+<br/>
+<img 
+  style="margin:auto; display:block; width:400px;" 
+  src="https://www.michalbialecki.com/wp-content/uploads/2018/03/MongoDB-nosql-vs-msql-relational-codewave-insight_lzzufm-900x480.jpg" 
+  alt="převzato z https://www.michalbialecki.com/en/2018/03/16/relational-vs-non-relational-databases/"
+/>
+<br/>
+
+![]()
 
 ### MongoDB Community Server
 
@@ -84,16 +92,20 @@ Po spuštění skriptu se nám do konzole vypíše seznam všech databází, mez
 V rámci MongoDB se data uchovávají v kolekcích (analogicky případ relační tabulky). K těm můžeme přistupovat následujícím způsobem
 
 ```js
-await client.db("test").collection("test").insertOne({ id: 1, value: "first" })
+await client.db("test")
+  .collection("test")
+  .insertOne({ id: 1, value: "first" })
 ```
 
 V případě, že kolekce neexituje, autoamticky se vytvoří nová a vloží se do ní předaný objekt. Na rozdíl od relačních databází, zde není potřeba definovat žádné schéma, které by hlídalo strukturu vstupních dat. Do existující kolekce lze přidat libovolný "sloupec" navíc
 
 ```js
-await client.db("test").collection("test").insertMany([
-  { id: 2, value: "second" },
-  { id: 3, value: "third", note: "additional note" }
-])
+await client.db("test")
+  .collection("test")
+  .insertMany([
+    { id: 2, value: "second" },
+    { id: 3, value: "third", note: "additional note" }
+  ])
 ```
 
 ### Mongoose
