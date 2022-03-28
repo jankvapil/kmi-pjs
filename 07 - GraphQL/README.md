@@ -1,14 +1,14 @@
 
 # GraphQL
 
-V minulých lekcích jsme si zkusili vytvořit jednoduché RESTové API. Dnes si představíme nástroje, které nám tvorbu API výrazně zjednodušší
+V minulých lekcích jsme si zkusili vytvořit jednoduché RESTové API. Dnes si představíme technologii GraphQL, která je určitým rozšířením klasického RESTu
 
-[GraphQL](https://graphql.org/) je dotazovací jazyk nad určitým datovým zdrojem. Používá dvě základní operace - Query (vrací data) a Mutace (změna v datech)
+[GraphQL](https://graphql.org/) je dotazovací jazyk nad libovolným datovým zdrojem. Používá dvě základní operace - Query (vrací data) a Mutace (změna v datech)
 
 * GraphQL API obsluhuje jediný endpoint `/graphql`
-* pro všechna data, která chceme vystavit v rámci GraphQL API, budujeme resolvery (funkce vracející data z DB)
-* schéma API tvoří typy (např. typ User)
-* resolveru pak můžeme předat parametry daného typu, které chce vrátit
+* Pro všechna data, která chceme vystavit v rámci GraphQL API, budujeme resolvery (funkce vracející data z DB)
+* Schéma API tvoří typy (např. typ User)
+* Resolveru pak můžeme předat parametry daného typu, které chce vrátit
 
 ```gql
 query {

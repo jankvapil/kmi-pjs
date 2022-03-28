@@ -16,8 +16,6 @@ Výhodou tohoto modelu je jeho jednoduchost, rychlost, robustnost a snadná šk�
 />
 <br/>
 
-![]()
-
 ### MongoDB Community Server
 
 Podobně jako u relačních databází jako MySQL nebo PostgreSQL je možné i MongoDB rozběhnout lokálně na svém PC. Nicméně na rozdíl od SQLite už je třeba nějaký čas věnovat samotnému zprovoznění tohoto databázového [serveru](https://www.mongodb.com/try/download/community) včetně MongoDB Shellu ([mongosh](https://docs.mongodb.com/mongodb-shell/)). Mongosh poskytuje základní CRUD operace pro práci s DB. Lze jej samozřejmě používat i pro práci se vzdálenou databází
@@ -244,3 +242,44 @@ V době masivně rozšiřujícího se IoT bylo třeba přizpůsobit i možnosti 
 
 K tomu slouží TSDB neboli time series databases. Ty jsou optimalizované pro ukládání velkých objemů dat, kde hodnoty jsou asosiovány s časovým razítkem, kdy byly tyto data pořízeny. Typickým zástupcem je například [InfluxDB](https://docs.influxdata.com/influxdb/v2.1/get-started/). Pro účely dnešního kurzu si však vystačíme s MongoDB
 
+## MongoDB Time Series Collections
+
+V rámci MongoDB jsou nyní k dispozici od verze 5 tzv. [Time Series Collections](https://www.mongodb.com/docs/manual/core/timeseries-collections/)
+
+> Time series collections efficiently store sequences of measurements over a period of time. Time series data is any data that is collected over time and is uniquely identified by one or more unchanging parameters. The unchanging parameters that identify your time series data is generally your data source's metadata.
+
+* práce s kolekcemi podobně jako u dokumentových db
+### Terminologie TSDB
+
+Abychom porozuměli základní terminologii v rámci časových řad, mějme následující obrázek jako příklad
+
+<br/>
+<img 
+  style="margin:auto; display:block; width:400px;" 
+  src="https://www.influxdata.com/wp-content/uploads/time-series-data-weather-data.png" 
+  alt="převzato z https://www.influxdata.com/what-is-time-series-data/"
+/>
+<br/>
+
+* Měření (Measurement) je v tomto případě teplota (Temperature) a představuje kolekci dat
+* MetaField (Label) je označení časové řady (pocitová teplota / reálná teplota)
+* Granularita - hustota naměřených dat v určitém časovém období (teplota měřená každou hodinu)
+* Expirace - pokud není nutné uchovávat celou historii dat, lze nastavit po jaké době se budou data zahazovat
+
+```js 
+db.createCollection("weather" { timeseries: { timeField: "timestamp", metaField: "sensor_id"} })
+const data = { sensor_id: 123, timestamp: ISODate("..."), temperature: 22}
+
+db.weather.find()
+db.weather.deleteMany()
+```
+
+### Analýza dat
+
+* Window function - z časového rámce lze počítat např. Moving Average
+
+## Úkoly
+
+* Vytvořte RESTovou službu na reportování chybových zpráv. Na routě `/` bude obsluhovat POST requesty, v jejichž těle bude chybová zpráva spolu s časovým razítkem, která se uloží do MongoDB
+
+* Vytvořte bota, který bude počítat klouzavý průměr BTC za určité časové období. Každou sekundu bude zjišťovat aktuální cenu BTC, pomocí časových řad v rámci MongoDB tyto hodnoty ukládat a počítat hodnotu klouzého průměru za předem definované časové období, kterou bude vypisovat do konzole. Časové období v sekundách se může předat jako parametr při spuštění `node bot.js 120`
