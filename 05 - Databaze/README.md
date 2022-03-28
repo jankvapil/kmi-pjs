@@ -294,3 +294,7 @@ export default function AddUserForm() {
 ## Database-First / Code-First
 
 Přístupu práce s databází, kdy používáme již existující databázi říkáme Database-First přístup. Můžeme jít ale i opačným směrem a celou databázi vygenerovat pomocí kódu (neboli Code-First). Například v rámci platformy .NET se tento přístup často používá způsobem, že se vytvoří model databáze pomocí tříd a z něj se poté generují samotné databázové entity. Z jednotlivých úprav těchto tříd vznikají tzv. `migrace`. To jsou kusy kódu, které transformují databázové schéma do nové podoby. S migracemi lze pracovat i pomocí knihovny `Knex`, to je však nad rámec tohoto kurzu
+
+## Úkoly
+
+* Pomocí knihovny Knex vytvořte obsluhu DELETE requestu, který podle ID v parametru smaže konkrétního uživatele z databáze

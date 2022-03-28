@@ -222,13 +222,10 @@ type Post {
 
 Jak si můžeme všimnout, relace se zde explicitně nedefinují pomocí cizích klíčů. Pouze řekneme, že typ User má vlastnost posts, která je typu pole, jehož prvky jsou objekty typu Post. Jakým způsobem se data pro konkrétního uživatele získají už řeší samotný resolver
 
-## Hasura
+## GraphQL na klientu
 
-Abychom nemuseli ručně psát schémata a resolvery, existují nástroje, které nám budování API usnadní
+TODO
 
-Více v přednášce od externího hosta..
+## Úkoly
 
-* Nástroj pro automatické generování GraphQL (případně REST) API přímo ze struktury databáze
-* Momentálně podporuje Postgres a SQL Server
-* Vhodné použití pro renovaci legacy software - zachová datovou vrstvu nad kterou vytvoří API a umožní tak použít moderní technologie k tvorbě frontendu
-
+TODO

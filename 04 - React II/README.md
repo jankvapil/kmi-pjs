@@ -228,12 +228,12 @@ function MyApp({ Component, pageProps }) {
 export default MyApp
 ```
 
-## Úkol
+## Úkoly
 
-Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budou zobrazeny tabulky s daty pro konkrétní kryptoměnu
+* Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budou zobrazeny tabulky s daty pro konkrétní kryptoměnu
 
-Dále vytvořte komponentu navigace, která bude obsahovat seznam odkazů na jednotlivé stránky (homepage, BTC a další). Měla by být zobrazena na každé stránce
+* Vytvořte komponentu navigace, která bude obsahovat seznam odkazů na jednotlivé stránky (homepage, BTC a další). Měla by být zobrazena na každé stránce
 
-Nastylujte odkazy, tlačítka i tabulky s kryptoměnami
+* Nastylujte odkazy, tlačítka i tabulky s kryptoměnami
 
-Pomocí parametrů funkce toast nebo samotného kontejneru změňte základní vzhled této komponenty a její chování (jako je délka zobrazení)
+* Pomocí parametrů funkce toast nebo samotného kontejneru změňte základní vzhled této komponenty a její chování (jako je délka zobrazení)

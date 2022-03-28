@@ -282,3 +282,18 @@ Hodnoty globálního stavu můžeme měnit tedy pouze pomocí explicitně defino
 ## Redux
 
 V příkladech pro tento kurz jsou záměrně použity co nejjednodušší implementace architektury Flux. Pro produkční prostředí je určitě vhodné zvážit použití masivněji používaných knihoven pro správu aplikačního stavu - jako je například knihovna [Redux](https://redux.js.org/). To je však nad rámec tohoto kurzu
+
+## Úkoly
+
+* Vytvořte komponentu Lights (např. 2 div elementy vedle sebe). Ve výchozím stavu jsou obě světla zhaslá (může být jednotná defaultní barva). Vytvořte 2 přepínače (tlačítka) pro každé světlo jedno, která je rozsvěcují a zhasínají. Rozsvícení/zhasnutí implementujte akcemi. Vytvořte tlačítko UNDO, které se po stitknutí vrátí o jednu akci zpět. Pokud není dostupná žádná předchozí akce, tlačítko neprovede nic
+
+```
+L1 OFF, L2 OFF
+L1 ON
+L1 OFF
+UNDO -> L1 ON
+L1 OFF
+UNDO -> L1 ON
+UNDO -> L1 OFF
+UNDO -> 
+```

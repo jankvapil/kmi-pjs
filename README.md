@@ -59,22 +59,17 @@ Cílem této diplomové práce je vytvoření kurzu zaměřeného na platformu J
 
 ### Příklady projektů
 
-#### backend projekt
-- distribuovaný systém psaný v Node.js 
-- uzly komunikují pomocí messagingové knihovny ZMQ
-- uchovávají konzistentní data
+#### Backend projekt
+- Distribuovaný systém psaný v Node.js 
+- Uzly komunikují pomocí messagingové knihovny ZMQ
+- Uchovávají konzistentní data
 
-#### fronedend projekt
-- webová aplikace v Reactu
-- používající GraphQL pro komunikaci s API
-- s využitím state management knihoven (Redux)
+#### Fronedend projekt
+- Webová aplikace v Reactu
+- Používající GraphQL pro komunikaci s API
+- S využitím state management knihoven (Redux)
 
-#### desktop projekt
-- desktopová aplikace v Electronu
-- načítá soubory v .csv formátu
-- ukládá načtené data do vzdálené databáze
-
-#### mobilní projekt
-- mobilní klient v React Native
-- načítá z RESTové API data o počasí
-- zobrazuje předpověď v grafu
+#### Desktop projekt
+- Desktopová aplikace v Electronu
+- Načítá soubory v .csv formátu
+- Ukládá načtené data do vzdálené databáze
