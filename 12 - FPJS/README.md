@@ -38,24 +38,12 @@ Podobně lze použít také funkci `flow` s rozdílem, že argument se předáv�
 
 Funkcionální handlování asynchronních událostí lze s fp-ts řešit pomocí TaskEither
 
-Následující příklad [převzat](https://codesandbox.io/s/white-waterfall-d9ypw?file=/src/index.ts)
+Následující příklad převzat od [Victor Boutté](https://codesandbox.io/s/white-waterfall-d9ypw?file=/src/index.ts)
+
+Mějme následující scénář. Chceme načíst pole uživatelů, poté ke každému uživateli podle jeho ID načíst dodatečné informace a příspěvky, které vytvořil
 
 ```ts
-import * as TE from "fp-ts/lib/TaskEither"
-import * as E from "fp-ts/lib/Either"
-import { Do } from "fp-ts-contrib/lib/Do"
-
-import { User } from "../types"
-
-// traditional single fetch
-export const fetchUsers = () =>
-  fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response) => response.json())
-    .then((json) => console.log(json))
-    .catch((err) => console.error(err))
-
-// traditional chained network request
-export const sequentialRequestChain = () =>
+const sequentialRequestChain = () =>
   fetch(`https://jsonplaceholder.typicode.com/users`)
     .then((response1) => response1.json())
     .then((users) => {
@@ -74,9 +62,13 @@ export const sequentialRequestChain = () =>
         })
     })
     .catch((err) => console.error(err))
+```
 
-// traditional async network request
-export const sequentialRequestAsync = async () => {
+Jelikož odchytáváme chybu pouze na nejvyšší úrovni, nemůžeme jasně určit, ve které části nastal případný problém
+
+```ts
+
+const sequentialRequestAsync = async () => {
   let allUsersInfo
 
   try {
@@ -113,12 +105,18 @@ export const sequentialRequestAsync = async () => {
 
 ```
 
+V tomto případě je ošetřen každý požadavek, nicméně kód ošetřováním chybových stavů velmi rychle lidově řečeno nabobtnal. Pojďme se podívat, jak by se tato situace dala řešit s pomocí `TaskEither` z knihovny `fpts`
+
 Zásadní změnou je oproti klasickému přístupu v tom, že se nevyvolávají výjimky. Nemůže tedy dojít k tomu, že bychom ji na nějakém místě zapomněli ošetřit a program by spadl. Tímto způsobem lze na sebe navázat více asynchronních funkcí. V případě, že některý z požadavků selže, jako výsledek se předá `Error`
 
 ```ts
+import * as TE from "fp-ts/lib/TaskEither"
+import * as E from "fp-ts/lib/Either"
+import { Do } from "fp-ts-contrib/lib/Do"
 
-// generic lazy fetch
-export const safeFetch = (
+import { User } from "../types"
+
+const safeFetch = (
   url: string,
   errMessage: string
 ): TE.TaskEither<Error, Array<User>> =>
@@ -127,7 +125,6 @@ export const safeFetch = (
     () => new Error(errMessage)
   )
 
-// sequential network request expressed in Do syntax
 const doSequentialRequest = Do(TE.taskEither)
   .bind(
     "allUsersInfo",
