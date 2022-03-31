@@ -34,6 +34,139 @@ flow(add1, pow2, console.log)(41)
 
 Podobně lze použít také funkci `flow` s rozdílem, že argument se předává až na konci
 
+## Task/Either
+
+Funkcionální handlování asynchronních událostí lze s fp-ts řešit pomocí TaskEither
+
+Následující příklad [převzat](https://codesandbox.io/s/white-waterfall-d9ypw?file=/src/index.ts)
+
+```ts
+import * as TE from "fp-ts/lib/TaskEither"
+import * as E from "fp-ts/lib/Either"
+import { Do } from "fp-ts-contrib/lib/Do"
+
+import { User } from "../types"
+
+// traditional single fetch
+export const fetchUsers = () =>
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((json) => console.log(json))
+    .catch((err) => console.error(err))
+
+// traditional chained network request
+export const sequentialRequestChain = () =>
+  fetch(`https://jsonplaceholder.typicode.com/users`)
+    .then((response1) => response1.json())
+    .then((users) => {
+      console.log(`fetched all users`, users)
+      fetch(`https://jsonplaceholder.typicode.com/users/${users[0].id}`)
+        .then((response2) => response2.json())
+        .then((singleUser) => {
+          console.log("fetched single user", singleUser)
+          fetch(
+            `https://jsonplaceholder.typicode.com/posts?userId=${users[0].id}`
+          )
+            .then((response3) => response3.json())
+            .then((postsByUserId) =>
+              console.log("fetched post related to user", postsByUserId)
+            )
+        })
+    })
+    .catch((err) => console.error(err))
+
+// traditional async network request
+export const sequentialRequestAsync = async () => {
+  let allUsersInfo
+
+  try {
+    const users = await fetch(
+      `https://jsonplaceholder.typicode.com/users`
+    ).then((response1) => response1.json())
+
+    allUsersInfo = users
+    console.log(`fetched all users`, users)
+  } catch (error) {
+    console.log("failed to fetch users")
+  }
+
+  if (allUsersInfo && allUsersInfo[0].id < 2) {
+    try {
+      const singleUser = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${allUsersInfo[0].id}`
+      ).then((response2) => response2.json())
+      console.log("fetched single user", singleUser)
+    } catch (error) {
+      console.log("failed to fetch single user")
+    }
+
+    try {
+      const postByUserId = await fetch(
+        `https://jsonplaceholder.typicode.com/posts?userId=${allUsersInfo[0].id}`
+      ).then((response3) => response3.json())
+      console.log("fetched post related to user", postByUserId)
+    } catch (error) {
+      console.log("failed to fetch users post")
+    }
+  }
+}
+
+```
+
+Zásadní změnou je oproti klasickému přístupu v tom, že se nevyvolávají výjimky. Nemůže tedy dojít k tomu, že bychom ji na nějakém místě zapomněli ošetřit a program by spadl. Tímto způsobem lze na sebe navázat více asynchronních funkcí. V případě, že některý z požadavků selže, jako výsledek se předá `Error`
+
+```ts
+
+// generic lazy fetch
+export const safeFetch = (
+  url: string,
+  errMessage: string
+): TE.TaskEither<Error, Array<User>> =>
+  TE.tryCatch(
+    () => fetch(url).then((res) => res.json()),
+    () => new Error(errMessage)
+  )
+
+// sequential network request expressed in Do syntax
+const doSequentialRequest = Do(TE.taskEither)
+  .bind(
+    "allUsersInfo",
+    safeFetch(
+      "https://jsonplaceholder.typicode.com/users",
+      "failed to fetch users"
+    )
+  )
+  .bindL("singleUserInfo", ({ allUsersInfo }) =>
+    allUsersInfo && allUsersInfo[0].id < 2
+      ? safeFetch(
+          `https://jsonplaceholder.typicode.com/users/${allUsersInfo[0].id}`,
+          "failed to fetch single user"
+        )
+      : TE.taskEither.of({})
+  )
+  .bindL("postByUserId", ({ allUsersInfo }) =>
+    allUsersInfo && allUsersInfo[0].id < 2
+      ? safeFetch(
+          `https://jsonplaceholder.typicode.com/posts?userId=${allUsersInfo[0].id}`,
+          "failed to fetch all post for a single user"
+        )
+      : TE.taskEither.of({})
+  )
+  .return(({ allUsersInfo, singleUserInfo, postByUserId }) => ({
+    allUsersInfo,
+    singleUserInfo,
+    postByUserId
+  }))
+```
+
+Samotnou funkci pak voláme způsobem, že předem definujeme, co se má stát. V případě, že některý z požadavků skončí chybou, zavolá se `console.error`, kterému se předá chybová hláška (Left). Jestliže vše proběhne v pořádku (Right), zavolá se `console.log`
+
+```ts
+export const invokeDoSequentialRequest = () =>
+  doSequentialRequest().then(E.fold(console.error, console.log))
+```
+
+Není tedy nutné ošetřovat kód výjimkami a přidávat další kontroly jako v případě `sequentialRequestChain` nebo `sequentialRequestAsync`
 
 ## Monocle
 
