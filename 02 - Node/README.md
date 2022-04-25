@@ -1,12 +1,12 @@
 # Node.js
 
-Jednou z hlavních výhod platformy JS je možnost sdílení kódu na klientu i serveru. Tématem této lekce bude právě server-side JS.
+Jednou z hlavních výhod platformy JS je možnost sdílení kódu na klientu i serveru. Tématem této lekce bude právě JavaScript na straně serveru.
 
-> "Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the Chrome V8 engine and executes JavaScript code outside a web browser."
+> "Node.js je open-source, multiplatformní, backendové běhové prostředí JavaScriptu, které běží na enginu Chrome V8 a spouští JavaScript kód mimo webový prohlížeč."
 
-Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který v době psaní této lekce čítá okolo 1.5 milionu knihoven. V porovnání s ostatními platformami je sice největším, s tím je však ale spojeno určité riziko a ne každou knihovnu je vhodné používat. 
+Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který v době psaní této lekce čítá okolo 1.5 milionu knihoven. V porovnání s ostatními platformami je sice největším, s tím je však ale spojeno určité riziko a ne každou knihovnu je vhodné používat
 
-Obecně je lepší spoléhat na dlouhodobě vyvíjené a masivně používané knihovny, s velkým zázemím a podporou ze strany komunity. Případně knihovny, za kterými stojí velké společností a tudíž by měly zaručovat určitou kvalitu a podporu do budoucna (ne vždy tomu tak skutečně je).
+Obecně je lepší spoléhat na dlouhodobě vyvíjené a masivně používané knihovny, s velkým zázemím a podporou ze strany komunity. Případně knihovny, za kterými stojí velké společností a tudíž by měly zaručovat určitou kvalitu a podporu do budoucna (ne vždy tomu tak skutečně je)
 
 ## Npm
 
@@ -15,6 +15,8 @@ Neboli [*Node Package Manager*](https://www.npmjs.com/) je balíčkovací systé
 Jako první se musíme ujistit, že máme správně nainstalovaný *Node.js* i *npm*. Do konzole zadejme postupně příkazy `node -v` a `npm -v`, které by měly vypsat nainstalované verze.
 
 Zkusme si také zapnout samotný **REPL** spuštěním příkazu `node` bez argumentu.
+
+> REPL (Read Eval Print Loop) je programovací prostředí, které umožňuje programátorovi komunikovat s běžícím programem a upravovat jej vyhodnocováním výrazů
 
 Ve složce `src` spusťmě příkaz `npm init`. Tímto příkazem spustíme utilitu, která nás provede samotnou inicializací Node.js projektu.
 
@@ -110,7 +112,7 @@ server.get("/", (req, res) => {
 server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`)) 
 ```
 
-V tomto příkladu si můžeme všimnout definici obsluhy GET requestu pro kořenovou routu `"/"`, která vrací "Hello!".
+V tomto příkladě si můžeme všimnout definici obsluhy GET requestu pro kořenovou routu `"/"`, která vrací "Hello!".
 
 Dále pak příkazem `listen` říkáme, že má server po spuštění začít poslouchat na námi definovaném portu 3000.
 
