@@ -289,14 +289,16 @@ Server naslouchá na portu 3000. Na routě `/data` server vrací JSON `{"key": "
 
 > [Reagent](https://reagent-project.github.io/) provides a minimalistic interface between ClojureScript and React. It allows you to define efficient React components using nothing but plain ClojureScript functions and data, that describe your UI using a Hiccup-like syntax.
 
-
 ## Reference
 
 [Functional Programming](https://github.com/enricopolanski/functional-programming)
+
 [Functional TypeScript](https://www.youtube.com/playlist?list=PLlYJBXwGoczGcVOB96OpQZWOhLqiZ-6N8)
 
 [Why I chose ClojureScript over JavaScript](https://m.oursky.com/why-i-chose-clojure-over-javascript-24f045daab7e)
+
 [Základy Clojure a funkcionálneho programovania](https://youtu.be/YxuT3KHSZnQ)
 
 [F# for Fun and Profit](https://fsharpforfunandprofit.com/)
+
 [The Functional Programmer's Toolkit - Scott Wlaschin](https://youtu.be/Nrp_LZ-XGsY?t=503)

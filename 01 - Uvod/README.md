@@ -350,12 +350,14 @@ enjoyFriday()
 
 Všimněme si definice a volání asynchronní funkce `enjoyFriday` - klíčové slovo `await` lze použít pouze uvnitř asynchronní funkce
 
+<!-- 
 ## Úkol
 
 Implementujte
 
 * `deepCopy(obj)` - provede správnou duplikaci libovolně zanořených datových struktur
 * `getNowDate()` - vrátí aktuální čas (string) ve formátu DD.MM.YYYY HH:MM:SS (s pomocí třídy [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
+ -->
 
 ## Reference
 

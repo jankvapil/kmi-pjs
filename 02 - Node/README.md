@@ -54,7 +54,7 @@ Do skriptů doplňme následující řádek `"start": "node index.js"` a zkusme 
 ```
 ## Instalace balíčků
 
-Pro demonstraci nám poslouží balíček [axios](https://www.npmjs.com/package/axios), který slouží ke snadnému posílání HTTP requestů.
+Pro demonstraci nám poslouží balíček [Axios](https://www.npmjs.com/package/axios), který slouží ke snadnému posílání HTTP requestů.
 
 ```
 npm install axios
@@ -87,9 +87,9 @@ Z předešlé ukázky si můžeme všimnou několika věcí:
 
 ## Express server
 
-Knihovna Express.js nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si vytvoříme jednoduchý webový server, který bude na každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC. 
+Knihovna [Express](https://github.com/expressjs/expres) nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si vytvoříme jednoduchý webový server, který bude na každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC. 
 
-Jako první si musíme nainstalovat knihovnu Express.js
+Jako první si musíme nainstalovat knihovnu Express
 
 ```
 npm i express
@@ -173,10 +173,17 @@ server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`))
 
 Výsledek requestu ve funkci `fetchBTC` jsme lehce upravili, aby se nám s ním lepe pracovalo. Další změnou je nutnost přidat klíčové slovo `async` do callbacku pro obsluhu GET requestu, jelikož v něm (asynchronně) čekáme na odpověď od API. Po přijetí odpovědi pak vygenerujeme HTML, které naplníme požadovanými daty a odešleme zpět klientovi.
 
+Tento přístup se nazývá Server Side Rendering (SSR). Server na základě požadavku vrací vygenerovanou HTML stránku. Jednou z technologií, která vychází primárně z tohoto přístupu, je například technologie PHP.
+
+
+<!-- 
+
 ## Úkol
 
 * Vytvořte funkce pro načítání dat libovolných dalších 2 kryptoměn, ošetřete chybové stavy
 * Pro každou kryptoměnu vytvořte vlastní routu (např. "/eth"), která bude vracet stránku s tabulku. Tabulka bude obsahovat hodnotu dané kryptoměny spolu s aktuálním časem
-* Pro defaultní routu vytvořte hlavní stránku s odkazy na tyto stránky 
+* Pro defaultní routu vytvořte hlavní stránku s odkazy na tyto stránky  
+
+-->
 
 

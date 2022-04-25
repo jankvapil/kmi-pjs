@@ -221,11 +221,3 @@ type Post {
 ```
 
 Jak si můžeme všimnout, relace se zde explicitně nedefinují pomocí cizích klíčů. Pouze řekneme, že typ User má vlastnost posts, která je typu pole, jehož prvky jsou objekty typu Post. Jakým způsobem se data pro konkrétního uživatele získají už řeší samotný resolver
-
-## GraphQL na klientu
-
-TODO
-
-## Úkoly
-
-TODO

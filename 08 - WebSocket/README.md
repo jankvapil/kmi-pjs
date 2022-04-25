@@ -168,7 +168,9 @@ Kód se opět velmi podobá konzumentovi s tím rozdílem, že pomocí `sock.sub
 
 Výhodou použití knihovny ZMQ je právě odstínění od nízko-úrovňových problémů, jako je například výpadek spojení. Ve chvíli, kdy publisher vypadne, subscribeři čekají, dokud se publisher znova nespustí. Nedochází k chybám, že by spojení bylo neočekávaně ukončeno a podobně 
 
+<!-- 
 ## Úkoly
 
 1. Pomocí WebSocketů vytvořte jednoduchou chatovací aplikaci
 2. Pomocí knihovny ZMQ a patternu PUB/SUB vytvořte systém, který bude obsahovat alespoň 3 kanaly měnových párů (např. EUR/USD, USD/JPY, GBP/EUR), na které se bude každou sekundu posílat náhodně vygenerová hodnota. Subscribeři budou po připojení tyto hodnoty spolu s aktuálním časem ukládat do souboru. Výběr měnového páru bude určen pomocí argumentu (např. `node publisher.js eur/usd`)
+ -->

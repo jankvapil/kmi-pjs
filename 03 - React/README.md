@@ -308,6 +308,9 @@ Nyní můžeme vyzkoušet náš API dotaz na adrese http://localhost:3000/api/bt
 
 Tímto jsme vytvořili náš první API endpoint. V následující lekci si zkusíme už práci s aplikačním stavem a vizuální podobu naší aplikace si trochu vylepšíme
 
-## Úkol
 
-Vytvořte podobným způsobem jako v minulé lekci více endpointů pro různé typy altcoinů (např. api/eth)
+<!-- ## Úkol
+
+Vytvořte podobným způsobem jako v minulé lekci více endpointů pro různé typy altcoinů (např. api/eth) 
+
+-->

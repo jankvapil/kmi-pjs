@@ -228,6 +228,8 @@ function MyApp({ Component, pageProps }) {
 export default MyApp
 ```
 
+<!-- 
+
 ## Úkoly
 
 * Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budou zobrazeny tabulky s daty pro konkrétní kryptoměnu
@@ -236,4 +238,6 @@ export default MyApp
 
 * Nastylujte odkazy, tlačítka i tabulky s kryptoměnami
 
-* Pomocí parametrů funkce toast nebo samotného kontejneru změňte základní vzhled této komponenty a její chování (jako je délka zobrazení)
+* Pomocí parametrů funkce toast nebo samotného kontejneru změňte základní vzhled této komponenty a její chování (jako je délka zobrazení) 
+
+-->
