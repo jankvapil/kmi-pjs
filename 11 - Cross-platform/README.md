@@ -1,14 +1,18 @@
 # Multiplatformní vývoj v JS
 
-Doba, kdy platilo, že JavaScript je technologií výhradně spojena s prohlížečem a webovými stránkami je dávno pryč. JavaScript nachází uplatnění nejen na serveru, ale také na mobilních zařízeních a desktopech
+Již dávno neplatí, že JavaScript je technologií, která je spojená výhradně s prohlížečem a webovými stránkami. JavaScript nachází uplatnění nejen na serveru, ale
+také na mobilních zařízeních a desktopech. V současné době se velké množství
+softwarových firem potýká s problémem jak stavět udržitelné multiplatformní
+aplikace, které by běžely současně na mobilních zařízeních i desktopech. Alternativním řešením jsou samozřejmě webové aplikace. Tématem předposledního
+semináře bude vývoj nativních aplikací v rámci platformy JavaScript - ať už s
+integrací jádra prohlížeče nebo přímo kompilováním do nativního kódu cílového
+zařízení.
 
 ## Electron
 
-V současné době se většina velkých společností potýká s problémem, jak stavět udržitelné multiplatformní aplikace, které by běžely současně na Windows, MacOS i Linuxu. Jedním z aktuálních trendů je technologie zvaná [Electron](https://www.electronjs.org/). Ta je použita pro řadu moderních desktopových aplikací jako je VSCode, MS Teams nebo Slack
+Jedním z dlouhodoběji stabilních trendů je technologie zvaná [Electron](https://www.electronjs.org/). Ta je použita pro řadu moderních desktopových aplikací jako je Visual Studio Code, Microsoft Teams nebo Slack.
 
-> Electron is a free and open-source software framework developed and maintained by GitHub. It allows for the development of desktop GUI applications using web technologies: it combines the Chromium rendering engine and the Node.js runtime
-
-Jak popis naznačuje, jedná se o způsob, jakým se webová aplikace zabalí do desktopové podoby s použitím Node.js běhového prostředí, které umožňuje pracovat se systémovými zdroji. Způsob takovéto tvorby aplikací je velmi zajímavý, jelikož jsou vývojáři odstíněni od celé řadu problémů, spojené s vývojem pro více platforem
+Jedná se o open-source framework, který je vyvíjen společností GitHub. Používá renderovací jádro prohlížeče Chromium a JavaScriptové běhové prostředí Node.js. Jedná se o způsob, jakým se webová aplikace zabalí do desktopové podoby, která navíc umožňuje pracovat se systémovými zdroji. Způsob takovéto tvorby aplikací je velmi zajímavý, jelikož jsou vývojáři odstíněni od celé řady problémů, spojených s vývojem pro více platforem. Navíc mohou využít znalosti z tvorby webových aplikací, takže je snadné pro tým vývojářů se zaměřením na webové aplikace přejít na vývoj pro desktop nebo mobil.
 
 ## Nextron
 

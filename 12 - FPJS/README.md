@@ -38,9 +38,7 @@ Podobně lze použít také funkci `flow` s rozdílem, že argument se předáv�
 
 Funkcionální handlování asynchronních událostí lze s fp-ts řešit pomocí TaskEither
 
-Následující příklad převzat od [Victor Boutté](https://codesandbox.io/s/white-waterfall-d9ypw?file=/src/index.ts)
-
-Mějme následující scénář. Chceme načíst pole uživatelů, poté ke každému uživateli podle jeho ID načíst dodatečné informace a příspěvky, které vytvořil
+Mějme následující scénář. Chceme načíst pole uživatelů, poté ke každému uživateli podle jeho ID načíst dodatečné informace a příspěvky, které vytvořil (příklad převzat od [Victor Boutté](https://codesandbox.io/s/white-waterfall-d9ypw?file=/src/index.ts))
 
 ```ts
 const sequentialRequestChain = () =>
@@ -174,17 +172,12 @@ Několik lekcí zpět jsme si představili knihovny pro práci s aplikačním st
 
 > ClojureScript is a compiler for Clojure that targets JavaScript. It emits JavaScript code which is compatible with the advanced compilation mode of the Google Closure optimizing compiler.
 
-
 ## 1. Clojure
 
-* dynamické vývojové prostředí (REPL Driven Development)
-
-* datově orientovaný jazyk vycházející z LISPu (kód = data)
-
-* navržen jako hostovaný jazyk (Java, JavaScript)
-
-* dynamický, silně typový
-
+* Dynamické vývojové prostředí (REPL Driven Development)
+* Datově orientovaný jazyk vycházející z LISPu (kód = data)
+* Navržen jako hostovaný jazyk (Java, JavaScript)
+* Dynamický, silně typový
 
 ## EDN Typy
 
@@ -299,9 +292,11 @@ Server naslouchá na portu 3000. Na routě `/data` server vrací JSON `{"key": "
 
 ## Reference
 
-[The Functional Programmer's Toolkit - Scott Wlaschin](https://youtu.be/Nrp_LZ-XGsY?t=503)
-
 [Functional Programming](https://github.com/enricopolanski/functional-programming)
 [Functional TypeScript](https://www.youtube.com/playlist?list=PLlYJBXwGoczGcVOB96OpQZWOhLqiZ-6N8)
 
 [Why I chose ClojureScript over JavaScript](https://m.oursky.com/why-i-chose-clojure-over-javascript-24f045daab7e)
+[Základy Clojure a funkcionálneho programovania](https://youtu.be/YxuT3KHSZnQ)
+
+[F# for Fun and Profit](https://fsharpforfunandprofit.com/)
+[The Functional Programmer's Toolkit - Scott Wlaschin](https://youtu.be/Nrp_LZ-XGsY?t=503)
