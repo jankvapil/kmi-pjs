@@ -3,20 +3,20 @@
 Již dávno neplatí, že JavaScript je technologií, která je spojená výhradně s prohlížečem a webovými stránkami. JavaScript nachází uplatnění nejen na serveru, ale
 také na mobilních zařízeních a desktopech. V současné době se velké množství
 softwarových firem potýká s problémem jak stavět udržitelné multiplatformní
-aplikace, které by běžely současně na mobilních zařízeních i desktopech. Alternativním řešením jsou samozřejmě webové aplikace. Tématem předposledního
-semináře bude vývoj nativních aplikací v rámci platformy JavaScript - ať už s
+aplikace, které by běžely současně na mobilních zařízeních i desktopech. Alternativním řešením jsou samozřejmě webové aplikace. Tématem tohoto
+semináře je vývoj nativních aplikací v rámci platformy JavaScript - ať už s
 integrací jádra prohlížeče nebo přímo kompilováním do nativního kódu cílového
-zařízení.
+zařízení
 
 ## Electron
 
-Jedním z dlouhodoběji stabilních trendů je technologie zvaná [Electron](https://www.electronjs.org/). Ta je použita pro řadu moderních desktopových aplikací jako je Visual Studio Code, Microsoft Teams nebo Slack.
+Jedním z dlouhodoběji stabilních trendů je technologie zvaná [Electron](https://www.electronjs.org/). Ta je použita pro řadu moderních desktopových aplikací jako je Visual Studio Code, Microsoft Teams nebo Slack
 
-Jedná se o open-source framework, který je vyvíjen společností GitHub. Používá renderovací jádro prohlížeče Chromium a JavaScriptové běhové prostředí Node.js. Jedná se o způsob, jakým se webová aplikace zabalí do desktopové podoby, která navíc umožňuje pracovat se systémovými zdroji. Způsob takovéto tvorby aplikací je velmi zajímavý, jelikož jsou vývojáři odstíněni od celé řady problémů, spojených s vývojem pro více platforem. Navíc mohou využít znalosti z tvorby webových aplikací, takže je snadné pro tým vývojářů se zaměřením na webové aplikace přejít na vývoj pro desktop nebo mobil.
+Jedná se o open-source framework, který je vyvíjen společností GitHub. Používá renderovací jádro prohlížeče Chromium a JavaScriptové běhové prostředí Node.js. Jedná se o způsob, jakým se webová aplikace zabalí do desktopové podoby, která navíc umožňuje pracovat se systémovými zdroji. Způsob takovéto tvorby aplikací je velmi zajímavý, jelikož jsou vývojáři odstíněni od celé řady problémů, spojených s vývojem pro více platforem. Navíc mohou využít znalosti z tvorby webových aplikací, takže je snadné pro tým vývojářů se zaměřením na webové aplikace přejít na vývoj pro desktop nebo mobil
 
 ## Nextron
 
-Pro účely této lekce použijeme knihovnu [Nextron](https://github.com/saltyshiomix/nextron). Využijeme znalostí z předchozích lekcí o Reactu (respektive Next.js) a doplníme je o další specifika desktopového vývoje.
+Pro účely této lekce použijeme knihovnu [Nextron](https://github.com/saltyshiomix/nextron). Využijeme znalostí z předchozích lekcí o Reactu (respektive Next.js) a doplníme je o další specifika desktopového vývoje
 
 Pro založení projektu použijeme předpřipravenou šablonu a doinstalujeme závislosti
 
@@ -181,3 +181,7 @@ function Home() {
 
 export default Home
 ```
+
+## React Native
+
+Za zmínku určitě stojí také technologie [React Native](https://github.com/facebook/react-native). Ta umožňuje vyvíjet nativní mobilní aplikace cílené na Android a iOS s použitím JavaScriptových technologií a Reactu. React Native je vyvíjen společností Facebook. Extrémním příkladem je pak implementace React Native od [Microsoftu](https://github.com/microsoft/react-native-windows), která cílí na platformy Windows a MacOS. Sice se nezdá, že by Microsoft měl ambice tímto způsobem nahradit desktopový vývoj nad platformou .NET, pro určitý typ projektu by se však dalo zvážit použití právě této technologie
