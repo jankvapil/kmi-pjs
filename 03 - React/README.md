@@ -306,7 +306,7 @@ export default async (req, res) => {
 
 Nyní můžeme vyzkoušet náš API dotaz na adrese http://localhost:3000/api/btc. V případě, že se dotaz vykoná správně (nemáme zatím ošetřeno), měli bychom vidět aktuální cenu BTC ve formátu JSON
 
-Tímto jsme vytvořili náš první API endpoint. V následující lekci si zkusíme už práci s aplikačním stavem a vizuální podobu naší aplikace si trochu vylepšíme
+Tímto jsme vytvořili náš první API endpoint. V následující lekci si vyzkoušíme práci s aplikačním stavem a také trochu vylepšíme vizuální podobu naší aplikace
 
 
 <!-- ## Úkol
