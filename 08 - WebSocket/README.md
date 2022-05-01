@@ -59,7 +59,7 @@ Po kliknutí na tlačítko Send se přes vytvořené WebSocket spojení odešle 
 
 ### Socket.io
 
-Socket.io je nadstavba nad WebSockety pro prohlížeč i server. Jedná se o externí knihovnu, která poskytuje řadu funkcí navíc spolu s jednodušším rozhranním pro práci s WebSockety. Nevýhodou pro použití v prohlížeči je však nutnost stažení externí knihovny 
+Socket.io je nadstavba nad websockety pro prohlížeč i server. Jedná se o externí knihovnu, která poskytuje řadu funkcí navíc spolu s jednodušším rozhranním pro práci s websockety. Nevýhodou pro použití v prohlížeči je však nutnost stažení externí knihovny 
 
 # Messagingové knihovny
 
@@ -72,7 +72,7 @@ Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a 
 
 > Zde je možná název MQ obsahující "Queue" trochu zavádějící, jelikož pouze v patternu Push/Pull, jak zjistíme později, figuruje fronta jako stěžejní prvek
 
-Typicky se využívá komunikace na úrovni socketů. Na rozdíl od WebSocketů, u MQ knihoven počítáme s použitím výhradně mimo prohlížeč
+Typicky se využívá komunikace na úrovni socketů. Na rozdíl od websocketů, u MQ knihoven počítáme s použitím výhradně mimo prohlížeč
 
 ## Základní komunikační patterny
 
