@@ -1,7 +1,7 @@
 {
-  "name": "src2",
-  "version": "0.1.0",
-  "private": true,
+  "name": "lecture3",
+  "version": "1.0.0",
+  "author": "Jan Kvapil",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

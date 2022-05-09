@@ -1,13 +1,11 @@
 {
-  "name": "src_3",
+  "name": "lecture10b",
   "version": "1.0.0",
-  "description": "",
+  "author": "Jan Kvapil",
   "main": "third.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "jsdoc": "^3.6.10"
   }

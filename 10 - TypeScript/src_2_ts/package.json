@@ -1,14 +1,11 @@
 {
-  "name": "src_2",
+  "name": "lecture10a",
   "version": "1.0.0",
-  "description": "",
+  "author": "Jan Kvapil",
   "main": "index.js",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "typescript": "^4.6.2"
   }

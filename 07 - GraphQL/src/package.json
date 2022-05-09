@@ -1,14 +1,12 @@
 {
-  "name": "graphql-demo",
+  "name": "lecture7",
   "version": "1.0.0",
-  "description": "",
+  "author": "Jan Kvapil",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^3.6.3",
     "express": "^4.17.3",

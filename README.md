@@ -6,7 +6,7 @@ nástroje a návrhové vzory, které vývoj aplikací usnadní
 
 ## Obsah kurzu
 
-1. Úvod do JS, (opakování) syntaxe ES6+, vlastnosti jazyka
+1. Úvodní informace, Vanilla JS, ES6+, vlastnosti jazyka
 2. Node.js (package.json, npm), asynchronní požadavky, tvorba web serveru (Express.js)
 3. React - funkcionální UI komponenty a jejich kompozice, Next.js
 4. React - aplikační stav a side efekty, styly v JS, komponenty třetích stran
@@ -14,7 +14,7 @@ nástroje a návrhové vzory, které vývoj aplikací usnadní
 6. Nerelační databáze (MongoDB), ORM (Prisma), TSDB, časové řady
 7. GraphQL - SDL, tvorba API
 8. WebSocket (Socket.io), Message Queue knihovny (ZeroMQ)
-9. Aplikační stav, immutabilní datové struktury (Immer), state management
+9. Správa aplikačního stavu, immutabilní datové struktury
 10. Statické typy (TypeScript), TS Runtime (Deno), Dokumentace (JSDoc)
 11. Multiplatformní vývoj (Electron)
 12. Funkcionální programování na platformě JS (fp-ts, ClojureScript)

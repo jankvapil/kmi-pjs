@@ -1,13 +1,11 @@
 {
-  "name": "server",
+  "name": "lecture8a",
   "version": "1.0.0",
-  "description": "",
+  "author": "Jan Kvapil",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "ws": "^8.5.0"
   }
