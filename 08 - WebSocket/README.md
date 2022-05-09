@@ -8,7 +8,7 @@ Jedná se tedy o plně duplexní způsob komunikace pomocí protokolu TCP, kdy s
 
 ## WebSocket API
 
-Vytvořme si dvě složky - client a server. Ve složce server vytvořme server.js, inicializujme složku jako npm projekt a nainstalujme knihovnu `ws`
+Vytvořme si dvě složky - client a server. Ve složce server vytvořme `server.js`, inicializujme složku jako npm projekt a nainstalujme knihovnu `ws`
 
 ```
 touch server.js
@@ -30,7 +30,7 @@ server.on('connection', socket => {
 })
 ```
 
-Server v tuto chvíli naslouchá na adrese `ws://localhost:8080`. Dále ve složce client vytvořme index.html a doplňme následující kód
+Server v tuto chvíli naslouchá na adrese `ws://localhost:8080`. Dále ve složce client vytvořme `index.html` a doplňme následující kód:
 
 ```html
 <!DOCTYPE html>
@@ -63,14 +63,14 @@ Socket.io je nadstavba nad websockety pro prohlížeč i server. Jedná se o ext
 
 # Messagingové knihovny
 
-Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů
+Messagingové knihovny jsou též nazývány jako Message Queue (MQ [^1]) knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů
 
 * Použití pro integraci systémů - možnost rozdělit systém do menších celků (services) a zajistit mezi nimi komunikaci
 * Systémy mohou být implementovány nad libovolnou platformou (Java, .NET, Python)
 * Asynchronní komunikace, streamování zpráv
 * IoT, monitoring, event-based systémy, algoritmické obchodování
 
-> Zde je možná název MQ obsahující "Queue" trochu zavádějící, jelikož pouze v patternu Push/Pull, jak zjistíme později, figuruje fronta jako stěžejní prvek
+[^1]: Zde je možná název MQ obsahující "Queue" trochu zavádějící, jelikož pouze v patternu Push/Pull, jak zjistíme později, figuruje fronta jako stěžejní prvek
 
 Typicky se využívá komunikace na úrovni socketů. Na rozdíl od websocketů, u MQ knihoven počítáme s použitím výhradně mimo prohlížeč
 

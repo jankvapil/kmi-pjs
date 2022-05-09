@@ -69,7 +69,7 @@ run()
 
 Můžeme si všimnout, že konstruktor `ApolloServer` přijímá jako argument objekt, jehož součástí je `typeDefs`, který definuje schéma GraphQL API. Jak bylo zmíněno v úvodu, GraphQL používá 2 základní operace - Query a Mutace. Zde máme nadefinovaný query-typ hello, který vrací string. Pomocí `resolverů` definujeme jednotlivé operace, které vracejí data. V tomto případě vracíme konstantu "hello". Je však zřejmé, že zde se bude pracovat typicky s nějakým externím datovým zdrojem (databází)
 
-Po spuštění API pomocí `node server.js` přejděme na adresu `http://localhost:4000/graphql`. GraphQL API přijímá pouze POST requesty, takže v prohlížeči se (pomocí GET requestu) dostaneme na úvodní stránku studio.apollographql, které nás po kliknutí přesměruje na stránku tohoto nástroje. Zde si můžeme vyzkoušet práci s naším GraphQL API - vložme do editoru násedující dotaz
+Po spuštění API pomocí `node server.js` přejděme na adresu `http://localhost:4000/graphql`. GraphQL API přijímá pouze POST requesty, takže v prohlížeči se (pomocí GET requestu) dostaneme na úvodní stránku studio.apollographql, které nás po kliknutí přesměruje na stránku tohoto nástroje. Zde si můžeme vyzkoušet práci s naším GraphQL API - vložme do editoru násedující dotaz:
 
 ```gql
 query {
@@ -77,7 +77,7 @@ query {
 }
 ```
 
-Ten nám po spuštění (Ctrl+Enter) vrátí následující JSON
+Ten nám po spuštění (Ctrl+Enter) vrátí následující JSON:
 
 ```JSON
 {
@@ -158,7 +158,7 @@ const resolvers = {
 
 ```
 
-Nyní můžeme přidat log následujícím způsobem
+Nyní můžeme přidat log následujícím způsobem:
 
 ```gql
 # 1.

@@ -45,7 +45,7 @@ Tyto "environment" soubory slouží k uchovávání citivých konfiguračních �
 
 ## MongoClient
 
-Vyzkoušejme nyní připojení k MongoDB databázi. Do souboru `index.js` vložme
+Vyzkoušejme nyní připojení k MongoDB databázi. Do souboru `index.js` vložme:
 
 ```js
 require('dotenv').config()
@@ -122,7 +122,7 @@ Nainstalujme Prisma CLI jako dev-dependency `yarn add -D prisma` a dále `yarn a
 
 Ve složce `prisma` se nám vytvořil soubor `schema.prisma`. Jde o univerzální schéma popisující datový model
 
-Upravme tedy schéma následujícím způsobem 
+Upravme tedy schéma následujícím způsobem:
 
 ```prisma
 generator client {
@@ -147,7 +147,7 @@ model Log {
 }
 ```
 
-Poté příkazem `npx prisma generate` vygenerujeme klienta, kterého použijeme v následujícím příkladě. Soubor `index.js` nahraďme tímto kódem
+Poté příkazem `npx prisma generate` vygenerujeme klienta, kterého použijeme v následujícím příkladě. Soubor `index.js` nahraďme tímto kódem:
 
 ```js
 const { PrismaClient } = require("@prisma/client")

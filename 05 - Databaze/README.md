@@ -81,9 +81,9 @@ export default async (req, res) => {
 }
 ```
 
-Knihovna knex nám vytváří spojení s SQLite databází. Předáváme jí objekt, kde definujeme typ databáze a umístění. Jelikož se jedná o lokální databázi, nic jiného není potřeba definovat
+Knihovna Knex nám vytváří spojení s SQLite databází. Předáváme jí objekt, kde definujeme typ databáze a umístění. Jelikož se jedná o lokální databázi, nic jiného není potřeba definovat
 
-K databázi přistupujeme přes funkci knex, které předáváme jako parametr název tabulky, se kterou chceme pracovat. Dále pak nad ní voláme další funkce - například select s parametrem `*`
+K databázi přistupujeme přes funkci knex, které předáváme jako parametr název tabulky, se kterou chceme pracovat. Dále pak nad ní voláme další funkce - například `select` s parametrem `*`
 
 Jak bychom určitě dokázali uhádnout, po zavolání této funkce se vytvoří a vykoná tento SQL dotaz:
 
@@ -249,7 +249,7 @@ export default async (req, res) => {
   }
 }
 ```
-Tímto způsobem jsme rozšířili naši API, kde reagujeme na dva typy requestů na jednom endpointu
+Tímto způsobem jsme rozšířili naše RESTové API, kde reagujeme na dva typy requestů v rámci jednoho endpointu
 
 Nyní se vraťme k obsluze kliknutí na tlačítko pro přídání nového uživatele
 

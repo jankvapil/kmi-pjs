@@ -192,7 +192,7 @@ const simpsons = [
 ]
 
 // vyfiltrujeme pouze mladistvé členy rodiny Simpsonových
-simpsons.filter(s => s.age <= 21)
+simpsons.filter(s => s.age < 21)
 
 // vybereme pouze jména
 simpsons.map(s => s.name)

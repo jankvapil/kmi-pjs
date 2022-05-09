@@ -1,7 +1,7 @@
 
 # React II
 
-V této lekci se budeme zabývat aplikačním stavem v React aplikaci. Dále pak nakousneme téma stylování aplikace (imporováním CSS souborů/inline CSS v JavaScriptu). Na konci se podíváme, jak použít hotové komponenty třetích stran
+V této lekci se budeme zabývat aplikačním stavem v React aplikaci. Dále nakousneme téma stylování aplikace (imporováním CSS souborů/inline CSS v JavaScriptu). Na konci se podíváme, jak použít hotové komponenty třetích stran
 
 Minule jsme si zkusili vytvořit první API endpoint. K tomu nyní budeme přistupovat a zobrazovat načtená data v naší aplikaci pomocí React komponent
 
@@ -153,7 +153,7 @@ import styles from '../../styles/Content.module.css'
 
 ## Styly v JavaScriptu
 
-Často budeme chtít použít styly přímo v rámci dané komponenty, aniž bychom vytvářeli zvlášť .css soubor. K tomu můžeme použít inline styly
+Často budeme chtít použít styly přímo v rámci dané komponenty, aniž bychom vytvářeli zvlášť CSS soubor. K tomu můžeme použít inline styly
 
 V souboru `components/common/Footer.js` upravme element footer
 
@@ -171,7 +171,7 @@ Stylování tímto způsobem však není jediná možnost. Zajímavou alternativ
 
 ## Komponenty třetích stran
 
-Určitě není vždy žádoucí psát si všechny komponenty od základu. Předpřipravených React komponent je dostupná celá řada. Nicméně stále platí, že ne všechny komponenty je dobrý nápad bez většího rozmyslu do projektu importovat
+Určitě není vždy žádoucí tvořit veškeré komponenty od základu. Předpřipravených React komponent je dostupná celá řada. Nicméně stále platí, že ne všechny komponenty je dobrý nápad bez většího rozmyslu do projektu importovat
 
 ### React Toastify
 

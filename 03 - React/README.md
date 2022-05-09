@@ -27,7 +27,7 @@ Jelikož React je knihovna, která řeší pouze efektivní překreslování Vie
 
 ## Vytvoření projektu
 
-Projekt vytvoříme s pomocí DevStacku `create-next-app` následujícím příkazem
+Projekt vytvoříme s pomocí dev-stacku `create-next-app` následujícím příkazem
 
 ```
 npx create-next-app
@@ -87,7 +87,7 @@ const Header = () => {
 export default Header
 ```
 
-Jako jednu z prvních změn si můžeme nastavit vlastní favicon. Doporučuji použít například [favicon.io](https://favicon.io/favicon-generator/), kde se dají vygenerovat velmi hezké ikonky z ASCII znaků
+Jako jednu z prvních změn si můžeme nastavit vlastní favicon. K tomu je možné použít například [favicon.io](https://favicon.io/favicon-generator/), kde se dají vygenerovat hezké ikonky z ASCII znaků
 
 ### Footer
 
@@ -157,13 +157,13 @@ export default function Home() {
 
 Jak jsme si mohli všimnout, po změně ve zdrojovém kódu se nám změny automaticky promítnou přímo v aplikaci. Této funkci se říká Hot Reload
 
-Nyní vytvořme další komponentu `Button` pomocí 
+Nyní vytvořme další komponentu `Button` pomocí:
 
 ```
 touch components/Button.js
 ```
 
-s následujícím kódem:
+Vložme následující kód:
 
 ```javascript
 ///
@@ -221,7 +221,7 @@ export default function Btc() {
 }
 ```
 
-Když v prohlížeči přejdeme na adresu `http://localhost:3000/btc`, zobrazí se nám nově vytvořená stránka. Next.js automaticky všechny soubory ve složce pages zpřístupňuje jako routy. Pro speciální název index pak zpřístupní defaultní routu
+Když v prohlížeči přejdeme na adresu `http://localhost:3000/btc`, zobrazí se nám nově vytvořená stránka. Next.js automaticky všechny soubory ve složce pages zpřístupňuje jako routy. Pro "speciální" název index pak zpřístupní defaultní routu
 
 Jak si můžeme všimnout, ve složce pages máme ještě dále složku `api`, obsahující soubor `hello.js`. Veškeré soubory pod touto složkou jsou považovány za API endpointy (typicky REST nebo GraphQL - uvidíme později)
 
@@ -231,7 +231,7 @@ Vraťme se ještě na chvíli ke stránce `index.js` a doplňme následující k
 <a href="/btc">BTC</a>
 ```
 
-Tímto způsobem však nikdy routování v Next.js neřešíme. K práci s routerem používáme přímo referenci na router, vytvořenou hookem `useRouter`. Pozměňme kód v komponentě `Button`:
+Tímto způsobem však nikdy routování v Next.js neřešíme. K práci s routerem používáme přímo referenci na router, vytvořenou hookem `useRouter`. Upravme kód v komponentě `Button`:
 
 ```javascript
 import { useRouter } from 'next/router'
@@ -255,13 +255,11 @@ Nyní zkusme porovnat oba přístupy
 
 ## Hooky
 
-S pojmem "hook" se budeme ve funkcionálních komponentách Reactu setkávat velmi často. 
-
-Jelikož, jak jsme si říkali v úvodu, funkcionální React komponenta je čistá funkce, která transformuje data na View. Pomocí hooků můžeme do těchto funkcí vnášet určitým "čistým" způsobem side-efekty. V další lekci se budeme zabývat například aplikačním stavem, který je také realizován pomocí hooků
+S pojmem "hook" se budeme ve funkcionálních React komponentách setkávat velmi často. Jak jsme si říkali v úvodu, funkcionální React komponenta je čistá funkce, která transformuje data na View. Pomocí hooků můžeme do těchto funkcí vnášet určitým "čistým" způsobem side-efekty. V další lekci se budeme zabývat například aplikačním stavem, který je také realizován pomocí hooků
 
 # REST API
 
-V úvodním semináři o Node.js jsme si představili jednoduchou webovou službu, ve které jsme implementovali obsluhu HTTP GET požadavku, kde jsme vraceli HTML stránku. Podobným způsobem můžeme implementovat tzv. RESTové API, prostřednictvím kterého můžeme pracovat s datovou vrstvou webové aplikace
+V úvodním semináři o Node.js jsme si vytvořili jednoduchou webovou službu, ve které jsme implementovali obsluhu HTTP GET požadavku, na základě kterého jsme vraceli vygenerovanou HTML stránku. Podobným způsobem můžeme implementovat tzv. RESTové API, prostřednictvím kterého můžeme pracovat s datovou vrstvou webové aplikace
 
 REST API používá HTTP metody (GET, POST, ...). Typicky se vracejí odpovědi ve formátu JSON
 

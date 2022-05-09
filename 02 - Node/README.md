@@ -1,10 +1,10 @@
 # Node.js
 
-Jednou z hlavních výhod platformy JS je možnost sdílení kódu na klientu i serveru. Tématem této lekce bude právě JavaScript na straně serveru
+Jednou z hlavních výhod platformy JS je možnost sdílení kódu na klientovi i serveru. Tématem této lekce bude právě JavaScript na straně serveru
 
 > Node.js je open-source, multiplatformní, backendové běhové prostředí JavaScriptu, které běží na enginu Chrome V8 a spouští JavaScript kód mimo webový prohlížeč
 
-Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který v době psaní této lekce čítá okolo 1.5 milionu knihoven. V porovnání s ostatními platformami je sice největším, s tím je však ale spojeno určité riziko a ne každou knihovnu je vhodné používat
+Obrovskou předností [Node.js](https://nodejs.org/en/) je jeho balíčkovací systém, který v době psaní této lekce čítá okolo 1.5 milionu knihoven. V porovnání s ostatními platformami je sice největším, s tím je však spojeno také určité riziko a ne každou knihovnu je vhodné používat
 
 Obecně je lepší spoléhat na dlouhodobě vyvíjené a masivně používané knihovny, s velkým zázemím a podporou ze strany komunity. Případně knihovny, za kterými stojí velké společnosti a tudíž by měly zaručovat určitou kvalitu a podporu do budoucna (ne vždy tomu tak skutečně je)
 
@@ -113,7 +113,7 @@ server.listen(port, () => console.log(`Ready on http://localhost:${port}/...`))
 
 V tomto příkladě si můžeme všimnout definici obsluhy GET requestu pro kořenovou routu `"/"`, která vrací "Hello!"
 
-Dále pak příkazem `listen` říkáme, že má server po spuštění začít poslouchat na námi definovaném portu 3000
+Dále pak zavoláním funkce `listen` říkáme, že má server po spuštění začít poslouchat na námi definovaném portu 3000
 
 Po spuštění příkazu `npm start` se nám spustí server. Můžeme přejít do prohlížeče a zadat http://localhost:3000/. Běžící server lze vypnout stisknutím `ctrl+c` v konzoli
 
