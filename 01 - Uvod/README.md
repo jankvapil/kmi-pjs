@@ -1,6 +1,6 @@
 # Úvod do Platformy JS
 
-V úvodní lekci kurzu si zopakujeme základy jazyka JavaScript, jeho syntax a sémantiku. Dále se zaměříme na rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya
+V úvodní lekci kurzu si zopakujeme základy jazyka JavaScript, jeho syntax a sémantiku. Dále se zaměříme na rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazyka
 
 Pro spouštění ukázek kódu je vhodné použít například webové prostředí [REPL.it](https://repl.it/), případně je možné kód spouštět přímo pomocí běhového prostředí Node.js - více v další lekci
 
@@ -31,9 +31,9 @@ function fn(x) {
 ```
 
 
-Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití `const` (neboli navázání hodnoty na konstantu). V případě, že chceme později vazbu změnit, použijeme `let`. `Var` používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994))
+Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření vazeb [^1] použití `const` (neboli navázání hodnoty na konstantu). V případě, že chceme později vazbu změnit, použijeme `let`. `Var` používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994))
 
->*Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS
+[^1]: Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS*
 
 
 ### ECMAScript 6
