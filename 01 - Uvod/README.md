@@ -2,7 +2,7 @@
 
 V úvodní lekci kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya
 
-Pro spouštění ukázek kódu doporučuji použít webové prostředí [REPL](https://repl.it/) (případně kód spouštět přímo pomocí Node.js - více v další lekci). V případě Repl.it je sice nutné mít vytvořený účet, nicméně pak máte veškeré testovací kódy dostupné odkudkoliv
+Pro spouštění ukázek kódu je vhodné použít například webové prostředí [REPL](https://repl.it/) (případně je možné kód spouštět přímo pomocí Node.js - více v další lekci)
 
 ## 1. Deklarace a definice Vanilla JS vs ES6+ 
 
@@ -31,9 +31,9 @@ function fn(x) {
 ```
 
 
-Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití const (neboli navázání hodnoty na konstantu). V případech, kdy záměrně chceme někdy v budoucnu vazby změnit, použijeme let. Var používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994))
+Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití `const` (neboli navázání hodnoty na konstantu). V případě, že chceme později vazbu změnit, použijeme `let`. `Var` používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994))
 
-(* Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS.)
+(* Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS)
 
 
 ### ECMAScript 6
@@ -100,7 +100,7 @@ fn3()(42)   // -> 43
 
 ## 3. Objekty a pole
 
-Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Uvažujme následující příklad
+Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich modifikace, případně duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Mějme následující příklad:
 
 
 ```javascript
@@ -120,7 +120,7 @@ copy.age == homer.age // -> true
 
 Proč se změnil věk oboum objektům? Zkopírovala se pouze reference na daný objekt, tudíž přiřazujeme novou hodnotu tomu samému objektu
 
-Zkusme nyní využít tzv. **destrukturalizaci** (spread operátor ... ), která převede objekt na posloupnost párů <key, value> a vytvoří je jako nové hodnoty
+Zkusme nyní využít tzv. **destrukturalizaci** ("spread" operátor ... ), která převede objekt na posloupnost párů `key:value` a vytvoří je jako nové hodnoty
 
 
 ```javascript
@@ -131,7 +131,7 @@ homer.age == shallowCopy.age // -> false
 ```
 
 
-Nyní se nám změna věku už projevila správně. Co když změníme jméno dítěte původního objeku? 
+Nyní se nám změna věku projevila správně. Co když změníme jméno dítěte původního objeku? 
 
 
 ```javascript
@@ -141,7 +141,7 @@ shallowCopy.children[0].name == homer.children[0].name // -> true
 ```
 
 
-Změna se provede i ve zkopírovaném objektu. Pomůže Object.assign? 
+Změna se provede i ve zkopírovaném objektu (zkopírovala se reference). Pomůže `Object.assign`? 
 
 
 ```javascript
@@ -163,7 +163,7 @@ deepCopy.children[0].name == homer.children[0].name // -> false
 ```
 
 
-S využitím základních tříd a funkcí JS můžeme objekt převést na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci JSON.parse jsme získali sice nový objekt, ale bez funkce greeting. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje
+S využitím základních tříd a funkcí JS můžeme objekt převést na řetězec znaků a z něj na JSON, čímž docílíme zkopírování všech zanořených datových struktur. Nyní si můžeme všimnout, že díky funkci `JSON.parse` jsme získali sice nový objekt, ale bez funkce `greeting`. To samé platí i pro víceřádkové stringy, které se nahradí znaky konce řádků, jelikož formát JSON víceřádkové řetězce nepodporuje
 
 
 ```javascript
@@ -175,14 +175,12 @@ const str = JSON.parse(JSON.stringify({str: `Multi
 console.log(str) // -> { str: 'Multi\n\n  line' }
 ```
 
-
-Spolehlivé duplikace zanořených datových struktur docílíme pouze vytvořením vlastních pomocných funkcí (nebo použítím existujících knihoven. Více v dalších lekcích o Node.js a Imutabilních datových strukturách)
-
+Pokročilejší práci s aplikačním stavem a zanořenými datovými strukturami bude později věnován samostatný seminář
 
 
 ## 4. Array functions
 
-Pro práci s poli můžeme využít (high-order) funkce a provádět tak s daty různé transformace
+Pro práci s poli můžeme využít high-order funkce a provádět nad daty různé transformace
 
 
 ```javascript
@@ -216,10 +214,9 @@ const homer = simpsons.shift()
 
 ## 5. Asynchronní JS
 
+V rámci vývoje frontendu je velmi často nutné reagovat na různé typy asynchronních událostí - třeba ve chvíli, kdy dostaneme odpoveď od serveru. K tomu se dříve používaly tzv. **callbacky**. Jedná se o funkce, pomocí kterých je možné reagovat na budoucí stav výpočtu
 
-Později zjistíme (zejména při práci s frontendem), že velmi často potřebujeme reagovat na různé typy asynchronních událostí - typicky ve chvíli, kdy dostaneme odpoveď od serveru s nějakými daty. K tomu se dříve používaly tzv. **callbacky**, neboli funkce, které umožňují dál pracovat např. s načtenými daty někdy v budoucnu
-
-Nejjednoduším příkladem asynchronního kódu je následující funkce setTimeout, která bere jako argument callback, jenž se má vykonat po uběhnutí 2000ms
+Jednoduchým příkladem asynchronního kódu může být následující funkce `setTimeout`, která bere jako argument callback, jenž se má zavolat po uběhnutí 2000ms
 
 
 ```javascript
@@ -230,7 +227,7 @@ console.log("Hello")
 ```
 
 
-Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše se "Hello" a po 2 sekundách se vypíše "Callback triggered!". Pro hlubší pochopení si můžete přečíst něco o [JS Event Loop](https://javascript.info/event-loop). Nám bude v tuto chvíli stačit, že vyhodnocování není lineární (přestože je JS kód vykonáván v jednom vlákně) a že existuje nějaká fronta asynchronních událostí
+Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše se "Hello" a po 2 sekundách se vypíše "Callback triggered!". Pro hlubší pochopení si můžete přečíst něco o [JS Event Loop](https://javascript.info/event-loop). Nám bude v tuto chvíli stačit, že vyhodnocování výrazů nemusí být lineární (přestože je JS kód vykonáván v jednom vlákně) a že existuje fronta asynchronních událostí
 
 
 ### Problém s callbacky 
@@ -294,7 +291,7 @@ a umožňuje tak vracet nedokončený výpočet jako objekt
 
 ### Async / await
 
-Klíčová slova async / await pak vytváří nádstavbu nad přísliby, což umožňuje elegantně pracovat s asynchronním kódem
+Klíčová slova `async` / `await` pak vytváří nádstavbu nad přísliby, což umožňuje elegantně pracovat s asynchronním kódem
 
 
 ```javascript
@@ -349,15 +346,6 @@ enjoyFriday()
 ```
 
 Všimněme si definice a volání asynchronní funkce `enjoyFriday` - klíčové slovo `await` lze použít pouze uvnitř asynchronní funkce
-
-<!-- 
-## Úkol
-
-Implementujte
-
-* `deepCopy(obj)` - provede správnou duplikaci libovolně zanořených datových struktur
-* `getNowDate()` - vrátí aktuální čas (string) ve formátu DD.MM.YYYY HH:MM:SS (s pomocí třídy [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date))
- -->
 
 ## Reference
 

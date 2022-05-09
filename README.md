@@ -1,6 +1,8 @@
 # JavaScript Platform Course
 
-Cílem předmětu bude seznámit studenty s použitím JavaScript technologií na klientu i serveru. Základem je pochopení a následné použití moderních principů tvorby webových aplikací. V průběhu kurzu budou představeny nástroje a návrhové vzory, které usnadní vývoj aplikací
+Cílem předmětu bude seznámit studenty s použitím JavaScriptových technologií
+na klientovi (webový prohlížeč) a serveru. V průběhu kurzu budou představeny
+nástroje a návrhové vzory, které vývoj aplikací usnadní
 
 ## Obsah kurzu
 
@@ -48,11 +50,11 @@ Cílem předmětu bude seznámit studenty s použitím JavaScript technologií n
 ### Kde je vhodné zvážit použití právě JS technologií?
 
 * Pro rychlé prototypování aplikací - dostupné řešení (nejen) pro malé projekty/startupy
-* Výhodou je použití jednotné technologie na klientu i serveru
+* Výhodou je použití jednotné technologie na klientovi (webový prohlížeč) a serveru
 
 ### Proč k tvorbě UI právě knihovna React?
 
 * Otázka by se dala zobecnit - proč vlastně používat jakoukoliv knihovnu pro tvorbu frontendu? Důvodů je hned několik. V dřívějších dobách, kdy se API prohlížečů velmi lišilo, bylo nutné sjednotit a zjednodušit práci s DOMem. S řešením přišla knihovna [jQuery](https://jquery.com/), která kromě sjednocení rozdílných funkcionalit prohlížečů usnadnila také práci s asynchronními požadavky (AJAX) nebo CSS selektory. Stala se tak jakousi náhradou tzv. "Vanilla JavaScriptu"
-* Zlomovým bodem bylo vydání JS standardu ES6, kde přišla řada nových vlastností jazyka (včetně podpory práce s asynchronními requesty). Spolu s příchodem frontendových frameworků typu [Angular](https://angular.io/) nebo [React](https://reactjs.org/) pak vývoj frontendu dostal úplně nový rozměr. Zásadní změnou je komponentový přístup, kdy máme daleko rozsáhlejší možnosti, co se týče rozdělování kódu do jednotlivých komponent (modulů)
-* Pro zachování kompatibility se staršími prohlížeči, podporující starší verze ECMAScriptu vznikly transpilery (typu [Babel](https://babeljs.io/)), které tyto frontendové frameworky používají. Mimo jiné také obsahují řadu optimalizací, které výsledný kód rozdělují ([Webpack](webpack)) a umožňují ho tak načítat po částech. Mezi další optimalizace patří například minifikace CSS stylů a JS skriptů
-* Knihovna React je sama o sobě zaměřena čistě na tvorbu UI, veškeré [React komponenty = JS funkce](https://reactjs.org/docs/introducing-jsx.html), s čímž je spojena celá řada výhod (na rozdíl od šablonovacích frameworků, kombinujících HTML s kódem). React je také dle týdenních statistik stažení (jakožto npm balíčku) nejrozšířenější knihovnou pro tvorbu UI (v porovnání např. s [Vue](https://vuejs.org/) nebo Angularem). Proto je pro tento kurz zvolena jako demonstrativní knihovna pro tvorbu frontendu
+* Zlomovým bodem bylo vydání JS standardu ES6, kde přišla řada nových vlastností jazyka (včetně podpory práce s asynchronními funkcemi). Spolu s příchodem frontendových frameworků typu [Angular](https://angular.io/) nebo [React](https://reactjs.org/) pak vývoj frontendu dostal úplně nový rozměr
+* Pro zachování kompatibility se staršími prohlížeči, podporující starší verze ECMAScriptu vznikly transpilery (jako je [Babel](https://babeljs.io/)), které tyto frontendové frameworky používají. Mimo jiné také obsahují řadu optimalizací, které výsledný kód rozdělují ([Webpack](webpack)) a umožňují ho tak načítat po částech. Mezi další optimalizace patří například minifikace CSS stylů a JS skriptů
+* Knihovna React je sama o sobě zaměřena čistě na tvorbu UI, veškeré [React komponenty = JS funkce](https://reactjs.org/docs/introducing-jsx.html), s čímž je spojena celá řada výhod (na rozdíl od šablonovacích frameworků, kombinujících HTML s kódem). React je také dle týdenních statistik stažení (npm balíčku) nejrozšířenější knihovnou pro tvorbu UI (v porovnání např. s [Vue](https://vuejs.org/) nebo Angularem). Díky její jednoduchosti a rozšíření je proto vhodným kandidátem
