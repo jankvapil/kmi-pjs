@@ -1,12 +1,12 @@
 # Úvod do Platformy JS
 
-V úvodní lekci kurzu si zopakujeme základy jazyka JS, jeho syntax a sémantiku, rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya
+V úvodní lekci kurzu si zopakujeme základy jazyka JavaScript, jeho syntax a sémantiku. Dále se zaměříme na rozdíly mezi verzemi, práci se složenými daty (objekty, pole), asynchronními funkcemi a zaměříme se na specifické vlastnosti tohoto jazkya
 
-Pro spouštění ukázek kódu je vhodné použít například webové prostředí [REPL](https://repl.it/) (případně je možné kód spouštět přímo pomocí Node.js - více v další lekci)
+Pro spouštění ukázek kódu je vhodné použít například webové prostředí [REPL.it](https://repl.it/), případně je možné kód spouštět přímo pomocí běhového prostředí Node.js - více v další lekci
 
 ## 1. Deklarace a definice Vanilla JS vs ES6+ 
 
-Rozdíly v rozsahu platnosti a deklaracích / definicích proměnných a funkcí
+Rozdíly v rozsahu platnosti a deklaracích/definicích proměnných a funkcí
 
 ### Vanilla JS
 
@@ -33,7 +33,7 @@ function fn(x) {
 
 Ve většině případů chceme zamezit (nechtěnné) redefinici a redeklaraci - proto preferujeme pro vytvoření *vazeb** použití `const` (neboli navázání hodnoty na konstantu). V případě, že chceme později vazbu změnit, použijeme `let`. `Var` používat nebudeme (více např. [zde](https://blog.usejournal.com/awesome-javascript-no-more-var-working-title-999428999994))
 
-(* Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS)
+>*Ve funkcionálním programování se pro definice proměnných používá výraz "vytvořit vazby mezi symboly (proměnnými) a hodnotami", což odpovídá přesněji přístupu JS
 
 
 ### ECMAScript 6
@@ -100,7 +100,7 @@ fn3()(42)   // -> 43
 
 ## 3. Objekty a pole
 
-Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich modifikace, případně duplikace. Na následujících příkladech si ukážeme, jak k této problematice přistupovat. Mějme následující příklad:
+Složená data mohou být v JS realizována jako *referenční datové typy* - **pole** nebo **objekty** (JS objekt != JSON, uvidíme později). V čem je však práce s nimi občas zrádná a neintuitivní je jejich modifikace, případně duplikace. V rámci tohoto a následujících seminářů si ukážeme, jak k této problematice přistupovat. Mějme následující příklad:
 
 
 ```javascript
@@ -216,7 +216,7 @@ const homer = simpsons.shift()
 
 V rámci vývoje frontendu je velmi často nutné reagovat na různé typy asynchronních událostí - třeba ve chvíli, kdy dostaneme odpoveď od serveru. K tomu se dříve používaly tzv. **callbacky**. Jedná se o funkce, pomocí kterých je možné reagovat na budoucí stav výpočtu
 
-Jednoduchým příkladem asynchronního kódu může být následující funkce `setTimeout`, která bere jako argument callback, jenž se má zavolat po uběhnutí 2000ms
+Jednoduchým příkladem asynchronního kódu může být následující funkce `setTimeout`, která bere jako argument callback, jenž se má zavolat po uplynutí dvou vteřin
 
 
 ```javascript
@@ -232,8 +232,7 @@ Po spuštění vidíme, že se asynchronní funkce jakoby přeskočí, vypíše 
 
 ### Problém s callbacky 
 
-Představme si, že je třeba takto vykonat 5 zřetězených asynchronních funkcí
-
+Představme si, že je třeba zavolat několik takto zřetězených asynchronních funkcí
 
 ```javascript
 const goToPub = (callback) => {
@@ -282,9 +281,9 @@ Tímto způsobem předávání callbacků se stane kód velmi rychle nepřehledn
 
 Proto se do JS zavedla třída [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (neboli "příslib" dokončení výpočtu někdy v budoucnu), která umožňuje vracet nedokončený výpočet jako objekt. Objekt má 3 stavy:
 
-* pending: initial state, neither fulfilled nor rejected
-* fulfilled: meaning that the operation was completed successfully
-* rejected: meaning that the operation failed
+* pending: výchozí stav
+* fulfilled: operace byla úspěšně dokončena
+* rejected: operace selhala
 
 ### Async / await
 
