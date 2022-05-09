@@ -90,7 +90,7 @@ Pojďme tedy založit nový projekt a nainstalujme knihovnu ZeroMQ ve verzi 5
 yarn add zeromq@5
 ```
 
-Vytvořme soubory `producer.js` a `consumer.js`. Do souboru `producer.js` vložme
+Vytvořme soubory `producer.js` a `consumer.js`. Do souboru `producer.js` vložme:
 
 ```js
 const zmq = require("zeromq")
@@ -131,7 +131,7 @@ Někoho by určitě napadlo - co se stane, když se spustí konzument vícekrát
 
 ## PUB/SUB
 
-Pojďme se nyní podívat na komunikační pattern typu Publish/Subscribe. Ve složce, kde máme soubory `consumer` a `producer`, vytvořme ještě `publisher.js` a `subscriber.js`. Do souboru `publisher.js` doplňme 
+Pojďme se nyní podívat na komunikační pattern typu Publish/Subscribe. Ve složce, kde máme soubory `consumer` a `producer`, vytvořme ještě `publisher.js` a `subscriber.js`. Do souboru `publisher.js` doplňme: 
 
 ```js
 const zmq = require("zeromq")
@@ -150,7 +150,7 @@ setInterval(() => {
 
 Zde si můžeme všimnou jediného rozdílu (kromě jiného typu socketu) oproti producentovi - před samotnou zprávu posíláme tzv. *Topic*. Jedná se o typ kanálu, na který se daná zpráva posílá
 
-Do souboru `publisher.js` vložme 
+Do souboru `publisher.js` vložme: 
 
 ```js
 const zmq = require("zeromq")

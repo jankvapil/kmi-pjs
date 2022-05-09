@@ -2,7 +2,7 @@
 
 V dnešní lekci se podíváme na to, jakým způsobem je možné pracovat s aplikačním stavem a které knihovny nám tuto práci usnadní
 
-Vraťme se nyní do adresáře lekce č. 4 (React II), zkopírujme zdrojové soubory celého Next.js projektu a nainstalujme závislosti. V souboru `pages/index.js` upravme kód do následující podoby
+Vraťme se nyní do adresáře lekce č. 4 (React II), zkopírujme zdrojové soubory celého Next.js projektu a nainstalujme závislosti. V souboru `pages/index.js` upravme kód do následující podoby:
 
 ```js
 import { useState } from 'react'
@@ -38,7 +38,7 @@ export default function Home() {
 }
 ```
 
-Komponentu `Counter` pak upravme následujícím způsobem
+Komponentu `Counter` pak upravme následujícím způsobem:
 
 ```js
 ///

@@ -105,7 +105,7 @@ const sequentialRequestAsync = async () => {
 
 V tomto případě je ošetřen každý požadavek, nicméně kód ošetřováním chybových stavů velmi rychle "nabobtnal". Pojďme se podívat, jak by se tato situace dala řešit s pomocí `TaskEither` z knihovny `fpts`
 
-Zásadní změnou je oproti klasickému přístupu v tom, že se nevyvolávají výjimky. Nemůže tedy dojít k tomu, že bychom ji na nějakém místě zapomněli ošetřit a program by spadl. Tímto způsobem lze na sebe navázat více asynchronních funkcí. V případě, že některý z požadavků selže, jako výsledek se předá `Error`
+Zásadní změnou je oproti klasickému přístupu v tom, že se zde explicitně neošetřují výjimky. Nemůže tedy dojít k tomu, že bychom ji na některém místě zapomněli ošetřit a program by spadl. Tímto způsobem lze na sebe navázat více asynchronních funkcí. V případě, že některý z požadavků selže, jako výsledek se předá `Error`
 
 ```ts
 import * as TE from "fp-ts/lib/TaskEither"
@@ -243,7 +243,7 @@ touch main.cljs
 echo "hello world" > file.txt
 ```
 
-Zkusíme načíst textový soubor a vypsat jeho obsah. K tomu budeme potřebovat knihovnu `fs`. Jelikož je součástí node.js, můžeme ji naimportovat přimo
+Zkusíme načíst textový soubor a vypsat jeho obsah. K tomu budeme potřebovat knihovnu `fs`. Jelikož je součástí Node.js, můžeme ji naimportovat přimo:
 
 ```clj
 (require 'fs)
@@ -259,7 +259,7 @@ V případě, že chceme použít externí knihovnu, musíme ji nainstalovat pom
 npm init -y && npm install express request request-promise
 ```
 
-Po inicializaci projektu a nainstalování knihoven doplňme následující kód do souboru `main.cljs`
+Po inicializaci projektu a nainstalování knihoven doplňme následující kód do souboru `main.cljs`:
 
 ```clj
 (require 'express)

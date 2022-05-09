@@ -120,7 +120,7 @@ const onTextChangeHandler = (e) => {
 }
 ```
 
-Výsledný soubor by měl vypadat takto
+Výsledný soubor by měl vypadat takto:
 
 ```js
 import React, { useState } from 'react'
