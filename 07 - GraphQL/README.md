@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS "Posts" (
 COMMIT;
 ```
 
-Nyní převeďme toto databázové schéma na GraphQL schéma.
+Nyní převeďme toto databázové schéma na GraphQL schéma:
 
 ```gql
 type Query {

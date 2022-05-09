@@ -1,7 +1,7 @@
 
 # React
 
-[React](https://reactjs.org/) je knihovna pro tvorbu uživatelského rozhranní. Hlavní myšlenkou je rozdělení uživatelského rozhranní na komponenty, které se skládají z menších částí do větších celků. V Reactu je komponenta definovaná čistě jako funkce. Ta představuje transformaci dat na View
+[React](https://reactjs.org/) je knihovna pro tvorbu uživatelského rozhranní. Hlavní myšlenkou je odstínění od práce s DOM a rozdělení uživatelského rozhranní na komponenty, které se skládají z menších částí do větších celků. V Reactu je komponenta definovaná čistě jako funkce (představuje transformaci dat na výsledné View)
 
 Syntaxí JSX, kterou React používá, velmi připomíná HTML. Je tedy snadné pro kohokoliv se základy tvorby webových aplikací se v něm začít velmi rychle orientovat
 
@@ -51,7 +51,7 @@ Projekt budeme strukturovat následovně - veškeré komponenty budeme ukládat 
 mkdir components
 ```
 
-Složka common bude obsahovat společné komponenty v rámci celého projektu
+Složka `common` bude obsahovat společné komponenty v rámci celého projektu
 
 ```
 mkdir components/common
@@ -163,7 +163,7 @@ Nyní vytvořme další komponentu `Button` pomocí
 touch components/Button.js
 ```
 
-s následujícím kódem...
+s následujícím kódem:
 
 ```javascript
 ///
@@ -261,9 +261,9 @@ Jelikož, jak jsme si říkali v úvodu, funkcionální React komponenta je čis
 
 # REST API
 
-V úvodním semináři o Node.js jsme si představili jednoduchou webovou službu, ve které jsme implementovali obsluhu HTTP GET požadavku, kde jsme vraceli HTML stránku. Podobným způsobem můžeme implementovat tzv. RESTové API, prostřednictvím kterého můžeme pracovat s datovou vrstvou webové aplikace (uvidíme později)
+V úvodním semináři o Node.js jsme si představili jednoduchou webovou službu, ve které jsme implementovali obsluhu HTTP GET požadavku, kde jsme vraceli HTML stránku. Podobným způsobem můžeme implementovat tzv. RESTové API, prostřednictvím kterého můžeme pracovat s datovou vrstvou webové aplikace
 
-REST API používá HTTP metody - GET, POST, PUT a DELETE. Typicky se vracejí odpovědi ve formátu JSON
+REST API používá HTTP metody (GET, POST, ...). Typicky se vracejí odpovědi ve formátu JSON
 
 Zkusme si tedy vytvořit vlastní API endpoint, obsluhující GET request. Přejmenujme existující `hello.js` na `btc.js` ve složce `pages/api`. Když přejdeme na adresu http://localhost:3000/api/btc, uvidíme výsledek tohoto API requestu, definovaného níže:
 
@@ -276,7 +276,7 @@ export default (req, res) => {
 
 Pojďme nyní vytvořit endpoint, vracející JSON s aktuální cenou Bitcoinu
 
-První musíme nainstalovat knihovnu Axios. To provedeme pomocí příkazu `yarn add axios`
+První musíme nainstalovat knihovnu `Axios`. To provedeme pomocí příkazu `yarn add axios`
 
 Poté upravíme soubor `btc.js` tak, že vložíme funkci na načítání dat z Coindesk API, kterou následně zavoláme v handleru API requestu a výsledek vrátíme pomocí funkce `res.json()`
 
@@ -307,10 +307,3 @@ export default async (req, res) => {
 Nyní můžeme vyzkoušet náš API dotaz na adrese http://localhost:3000/api/btc. V případě, že se dotaz vykoná správně (nemáme zatím ošetřeno), měli bychom vidět aktuální cenu BTC ve formátu JSON
 
 Tímto jsme vytvořili náš první API endpoint. V následující lekci si vyzkoušíme práci s aplikačním stavem a také trochu vylepšíme vizuální podobu naší aplikace
-
-
-<!-- ## Úkol
-
-Vytvořte podobným způsobem jako v minulé lekci více endpointů pro různé typy altcoinů (např. api/eth) 
-
--->

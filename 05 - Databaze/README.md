@@ -1,8 +1,9 @@
 # Práce s databází
 
-V této lekci se seznámíme se základními metodami práce s databází v rámci backendové části naší aplikace. Vytvoříme si blog s články, které budeme dynamicky načítat z databáze pomocí RESTového dotazu.
+V této lekci se seznámíme se základními metodami práce s databází v rámci backendové části naší aplikace. Vytvoříme si blog s články, které budeme dynamicky načítat z databáze pomocí RESTového dotazu
 
 V úvodu si shrneme několik přístupů, které se pro práci s databází používají
+
 
 ### ORM
 * objekově relační mapování databázových entit
@@ -17,9 +18,14 @@ V úvodu si shrneme několik přístupů, které se pro práci s databází pou�
 * pomocí databázových driverů můžeme psát přímo SQL dotazy
 * pro určité situace nevyhnutelné (optimalizace dotazů) 
 
+
+### Database-First / Code-First
+
+Přístupu práce s databází, kdy používáme již existující databázi říkáme Database-First přístup. Můžeme jít ale i opačným směrem a celou databázi vygenerovat pomocí kódu (neboli Code-First). Například v rámci platformy .NET se tento přístup často používá způsobem, že se vytvoří model databáze pomocí tříd a z něj se poté generují samotné databázové entity. Z jednotlivých úprav těchto tříd vznikají tzv. `migrace`. To jsou části kódu, které transformují databázové schéma do nové podoby
+
 ## SQLite
 
-Pro účely této lekce použijeme předpřipravenou SQLite databázi s následující strukturou. 
+Pro účely této lekce použijeme předpřipravenou SQLite databázi s následující strukturou
 
 ```sql
 BEGIN TRANSACTION;
@@ -39,11 +45,11 @@ CREATE TABLE IF NOT EXISTS "Posts" (
 COMMIT;
 ```
 
-Předpřiravenou databázi `db.db` zkopírujme z minulé lekce a vložme ji do kořenového adresáře našeho projektu.
+Předpřipravenou databázi `db.db` zkopírujme z minulé lekce a vložme ji do kořenového adresáře našeho projektu
 
 ## Knex
 
-Abychom mohli s databází pracovat, budeme potřebovat tyto 2 knihovny - `sqlite3` a `knex`.
+Abychom mohli s databází pracovat, budeme potřebovat tyto 2 knihovny - `sqlite3` a `knex`
 
 ```
 yarn add sqlite3 knex
@@ -75,7 +81,7 @@ export default async (req, res) => {
 }
 ```
 
-Knihovna knex nám vytváří spojení s SQLite databází. Předáváme jí objekt, kde definujeme typ databáze a umístění. Jelikož se jedná o lokální databázi, nic jiného není potřeba definovat. 
+Knihovna knex nám vytváří spojení s SQLite databází. Předáváme jí objekt, kde definujeme typ databáze a umístění. Jelikož se jedná o lokální databázi, nic jiného není potřeba definovat
 
 K databázi přistupujeme přes funkci knex, které předáváme jako parametr název tabulky, se kterou chceme pracovat. Dále pak nad ní voláme další funkce - například select s parametrem `*`
 
@@ -85,7 +91,7 @@ Jak bychom určitě dokázali uhádnout, po zavolání této funkce se vytvoří
 SELECT * FROM users
 ```
 
-Tomuto přístupu, kdy pomocí objektů a funkcí formujeme databázové dotazy se říká "Query building". Dále máme možnost využít například ORM knihoven, ke kterým se dostaneme později.
+Tomuto přístupu, kdy pomocí objektů a funkcí formujeme databázové dotazy se říká "Query building". Dále máme možnost využít například ORM knihoven, ke kterým se dostaneme v příštím semináři
 
 Když zkusíme v prohlížeči zadat adresu http://localhost:3000/api/users, měl by nám server vrátit následující JSON:
 
@@ -105,12 +111,13 @@ Jelikož už máme předešlý request ošetřen výjimkou, kdybychom změnili n
 {"errno":1,"code":"SQLITE_ERROR"} 
 ```
 
-Na to pak můžeme na frontendu reagovat například uživatelskou notifikací.
+Na to pak můžeme na frontendu reagovat například uživatelskou notifikací
 
 ## Frontend
 
-Pojďme nyní vytvořit další stránku `pages/users.js`, kde budeme načtené uživatele zobrazovat. 
-První si však zkusme pomocí hooku useEffect uživatele vůbec načíst.
+Pojďme nyní vytvořit další stránku `pages/users.js`, kde budeme načtené uživatele zobrazovat
+
+První si však zkusme pomocí hooku useEffect uživatele vůbec načíst
 
 ```javascript
 import { useEffect } from "react"
@@ -131,7 +138,7 @@ export default function Users() {
 }
 ```
 
-Když si otevřeme vývojářské nástroje ve webovém prohlížeči (typicky pomocí F12), po načtení http://localhost:3000/users se nám v konzoli vypíše pole uživatelů.
+Když si otevřeme vývojářské nástroje ve webovém prohlížeči (typicky pomocí F12), po načtení http://localhost:3000/users se nám v konzoli vypíše pole uživatelů
 
 ## Generování komponent
 
@@ -163,7 +170,7 @@ export default function Users() {
 }
 ```
 
-Když se zaměříme na samotnou položku seznamu, všimněme si vlastosti `key`. Ta je nezbytná pro jakékoliv seznamy, tabulky a další generované komponenty. Jestliže se změní obsah - například v jedné buňce tabulky, React bude přesně vědět, co se změnilo, a může tak zařídit efektivní překreslení (nemusí překreslovat celou tabulku znova). Klíč tedy z podstaty věci musí být unikátní a pro danou položku neměnný (není tedy vhodné používat například index v poli jako klíč).
+Když se zaměříme na samotnou položku seznamu, všimněme si vlastosti `key`. Ta je nezbytná pro jakékoliv seznamy, tabulky a další generované komponenty. Jestliže se změní obsah - například v jedné buňce tabulky, React bude přesně vědět, co se změnilo, a může tak zařídit efektivní překreslení. Klíč tedy z podstaty věci musí být unikátní a pro danou položku neměnný (není tedy vhodné používat například index v poli jako klíč)
 
 ## Přidání uživatele
 
@@ -194,7 +201,7 @@ export default function AddUserForm() {
 }
 ```
 
-Takto vyřešíme změnu stavu pro input element. Dále budeme potřebovat ještě tlačítko, kterým potvrdíme přidání nového uživatele. Jako první ale potřebujeme upravit endpoint `pages/api/users` naší API tak, aby přijímal POST request, v jehož těle bude uživatelské jméno nového uživatele.
+Takto vyřešíme změnu stavu pro `input` element. Dále budeme potřebovat ještě tlačítko, kterým potvrdíme přidání nového uživatele. Jako první ale potřebujeme upravit endpoint `pages/api/users` naší API tak, aby přijímal POST request, v jehož těle bude uživatelské jméno nového uživatele
 
 ```javascript
 ///
@@ -242,9 +249,9 @@ export default async (req, res) => {
   }
 }
 ```
-Tímto způsobem jsme rozšířili naši API, kde reagujeme na dva typy requestů na jednom endpointu.
+Tímto způsobem jsme rozšířili naši API, kde reagujeme na dva typy requestů na jednom endpointu
 
-Nyní se vraťme k obsluze kliknutí na tlačítko pro přídání nového uživatele.
+Nyní se vraťme k obsluze kliknutí na tlačítko pro přídání nového uživatele
 
 ```javascript
 
@@ -290,13 +297,3 @@ export default function AddUserForm() {
   )
 }
 ```
-
-## Database-First / Code-First
-
-Přístupu práce s databází, kdy používáme již existující databázi říkáme Database-First přístup. Můžeme jít ale i opačným směrem a celou databázi vygenerovat pomocí kódu (neboli Code-First). Například v rámci platformy .NET se tento přístup často používá způsobem, že se vytvoří model databáze pomocí tříd a z něj se poté generují samotné databázové entity. Z jednotlivých úprav těchto tříd vznikají tzv. `migrace`. To jsou kusy kódu, které transformují databázové schéma do nové podoby. S migracemi lze pracovat i pomocí knihovny `Knex`, to je však nad rámec tohoto kurzu
-
-<!-- 
-## Úkoly
-
-* Pomocí knihovny Knex vytvořte obsluhu DELETE requestu, který podle ID v parametru smaže konkrétního uživatele z databáze
- -->

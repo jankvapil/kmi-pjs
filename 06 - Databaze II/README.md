@@ -43,6 +43,8 @@ PASS=<pass>
 
 Tyto "environment" soubory slouží k uchovávání citivých konfiguračních údajů. Knihovna Dotenv nám zajistí, aby tyto environment proměnné byly dostupné v rámci globálního aplikačního prostředí
 
+## MongoClient
+
 Vyzkoušejme nyní připojení k MongoDB databázi. Do souboru `index.js` vložme
 
 ```js
@@ -95,7 +97,7 @@ await client.db("test")
   .insertOne({ id: 1, value: "first" })
 ```
 
-V případě, že kolekce neexituje, autoamticky se vytvoří nová a vloží se do ní předaný objekt. Na rozdíl od relačních databází, zde není potřeba definovat žádné schéma, které by hlídalo strukturu vstupních dat. Do existující kolekce lze přidat libovolný "sloupec" navíc
+V případě, že kolekce neexituje, automaticky se vytvoří nová a vloží se do ní předaný objekt. Na rozdíl od relačních databází, zde není potřeba definovat žádné schéma, které by hlídalo strukturu vstupních dat. Do existující kolekce lze přidat libovolný "sloupec" navíc
 
 ```js
 await client.db("test")
@@ -273,18 +275,3 @@ const data = { sensor_id: 123, timestamp: ISODate("..."), temperature: 22}
 db.weather.find()
 db.weather.deleteMany()
 ```
-
-### Analýza dat
-
-* Window function - z časového rámce lze počítat např. Moving Average
-
-
-<!-- 
-## Úkoly
-
-* Vytvořte RESTovou službu na reportování chybových zpráv. Na routě `/` bude obsluhovat POST requesty, v jejichž těle bude chybová zpráva spolu s časovým razítkem, která se uloží do MongoDB
-
-* Pomocí nástroje Prisma vygenerujte schéma z databáze z lekce č. 5. Poté pomocí Prisma klienta vytvořte skript, který databázi naplní testovacími daty
-
-* Vytvořte bota, který bude počítat klouzavý průměr BTC za určité časové období. Každou sekundu bude zjišťovat aktuální cenu BTC, pomocí časových řad v rámci MongoDB tyto hodnoty ukládat a počítat hodnotu klouzého průměru za předem definované časové období, kterou bude vypisovat do konzole. Časové období v sekundách se může předat jako parametr při spuštění `node bot.js 120`
- -->

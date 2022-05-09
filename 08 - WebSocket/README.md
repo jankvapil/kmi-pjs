@@ -63,7 +63,7 @@ Socket.io je nadstavba nad websockety pro prohlížeč i server. Jedná se o ext
 
 # Messagingové knihovny
 
-Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů.
+Messagingové knihovny jsou též nazývány jako Message Queue (MQ) knihovny a nacházejí široké uplatnění v distribuovaných systémech. Zajišťují komunikaci (obecně) mezi producenty a konzumenty pomocí různých komunikačních patternů
 
 * Použití pro integraci systémů - možnost rozdělit systém do menších celků (services) a zajistit mezi nimi komunikaci
 * Systémy mohou být implementovány nad libovolnou platformou (Java, .NET, Python)
@@ -167,10 +167,3 @@ sock.on("message", (msg) => {
 Kód se opět velmi podobá konzumentovi s tím rozdílem, že pomocí `sock.subscribe` předem definujeme, který z topiců chceme zaregistrovat pro odchytávání zpráv. Opět můžeme zkusit spustit nezávisle na sobě několik subscriberů a publishera. Můžeme si všimnout, že nyní se nám u subscribera začnou objevovat zprávy až ve chvíli, kdy se na daný topic připojí
 
 Výhodou použití knihovny ZMQ je právě odstínění od nízko-úrovňových problémů, jako je například výpadek spojení. Ve chvíli, kdy publisher vypadne, subscribeři čekají, dokud se publisher znova nespustí. Nedochází k chybám, že by spojení bylo neočekávaně ukončeno a podobně 
-
-<!-- 
-## Úkoly
-
-1. Pomocí WebSocketů vytvořte jednoduchou chatovací aplikaci
-2. Pomocí knihovny ZMQ a patternu PUB/SUB vytvořte systém, který bude obsahovat alespoň 3 kanaly měnových párů (např. EUR/USD, USD/JPY, GBP/EUR), na které se bude každou sekundu posílat náhodně vygenerová hodnota. Subscribeři budou po připojení tyto hodnoty spolu s aktuálním časem ukládat do souboru. Výběr měnového páru bude určen pomocí argumentu (např. `node publisher.js eur/usd`)
- -->

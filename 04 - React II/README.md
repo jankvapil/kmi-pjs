@@ -9,7 +9,7 @@ Budeme potřebovat projekt z minulého cvičení (můžete si jej stáhnout v `"
 
 ## UseState
 
-Prvním krokem bude představení Hooku UseState. Vytvořme proto novou komponentu `Counter`
+Prvním krokem bude představení hooku `useState`. Vytvořme proto novou komponentu `Counter`
 
 ```
 touch components/Counter.js
@@ -32,11 +32,11 @@ export default function Counter ({ initValue }) {
 }
 ```
 
-Jak si můžeme všimnou - po kliknutí na tlačítko Add1 se nic nestane. Hodnota navázaná na symbol `cnt` se sice inkrementuje, ale změna se nepromítne do View
+Jak si můžeme všimnou, po kliknutí na tlačítko "Add1" se nic nestane. Hodnota navázaná na symbol `cnt` se sice inkrementuje, ale změna se nepromítne do View
 
-Aby se změna promítla do View, musíme o tom nějakým způsobem říct Reactu. K tomu slouží hook UseState. První je třeba jej naimportovat (je součástí knihovny React). Nyní zavoláme funkci `useState` a jako parametr předáme inicializační hodnotu
+Aby se změna promítla do View, musíme o tom nějakým způsobem říct Reactu. K tomu slouží hook `useState`. První je třeba jej naimportovat (je součástí knihovny React). Nyní zavoláme funkci `useState` a jako parametr předáme inicializační hodnotu
 
-Funkce `useState` vrací Getter a Setter pro danou hodnotu. Ty navážeme na symboly `cnt` a `setCnt` následujícím způsobem. Pak akorát zaměníme obsluhu kliknutí na tlačítko a máme hotové funkční počítadlo
+Funkce `useState` vrací "Getter" a "Setter" pro danou hodnotu. Ty navážeme na symboly `cnt` a `setCnt` následujícím způsobem. Pak akorát zaměníme obsluhu kliknutí na tlačítko a máme hotové funkční počítadlo
  
 ```javascript
 import { useState } from "react"
@@ -57,7 +57,7 @@ export default function Counter ({ initValue }) {
 
 ## UseEffect
 
-Dalším velmi používaným hookem je UseEffect. Ten nám umožňuje dynamicky reagovat na změny stavu aplikace
+Dalším velmi používaným hookem je `useEffect`. Ten nám umožňuje dynamicky reagovat na změny stavu aplikace
 
 Prvním typem změny stavu je načtení samotné komponenty. Mezi importované funkce z knihoviny React přidejme funkci `useEffect`. Prvním parametrem je callback - funkce, která se vykoná po vyvolání efektu. Druhým parametrem je pak pole závislých symbolů. Jestliže je pole závislých symbolů prázdné, zavolá se funkce pouze při načtení komponenty
 
@@ -96,7 +96,7 @@ Vraťme se teď na stránku `pages/btc.js` a nainstalujme knihovnu SWR. Jedná s
 yarn add swr  
 ```
 
-Hook UseSWR potřebuje 2 argumenty - adresu API a callback, který zpracuje přijatá data. V následujícím příkladě použijeme [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) - rozhraní je součástí většiny moderních prohlížečů a umožňuje práci s asynchronními HTTP dotazy (není součastí Node.js)
+Hook `useSWR` potřebuje 2 argumenty - adresu API a callback, který zpracuje přijatá data. V následujícím příkladě použijeme [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) - rozhraní je součástí většiny moderních prohlížečů a umožňuje práci s asynchronními HTTP dotazy (není součastí Node.js)
 
 ```javascript
 import useSWR from "swr"
@@ -171,7 +171,7 @@ Stylování tímto způsobem však není jediná možnost. Zajímavou alternativ
 
 ## Komponenty třetích stran
 
-Určitě není vždy žádoucí psát si všechny komponenty od základu. Předpřipravených React komponent je dostupná celá řada. Nicméně stále platí, že ne všechny komponenty je dobrý nápad bezmyšlenkovitě do projektu importovat
+Určitě není vždy žádoucí psát si všechny komponenty od základu. Předpřipravených React komponent je dostupná celá řada. Nicméně stále platí, že ne všechny komponenty je dobrý nápad bez většího rozmyslu do projektu importovat
 
 ### React Toastify
 
@@ -212,7 +212,7 @@ export default function Counter ({ initValue }) {
 }
 ```
 
-Když znovu načteme stránku s nově importovanými styly, bude se nám již zobrazovat asynchronně nový typ notifikace, vyvolaný hookem UseEffect
+Když znovu načteme stránku s nově importovanými styly, bude se nám již zobrazovat asynchronně nový typ notifikace, vyvolaný hookem `useEffect`
 
 Jelikož předpokládáme, že notifikaci budeme používat na více místech aplikace, určitě můžeme import CSS souboru přesunot například do `pages/_app.js`, ať nemusíme načítat styly v každé komponentě zvlášť. To samé platí pro samotný `ToastContainer`, který můžeme vložit třeba do komponenty `common/Content.js`
 
@@ -227,17 +227,3 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 ```
-
-<!-- 
-
-## Úkoly
-
-* Pro endpointy z minulého úkolu vytvořte samostatné stránky (např. `pages/eth.js`), na kterých budou zobrazeny tabulky s daty pro konkrétní kryptoměnu
-
-* Vytvořte komponentu navigace, která bude obsahovat seznam odkazů na jednotlivé stránky (homepage, BTC a další). Měla by být zobrazena na každé stránce
-
-* Nastylujte odkazy, tlačítka i tabulky s kryptoměnami
-
-* Pomocí parametrů funkce toast nebo samotného kontejneru změňte základní vzhled této komponenty a její chování (jako je délka zobrazení) 
-
--->

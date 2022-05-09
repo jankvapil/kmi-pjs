@@ -71,7 +71,7 @@ function Home() {
 export default Home
 ```
 
-Jak si můžeme všimnout hned na začátku souboru - pomocí knihovny `fs-extra`, která je součástí Electronu, můžeme pracovat se souborovým systémem. Funkce `loadFile` umí načíst textový soubor a výsledek uložit do proměnné `text`. Tato funkce je vyvolána přes `onChange` událost elementu `input`, který je typu file. 
+Jak si můžeme všimnout hned na začátku souboru - pomocí knihovny `fs-extra`, která je součástí Electronu, můžeme pracovat se souborovým systémem. Funkce `loadFile` umí načíst textový soubor a výsledek uložit do proměnné `text`. Tato funkce je vyvolána přes `onChange` událost elementu `input`, který je typu file
 
 Jelikož element `input` nemá nastavený atribut `multiple`, je možné předpokládat, že načtený soubor bude prvním prvkem v poli `files`. Načtený text se pak zobrazí v elementu `textarea` - jelikož však není definován onChange handler, není zatím možné text upravovat. To však nyní napravíme - upravme element `textarea`
 

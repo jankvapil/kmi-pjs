@@ -1,4 +1,4 @@
-# Užitečné nástroje pro vývoj v JS II
+# Staticky typovaný JavaScript
 
 Jak již bylo zmíněno v úvodu, JavaScript má mnoho nástrah, do kterých se (nejen) nezkušený programátor může dostat. Některé typické nástrahy jsme si již popsali v úvodních lekcích. V této lekci se budeme zabývat knihovnami, které nám (alespoň částečně) usnadní vývoj JS aplikací
 
@@ -10,7 +10,7 @@ Přidáním statické kontroly typů získáme nejen oznámení případných ch
 
 Nicméně je třeba stále brát v potaz, že data, která dostaneme od serveru, nemusejí vždy odpovídat struktuře, kterou si jednou nadefinujeme (neplatí v případě, že implmentujeme zároveň backend, se kterým sdílíme typy v rámci *monorepa*)
 
-Předávání informací o datových typech mezi klientem a serverem lze řešit pomocí schémat. Zatím jsme si ukázali, jakým způsobem schéma vytvořit. Dnes se podíváme na to, jak z takového schématu typy vygenerovat. 
+Předávání informací o datových typech mezi klientem a serverem lze řešit pomocí schémat. Zatím jsme si ukázali, jakým způsobem schéma vytvořit. Dnes se podíváme na to, jak z takového schématu typy vygenerovat
 
 Mimo GraphQL existují také [JSON Schema](https://json-schema.org/)/[OpenAPI](https://github.com/OAI/OpenAPI-Specification), které umožňují ověřovat konzistenci dat za běhu. Protokol [Transit](https://github.com/cognitect/transit-format) umožňuje posílat data (JSON) zároveň s informacích o typech
 
@@ -196,7 +196,7 @@ const user = {
 printUser(user)
 ```
 
-Jak si můžeme všimnout, importováním typů v rámci komentářů získáme rovněž nápovědu/autocomplete. Nicméně na rozdíl od použití TypeScriptu ušetříme překlad a můžeme psát rovnou nejnovější staticky typový EcmaScript kód
+Jak si můžeme všimnout, importováním typů v rámci komentářů získáme rovněž nápovědu/autocomplete. Nicméně na rozdíl od použití TypeScriptu ušetříme překlad a můžeme psát rovnou nejnovější staticky typovaný EcmaScript kód
 
 ## Zpět k TypeScriptu
 

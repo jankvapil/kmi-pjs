@@ -62,7 +62,7 @@ V Reactu se navíc tyto Gettery i Settery předávají přes props. Vychází to
 
 ### Globální aplikační stav
 
-Jistým řešením by bylo zavést globální aplikační stav. To je ale obecný anti-pattern, který narušuje principy funkcionálního přístupu a v Reactu tudíž ani není možný použít. Vždy musí být zřejmé, co je vstupem a výstupem funkcionální React komponenty a pro změnu stavu používat UseState hook, který zajišťuje překreslování. Navíc změnou globálního stavu nutně dochází k vedlejším efektům, což určitě nechceme. Nebylo by transparentní, co se v aplikaci děje
+Jistým řešením by bylo zavést globální aplikační stav. To je ale obecný anti-pattern, který narušuje principy funkcionálního přístupu a v Reactu tudíž ani není možný použít. Vždy musí být zřejmé, co je vstupem a výstupem funkcionální React komponenty a pro změnu stavu používat `useState` hook, který zajišťuje překreslování. Navíc změnou globálního stavu nutně dochází k vedlejším efektům, což určitě nechceme. Nebylo by transparentní, co se v aplikaci děje
 
 ## Imutabilní datové struktury
 
@@ -282,21 +282,3 @@ Hodnoty globálního stavu můžeme měnit tedy pouze pomocí explicitně defino
 ## Redux
 
 V příkladech pro tento kurz jsou záměrně použity co nejjednodušší implementace architektury Flux. Pro produkční prostředí je určitě vhodné zvážit použití masivněji používaných knihoven pro správu aplikačního stavu - jako je například knihovna [Redux](https://redux.js.org/). To je však nad rámec tohoto kurzu
-
-
-<!-- 
-## Úkoly
-
-* Vytvořte komponentu Lights (např. 2 div elementy vedle sebe). Ve výchozím stavu jsou obě světla zhaslá (může být jednotná defaultní barva). Vytvořte 2 přepínače (tlačítka) pro každé světlo jedno, která je rozsvěcují a zhasínají. Rozsvícení/zhasnutí implementujte akcemi. Vytvořte tlačítko UNDO, které se po stitknutí vrátí o jednu akci zpět. Pokud není dostupná žádná předchozí akce, tlačítko neprovede nic
-
-```
-L1 OFF, L2 OFF
-L1 ON
-L1 OFF
-UNDO -> L1 ON
-L1 OFF
-UNDO -> L1 ON
-UNDO -> L1 OFF
-UNDO -> 
-``` -->
-

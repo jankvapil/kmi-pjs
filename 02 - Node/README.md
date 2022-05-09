@@ -34,7 +34,6 @@ Po inicializaci nám vznikne soubor `package.json`, který může vypadat nějak
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jan Kvapil",
-  "license": "ISC"
 }
 ```
 
@@ -89,7 +88,7 @@ Z předešlé ukázky si můžeme všimnou několika věcí:
 
 ## Express server
 
-Knihovna [Express](https://github.com/expressjs/expres) nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si vytvoříme jednoduchý webový server, který bude na každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC
+Knihovna [Express](https://github.com/expressjs/expres) nám umožňuje snadno vytvořit vlastní webový server. V následujícím příkladě si vytvoříme jednoduchý webový server, který bude pro každý request generovat statické HTML stránky, kde bude zobrazena aktuální hodnota BTC
 
 Jako první si musíme nainstalovat knihovnu Express
 
@@ -116,7 +115,7 @@ V tomto příkladě si můžeme všimnout definici obsluhy GET requestu pro koř
 
 Dále pak příkazem `listen` říkáme, že má server po spuštění začít poslouchat na námi definovaném portu 3000
 
-Po spuštění příkazu `npm start` se nám spustí server. Můžeme jít do prohlížeče a zadat http://localhost:3000/. Server běží ve smyčce a lze vypnout stisknutím `ctrl+c` v konzoli, kde běží
+Po spuštění příkazu `npm start` se nám spustí server. Můžeme přejít do prohlížeče a zadat http://localhost:3000/. Běžící server lze vypnout stisknutím `ctrl+c` v konzoli
 
 
 ```html

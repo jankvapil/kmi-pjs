@@ -103,7 +103,7 @@ const sequentialRequestAsync = async () => {
 
 ```
 
-V tomto případě je ošetřen každý požadavek, nicméně kód ošetřováním chybových stavů velmi rychle lidově řečeno nabobtnal. Pojďme se podívat, jak by se tato situace dala řešit s pomocí `TaskEither` z knihovny `fpts`
+V tomto případě je ošetřen každý požadavek, nicméně kód ošetřováním chybových stavů velmi rychle "nabobtnal". Pojďme se podívat, jak by se tato situace dala řešit s pomocí `TaskEither` z knihovny `fpts`
 
 Zásadní změnou je oproti klasickému přístupu v tom, že se nevyvolávají výjimky. Nemůže tedy dojít k tomu, že bychom ji na nějakém místě zapomněli ošetřit a program by spadl. Tímto způsobem lze na sebe navázat více asynchronních funkcí. V případě, že některý z požadavků selže, jako výsledek se předá `Error`
 
@@ -170,18 +170,18 @@ Několik lekcí zpět jsme si představili knihovny pro práci s aplikačním st
 
 # ClojureScript
 
-> ClojureScript is a compiler for Clojure that targets JavaScript. It emits JavaScript code which is compatible with the advanced compilation mode of the Google Closure optimizing compiler.
+ClojureScript je překladač z funkcionálního jazyka Clojure do JavaScriptu
 
-## 1. Clojure
+## Clojure
 
 * Dynamické vývojové prostředí (REPL Driven Development)
 * Datově orientovaný jazyk vycházející z LISPu (kód = data)
 * Navržen jako hostovaný jazyk (Java, JavaScript)
 * Dynamický, silně typový
 
-## EDN Typy
+### EDN Typy
 
-* EDN = Extensible Data Notation ([specifikace](https://github.com/edn-format/edn))
+EDN = Extensible Data Notation ([specifikace](https://github.com/edn-format/edn))
 
 ```clj
 "foo"   ;; řetězec
@@ -197,7 +197,7 @@ nil     ;; null
 ```
 
 
-## EDN Datové struktury
+### EDN Datové struktury
 ```clj
 ;; seznam - sekvenční přístup
 (+ 2 3)
@@ -211,11 +211,9 @@ nil     ;; null
 ;; množina
 #{:a :b :c}
 ```
+### Definice funkce
 
-
-## Definice funkce
-
-* pomocí názvu funkce, dokumentačního komentáře, parametrů a těla funkce
+Definice funkce pomocí názvu funkce, dokumentačního komentáře, parametrů a těla funkce
 
 ```clj
 (defn add 
@@ -225,14 +223,12 @@ nil     ;; null
 
 (println (add 1 2))
 ```
-
-## 2. ClojureScript
-
 Spoustu užitečných příkazů včetně popisů můžeme najít na [Cheatsheetu](https://cljs.info/cheatsheet/)
 
-### Lumo
 
-ClojureScript REPL nad Node.js po nainstalování spustíme příkazem `lumo` 
+## Lumo
+
+Lumo je prostředí pro Clojure nad Node.js. Po nainstalování můžeme spustit REPL příkazem `lumo` 
 
 ```
 npm install -g lumo-cljs
@@ -247,7 +243,7 @@ touch main.cljs
 echo "hello world" > file.txt
 ```
 
-Zkusíme načíst textový soubor a vypsat jeho obsah. K tomu budeme potřebovat knihovnu `fs`. Jelikož je součástí node.js, můžeme ji naimportovat přimo.
+Zkusíme načíst textový soubor a vypsat jeho obsah. K tomu budeme potřebovat knihovnu `fs`. Jelikož je součástí node.js, můžeme ji naimportovat přimo
 
 ```clj
 (require 'fs)
@@ -257,7 +253,7 @@ Zkusíme načíst textový soubor a vypsat jeho obsah. K tomu budeme potřebovat
   (fn [err data] (println data)))
 ```
 
-V případě, že chceme použít externí knihovnu, musíme ji nainstalovat pomocí npm/yarn. To si ukážeme na příkladu implementace jednoduchého webserveru pomocí `express.js`.
+V případě, že chceme použít externí knihovnu, musíme ji nainstalovat pomocí npm/yarn. To si ukážeme na příkladu implementace jednoduchého webserveru pomocí `express.js`
 
 ```
 npm init -y && npm install express request request-promise
@@ -285,9 +281,13 @@ Po inicializaci projektu a nainstalování knihoven doplňme následující kód
 
 Server naslouchá na portu 3000. Na routě `/data` server vrací JSON `{"key": "value"}`
 
-## 3. Reagent
+Primárně je použití Clojure tímto způsobem vhodné spíše pro tvorbu menších utilit
+a webových služeb. Pro rozsáhlejší aplikace je vhodnější použít ClojureScript
+překladač v kombinaci s platformou Java
 
-> [Reagent](https://reagent-project.github.io/) provides a minimalistic interface between ClojureScript and React. It allows you to define efficient React components using nothing but plain ClojureScript functions and data, that describe your UI using a Hiccup-like syntax.
+## Reagent
+
+> [Reagent](https://reagent-project.github.io/) provides a minimalistic interface between ClojureScript and React. It allows you to define efficient React components using nothing but plain ClojureScript functions and data, that describe your UI using a Hiccup-like syntax
 
 ## Reference
 
