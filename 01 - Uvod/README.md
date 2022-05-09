@@ -280,14 +280,11 @@ Tímto způsobem předávání callbacků se stane kód velmi rychle nepřehledn
 ### Promises
 
 
-Proto se do JS zavedla třída [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (neboli "příslib" dokončení výpočtu někdy v budoucnu), která má 3 stavy:
+Proto se do JS zavedla třída [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) (neboli "příslib" dokončení výpočtu někdy v budoucnu), která umožňuje vracet nedokončený výpočet jako objekt. Objekt má 3 stavy:
 
 * pending: initial state, neither fulfilled nor rejected
 * fulfilled: meaning that the operation was completed successfully
 * rejected: meaning that the operation failed
-
-a umožňuje tak vracet nedokončený výpočet jako objekt
-
 
 ### Async / await
 

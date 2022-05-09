@@ -177,7 +177,7 @@ ClojureScript je překladač z funkcionálního jazyka Clojure do JavaScriptu
 * Dynamické vývojové prostředí (REPL Driven Development)
 * Datově orientovaný jazyk vycházející z LISPu (kód = data)
 * Navržen jako hostovaný jazyk (Java, JavaScript)
-* Dynamický, silně typový
+* Dynamický, silně typovaný
 
 ### EDN Typy
 
@@ -285,10 +285,6 @@ Primárně je použití Clojure tímto způsobem vhodné spíše pro tvorbu men�
 a webových služeb. Pro rozsáhlejší aplikace je vhodnější použít ClojureScript
 překladač v kombinaci s platformou Java
 
-## Reagent
-
-> [Reagent](https://reagent-project.github.io/) provides a minimalistic interface between ClojureScript and React. It allows you to define efficient React components using nothing but plain ClojureScript functions and data, that describe your UI using a Hiccup-like syntax
-
 ## Reference
 
 [Functional Programming](https://github.com/enricopolanski/functional-programming)
@@ -296,6 +292,8 @@ překladač v kombinaci s platformou Java
 [Functional TypeScript](https://www.youtube.com/playlist?list=PLlYJBXwGoczGcVOB96OpQZWOhLqiZ-6N8)
 
 [Why I chose ClojureScript over JavaScript](https://m.oursky.com/why-i-chose-clojure-over-javascript-24f045daab7e)
+
+[Reagent](https://reagent-project.github.io/) 
 
 [Základy Clojure a funkcionálneho programovania](https://youtu.be/YxuT3KHSZnQ)
 
