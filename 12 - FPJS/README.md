@@ -287,6 +287,8 @@ překladač v kombinaci s platformou Java
 
 ## Reference
 
+[Practical Guide to Fp-ts](https://rlee.dev/practical-guide-to-fp-ts-part-1)
+
 [Functional Programming](https://github.com/enricopolanski/functional-programming)
 
 [Functional TypeScript](https://www.youtube.com/playlist?list=PLlYJBXwGoczGcVOB96OpQZWOhLqiZ-6N8)
